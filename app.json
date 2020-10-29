@@ -1,5 +1,5 @@
 {
-  "name": "Javes",
+  "name": "Javes-2.0",
   "description": "Javes is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
   "logo": "https://i.imgur.com/ATSG4w3.png",
   "keywords": [
@@ -9,9 +9,9 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://t.me/javes05",
+  "repository": "https://t.me/javes_support",
   "website": "https://t.me/javes05",
-  "success_url": "https://t.me/rekcah05",
+  "success_url": "https://t.me/criminal786",
   "stack": "container",
   "env": {
     "TELEGRAM_API_KEY": {
