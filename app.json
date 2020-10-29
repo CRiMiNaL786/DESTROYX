@@ -1,0 +1,211 @@
+{
+  "name": "Javes",
+  "description": "Javes is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
+  "logo": "https://i.imgur.com/ATSG4w3.png",
+  "keywords": [
+    "telegram",
+    "userbot",
+    "plugin",
+    "modular",
+    "productivity"
+  ],
+  "repository": "https://t.me/javes05",
+  "website": "https://t.me/javes05",
+  "success_url": "https://t.me/rekcah05",
+  "stack": "container",
+  "env": {
+    "TELEGRAM_API_KEY": {
+      "description": "Get this value from my.telegram.org.[IMPORTANT]",
+      "value": "1754367"
+    },
+    "TELEGRAM_API_HASH": {
+      "description": "Get this value from my.telegram.org.[IMPORTANT]",
+      "value": "231b8cc6cca12ee51a85cf543321f476"
+    },
+    "TELEGRAM_STRING_SESSION": {
+      "description": "Get this value by running [python3 string_session.py] in Termux or heroku[IMPORTANT]"    
+    },
+    "HEROKU_APIKEY": {
+      "description": "very important for !update command to make javes up-to-date , get it from 'https://dashboard.heroku.com/account.",
+      "value": ""   
+    },
+    "HEROKU_APPNAME": {
+      "description": "enter this app name agin here, very inportant for !update comand to make javes up-to-date ,",
+      "value": ""
+      
+     },
+    "GENIUS_API_TOKEN": {
+      "description": "need for !lyrics comand , Get your own api token from https://genius.com/developers",      
+       "value": "Enter genius api here if you need ",
+       "required": false
+      
+      
+    },
+    "COUNTRY": {
+      "description": "Set your Country to be used in the !time and !date commands.",
+      "value": "Sri Lanka",
+      "required": false
+    },
+    "TZ_NUMBER": {
+      "description": "Change this value in case your country has multiple Time Zones.",
+      "value": "1",
+      "required": false
+    },
+    "FULL_SUDO": {
+      "description": "if you set it true sudo users can access your full datas ",
+      "value": "",
+      "required": false
+    },
+    "PROFILE_PP": {
+      "description": "Your photo link for !autopic command",
+      "value": "https://telegra.ph/file/edc2836f4353c6b01bcb4.jpg",
+      "required": false
+     
+    
+    
+    },
+    "OPEN_WEATHER_MAP_APPID": {
+      "description": "need for !weather command, (API key)from https://api.openweathermap.org",
+      "value": "Enter api here if you need ",
+      "required": false
+       
+    },
+    "BOTLOG": {
+      "description": "Recommed to true ,BOTLOG_CHATID must be filled correct if you set it true",
+      "value": "False",
+      "required": false
+    },
+    "BOTLOG_CHATID": {
+      "description": "Important for wark some plugins,bot logs , make super group with @missrose_bot then type /id to get this value",
+      "value": "0",
+      "required": true
+    },
+    "CONSOLE_LOGGER_VERBOSE": {
+      "description": "BOTLOG_CHATID must be filled correct if you set it true",
+      "value": "False",
+      "required": false
+      
+    },
+    "PM_PROTECTOR": {
+      "description": "Prevent unknown people to spam your pm , type !allow to allow them to pm",
+      "value": "true",
+      "required": false
+    },
+    "YOUTUBE_API_KEY": {
+      "description": "YouTube Data API Key for !youtube command. Get from https://console.cloud.google.com",
+      "value": "Enter api here if you need ",
+      "required": false
+    },
+    "OCR_SPACE_API_KEY": {
+      "description": "OCR API Key for !read (read photo's text)command. Get from https://ocr.space/ocrapi",
+      "value": "Enter api here if you need ",
+      "required": false
+    },
+    "REM_BG_API_KEY": {
+      "description": "API Key for .rbg(remove background picture) command. Get from https://www.remove.bg/api",
+      "value": "Enter api here if you need ",
+      "required": false
+    },
+    "ANTI_SPAMBOT": {
+      "description": "BOTLOG_CHATID must be filled correct if you set it true",
+      "value": "False",
+      "required": false
+    },
+    "ANTI_SPAMBOT_SHOUT": {
+      "description": "BOTLOG_CHATID must be filled correct if you set it true",
+      "value": "False",
+      "required": false
+    },
+    "TMP_DOWNLOAD_DIRECTORY": {
+      "description": "for use GDrive, .download etc..)",
+      "value": "./downloads/",
+      "required": false
+    },
+    "CLEAN_WELCOME": {
+      "description": "When a new person joins, the old welcome message is deleted.",
+      "value": "True",
+      "required": false
+          
+      },
+    "ALIVE_S_MESSAGE": {
+      "description": "Edit if you want",
+      "value": "Iam Alive!",
+      "required": false
+      
+      },
+    "ALIVE_E_MESSAGE": {
+      "description": "Edit if you want",
+      "value": "Databases functioning normally!!",
+      "required": false
+      
+      },
+    "BIO_MESSAGE": {
+      "description": "custom bio message while u using !autobio command",
+      "value": "Current date",
+      "required": false
+      
+      },
+    "JAVES_NAME": {
+      "description": "You can edit bot's name",
+      "value": "Javes ",
+      "required": false
+    
+    },
+    "PM_MESSAGE": {
+      "description": "you can edit what pm_protecter message!",
+      "value": "Hello Sir, I can't allow you to my master's PM without his permissions please be patient, Thankyou",
+      "required": false
+      
+    },
+    "SUDO_USERS": {
+      "description": "give sudo user's id , he can controll your javes, you can add multiple sudo users id by space , sudo users cant access your privacy untill you on full_sudo",
+      "value": "",
+      "required": false
+            
+      
+    },
+    "AFK_MESSAGE": {
+      "description": "Edit if you want!",
+      "value": "Hello Sir, My master offline just leave your message, Thankyou!",
+      "required": false
+           
+      
+    },
+    "BLOCK_MESSAGE": {
+      "description": "Edit if you want!",
+      "value": "I am not going to allow you to spam My master's PM, You have been blocked!",
+      "required": false
+      
+    
+    },
+    "YOUR_SHORT_NAME": {
+      "description": "Name to show in !javes message!",
+      "value": "your name",
+      "required": true
+      },
+    "LYDIA_API_KEY": {
+      "description": "need for auto replay (lydia) future get api key from https://coffeehouse.intellivoid.net/",
+      "value": "enter lydia api key here",
+      "required": false
+      
+    
+    },
+    "WEATHER_DEFCITY": {
+      "description": "Set the default city for the userbot's !weather module.",
+      "value": "enter your city ",
+      "required": false
+    },
+    "LOGSPAMMER": {
+      "description": "BOTLOG_CHATID must be filled correct if you set it true",
+      "value": "false",
+      "required": false
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+      }
+    }
+  ]
+}
