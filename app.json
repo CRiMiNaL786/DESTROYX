@@ -16,11 +16,11 @@
   "env": {
     "TELEGRAM_API_KEY": {
       "description": "Get this value from my.telegram.org. Don't Steal May Your Account Get ban.[IMPORTANT]",
-      "value": "0"
+      "value": ""
     },
     "TELEGRAM_API_HASH": {
       "description": "Get this value from my.telegram.org. Don't Steal may Your Account Get ban.[IMPORTANT]",
-      "value": "972862"
+      "value": ""
     },
     "TELEGRAM_STRING_SESSION": {
       "description": "Get this value by running [python3 string_session.py] in Termux or heroku[IMPORTANT]"    
@@ -30,7 +30,7 @@
       "value": ""   
     },
     "HEROKU_APPNAME": {
-      "description": "enter this app name agin here, very inportant for !update comand to make javes 2.0up-to-date ,",
+      "description": "enter this app name again here, very important for !update command to make javes 2.0 up-to-date ,",
       "value": ""
       
      },
