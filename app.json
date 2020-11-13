@@ -16,11 +16,11 @@
   "env": {
     "TELEGRAM_API_KEY": {
       "description": "Get this value from my.telegram.org.[IMPORTANT]",
-      "value": "0"
+      "value": ""
     },
     "TELEGRAM_API_HASH": {
       "description": "Get this value from my.telegram.org.[IMPORTANT]",
-      "value": "231b8cc6cca12ee51a85cftht5565yt4"
+      "value": ""
     },
     "TELEGRAM_STRING_SESSION": {
       "description": "Get this value by running [python3 string_session.py] in Termux or heroku[IMPORTANT]"    
