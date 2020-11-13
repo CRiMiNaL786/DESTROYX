@@ -6,7 +6,7 @@ from importlib import import_module
 
 
 #####################################
-plugin_group = "@javescommands"  #this is official plugin channel for javes 
+plugin_group = "@javescommands"  #this is official plugin group for javes 2.0
 #####################################
 
 
