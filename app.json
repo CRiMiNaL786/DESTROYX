@@ -1,6 +1,6 @@
 {
   "name": "Javes-2.0",
-  "description": "Javes is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
+  "description": "Javes 2.0 is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
   "logo": "https://i.imgur.com/ATSG4w3.png",
   "keywords": [
     "telegram",
@@ -9,28 +9,28 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://t.me/javes_support",
+  "repository": "https://github.com/Javes786/javes-2.0",
   "website": "https://t.me/javes05",
   "success_url": "https://t.me/criminal786",
   "stack": "container",
   "env": {
     "TELEGRAM_API_KEY": {
-      "description": "Get this value from my.telegram.org.[IMPORTANT]",
-      "value": ""
+      "description": "Get this value from my.telegram.org. Don't Steal May Your Account Get ban.[IMPORTANT]",
+      "value": "0"
     },
     "TELEGRAM_API_HASH": {
-      "description": "Get this value from my.telegram.org.[IMPORTANT]",
-      "value": ""
+      "description": "Get this value from my.telegram.org. Don't Steal may Your Account Get ban.[IMPORTANT]",
+      "value": "972862"
     },
     "TELEGRAM_STRING_SESSION": {
       "description": "Get this value by running [python3 string_session.py] in Termux or heroku[IMPORTANT]"    
     },
     "HEROKU_APIKEY": {
-      "description": "very important for !update command to make javes up-to-date , get it from 'https://dashboard.heroku.com/account.",
+      "description": "very important for !update command to make javes 2.0 up-to-date , get it from 'https://dashboard.heroku.com/account.",
       "value": ""   
     },
     "HEROKU_APPNAME": {
-      "description": "enter this app name agin here, very inportant for !update comand to make javes up-to-date ,",
+      "description": "enter this app name agin here, very inportant for !update comand to make javes 2.0up-to-date ,",
       "value": ""
       
      },
@@ -43,7 +43,7 @@
     },
     "COUNTRY": {
       "description": "Set your Country to be used in the !time and !date commands.",
-      "value": "Sri Lanka",
+      "value": "India",
       "required": false
     },
     "TZ_NUMBER": {
@@ -129,13 +129,13 @@
       },
     "ALIVE_S_MESSAGE": {
       "description": "Edit if you want",
-      "value": "Iam Alive!",
+      "value": "Javes 2.0 is Alive with Necessary Dynos",
       "required": false
       
       },
     "ALIVE_E_MESSAGE": {
       "description": "Edit if you want",
-      "value": "Databases functioning normally!!",
+      "value": "My Databases functioning normally!!",
       "required": false
       
       },
@@ -147,7 +147,7 @@
       },
     "JAVES_NAME": {
       "description": "You can edit bot's name",
-      "value": "Javes ",
+      "value": "Javes 2.0 ",
       "required": false
     
     },
@@ -180,7 +180,7 @@
     },
     "YOUR_SHORT_NAME": {
       "description": "Name to show in !javes message!",
-      "value": "your name",
+      "value": "your name or username like @crimial293",
       "required": true
       },
     "LYDIA_API_KEY": {
