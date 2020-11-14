@@ -158,7 +158,7 @@
       
     },
     "SUDO_USERS": {
-      "description": "give sudo user's id , he can controll your javes, you can add multiple sudo users id by space , sudo users cant access your privacy untill you on full_sudo",
+      "description": "give sudo user's id , it can control your javes, you can add multiple sudo users id by space , sudo users cant access your privacy untill you on full_sudo",
       "value": "",
       "required": false
             
@@ -180,7 +180,7 @@
     },
     "YOUR_SHORT_NAME": {
       "description": "Name to show in !javes message!",
-      "value": "your name or username like @crimial786",
+      "value": "your name or username like @criminal786",
       "required": true
       },
     "LYDIA_API_KEY": {
