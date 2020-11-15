@@ -5,7 +5,7 @@ import asyncio
 
 from userbot.utils import admin_cmd
 
-@javes.on(admin_cmd("evilsss"))
+@javes.on(admin_cmd("evil"))
 async def _(event):
     if event.fwd_from:
         return

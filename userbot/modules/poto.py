@@ -14,9 +14,9 @@ if 1 == 1:
 
     name = "Profile Photos"
 
-    client = borg
+    client = javes
 
-    @borg.on(friday_on_cmd(pattern="poto(.*)"))
+    @javes.on(friday_on_cmd(pattern="poto(.*)"))
 
     async def potocmd(event):
 
@@ -45,7 +45,7 @@ if 1 == 1:
 
                 photo = await event.client.download_profile_photo(chat)
 
-                await borg.send_file(event.chat_id, photo)
+                await javes.send_file(event.chat_id, photo)
 
         else:
 
@@ -69,7 +69,7 @@ if 1 == 1:
 
                 send_photos = await event.client.download_media(photos[id - 1])
 
-                await borg.send_file(event.chat_id, send_photos)
+                await javes.send_file(event.chat_id, send_photos)
 
             else:
 

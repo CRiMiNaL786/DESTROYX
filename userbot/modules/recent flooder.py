@@ -5,7 +5,7 @@ import asyncio
 
 from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd("chaos2"))
+@javes.on(admin_cmd("chaos2"))
 async def _(event):
     if event.fwd_from:
         return
