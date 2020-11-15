@@ -4,6 +4,7 @@ Syntax:
 .rnupload file.name
 .rnstreamupload file.name
 By @Ck_ATR"""
+from userbot import bot as javes
 import aiohttp
 import asyncio
 from datetime import datetime
