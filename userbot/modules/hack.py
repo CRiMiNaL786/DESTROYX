@@ -9,7 +9,7 @@ import os
 import sys
 import random
 from userbot.utils import admin_cmd
-
+from userbot import bot as javes
 
 @javes.on(admin_cmd(pattern="hack ?(.*)"))
 async def _(event):
