@@ -1,6 +1,6 @@
 
 from telethon import events
-
+from userbot import bot as javes
 import asyncio
 
 from userbot.utils import admin_cmd
