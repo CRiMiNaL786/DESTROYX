@@ -5,7 +5,7 @@ from platform import uname
 from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 
-
+from userbot import bot as javes
 n = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in config vars in Heroku"
 
 #@command(outgoing=True, pattern="^.ded$")
