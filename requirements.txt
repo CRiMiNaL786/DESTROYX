@@ -10,7 +10,6 @@ bs4
 bwb
 cfscrape
 bash
-var
 coffeehouse
 show
 instantmusic
