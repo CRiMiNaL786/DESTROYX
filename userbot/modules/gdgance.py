@@ -1,8 +1,8 @@
 #Credit To @Helloji123bot . Keep credit if you are going to edit it.
 
-
+from userbot import bot as javes
 import random, re
-from unijaves.util import admin_cmd
+from uniborg.util import admin_cmd
 import asyncio
 from telethon import events
 
