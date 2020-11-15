@@ -4,7 +4,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot.utils import admin_cmd
 
-@borg.on(admin_cmd(pattern="ssti?(.*)"))
+@javes.on(admin_cmd(pattern="ssti?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -42,7 +42,7 @@ async def _(event):
              await event.client.send_message(event.chat_id, respond.message)
              await event.client.send_message(event.chat_id, responds.message)
 
-@borg.on(admin_cmd(pattern="sati ?(.*)"))
+@javes.on(admin_cmd(pattern="sati ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -87,7 +87,7 @@ async def _(event):
              await event.client.send_message(event.chat_id, respo.message)
              await event.client.send_message(event.chat_id, res.message)
              await event.client.send_message(event.chat_id, resp.message)
-@borg.on(admin_cmd(pattern="iti ?(.*)"))
+@javes.on(admin_cmd(pattern="iti ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
@@ -122,7 +122,7 @@ async def _(event):
 
              await event.client.send_message(event.chat_id, response.message)
              await event.client.send_message(event.chat_id, respond.message)
-@borg.on(admin_cmd(pattern="sa2ti ?(.*)"))
+@javes.on(admin_cmd(pattern="sa2ti ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return 
