@@ -6,7 +6,7 @@ from datetime import datetime
 import io
 import speedtest
 from userbot.utils import admin_cmd
-
+from userbot import bot as javes
 from userbot import bot as javes
 @javes.on(admin_cmd("speedtest ?(.*)"))
 async def _(event):
