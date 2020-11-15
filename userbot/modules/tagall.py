@@ -5,7 +5,7 @@ import asyncio
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
 from userbot.utils import admin_cmd
-
+from userbot import bot as javes
 
 @javes.on(admin_cmd(pattern=r"tagall", outgoing=True))
 async def _(event):
