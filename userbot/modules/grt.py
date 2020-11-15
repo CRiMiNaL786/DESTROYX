@@ -5,7 +5,7 @@ import asyncio
 
 from userbot.utils import admin_cmd
 # i strongly recomend not to use this in any other group u can use it where u are the admin
-@borg.on(admin_cmd("grt"))
+@javes.on(admin_cmd("grt"))
 async def grt(event):
     if event.fwd_from:
         return

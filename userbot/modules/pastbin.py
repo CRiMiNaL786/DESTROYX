@@ -10,7 +10,7 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import CMD_HELP
 import userbot
 from userbot import *
-#from userbot.uniborgConfig import Config
+#from userbot.unijavesConfig import Config
 from userbot.utils import admin_cmd
 
 logging.basicConfig(
@@ -32,7 +32,7 @@ BOTLOG_CHATID = Config.PRIVATE_GROUP_ID
 BOTLOG = True
 
 
-@borg.on(admin_cmd(pattern="paste ?(.*)"))
+@javes.on(admin_cmd(pattern="paste ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -46,7 +46,7 @@ async def _(event):
     elif event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await borg.download_media(
+            downloaded_file_name = await javes.download_media(
                 previous_message,
                 Config.TEMP_DOWNLOAD_DIRECTORY,
                 progress_callback=progress,
@@ -78,7 +78,7 @@ async def _(event):
         await event.edit("Pasted to dogbin : [dog]({}) in {} seconds".format(url, ms))
 
 
-@borg.on(admin_cmd(pattern="neko ?(.*)"))
+@javes.on(admin_cmd(pattern="neko ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -92,7 +92,7 @@ async def _(event):
     elif event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await borg.download_media(
+            downloaded_file_name = await javes.download_media(
                 previous_message,
                 Config.TEMP_DOWNLOAD_DIRECTORY,
                 progress_callback=progress,

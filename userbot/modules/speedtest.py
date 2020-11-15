@@ -8,7 +8,7 @@ import speedtest
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("speedtest ?(.*)"))
+@javes.on(admin_cmd("speedtest ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -50,7 +50,7 @@ Ping: {}
 Internet Service Provider: {}
 ISP Rating: {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating))
         else:
-            await borg.send_file(
+            await javes.send_file(
                 event.chat_id,
                 speedtest_image,
                 caption="**SpeedTest** completed in {} seconds".format(ms),

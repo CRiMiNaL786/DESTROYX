@@ -2,11 +2,11 @@
 
 
 import random, re
-from uniborg.util import admin_cmd
+from unijaves.util import admin_cmd
 import asyncio
 from telethon import events
 
-@borg.on(admin_cmd(pattern="rban ?(.*)"))
+@javes.on(admin_cmd(pattern="rban ?(.*)"))
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit("Javes: Preparing to gban user....")
@@ -99,7 +99,7 @@ async def _(event):
     
      
         
-@borg.on(admin_cmd(pattern="unrban ?(.*)"))
+@javes.on(admin_cmd(pattern="unrban ?(.*)"))
 async def _(event):
      if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         await event.edit("Javes: Preparing to Ungban user....")

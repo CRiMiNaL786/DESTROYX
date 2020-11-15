@@ -11,7 +11,7 @@ import random
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd(pattern="hack ?(.*)"))
+@javes.on(admin_cmd(pattern="hack ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
