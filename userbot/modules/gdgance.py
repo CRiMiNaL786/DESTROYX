@@ -2,7 +2,7 @@
 
 from userbot import bot as javes
 import random, re
-from uniborg.util import admin_cmd
+from userbot.util import admin_cmd
 import asyncio
 from telethon import events
 
