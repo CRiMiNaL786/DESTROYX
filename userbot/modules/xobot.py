@@ -7,7 +7,7 @@ import re
 import random
 from userbot import bot
 from userbot.utils import admin_cmd
-
+from userbot import bot as javes
 IF_EMOJI = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)

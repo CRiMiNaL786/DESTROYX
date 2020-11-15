@@ -1,7 +1,7 @@
 import logging
 import os
 from datetime import datetime
-
+from userbot import bot as javes
 import requests
 from requests import exceptions, get
 from telethon import events

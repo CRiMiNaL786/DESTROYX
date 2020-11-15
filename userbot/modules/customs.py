@@ -1,5 +1,5 @@
 from userbot.utils import admin_cmd
-
+from userbot import bot as javes
 @javes.on(admin_cmd(pattern=r"hhi ?(.*)")) #initially made by @NOOB_GUY_OP
 async def hhi(event):
     giveVar = event.text

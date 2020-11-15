@@ -4,7 +4,7 @@
 
 
 import logging
-
+from userbot import bot as javes
 from userbot.utils import admin_cmd as friday_on_cmd
 
 logger = logging.getLogger(__name__)

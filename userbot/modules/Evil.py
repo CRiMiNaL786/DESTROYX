@@ -1,4 +1,4 @@
-
+from userbot import bot as javes
 from telethon import events
 
 import asyncio

@@ -2,7 +2,7 @@
 from telethon import events
 
 import asyncio
-
+from userbot import bot as javes
 from userbot.utils import admin_cmd
 
 @javes.on(admin_cmd("chaos2"))

@@ -5,6 +5,7 @@ from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantAdmin
 from unijaves.util import admin_cmd
 from telethon.errors.rpcerrorlist import (UserIdInvalidError,
                                           MessageTooLongError)
+from userbot import bot as javes
                                           
 @javes.on(events.NewMessage(pattern=r"\.userlist ?(.*)", outgoing=True))
 async def get_users(show):
