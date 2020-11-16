@@ -1,7 +1,7 @@
 import logging
 import os
 from datetime import datetime
-from userbot,javes_main.heroku_var import *
+from userbot.javes_main.heroku_var import *
 import requests
 from requests import exceptions, get
 from telethon import events
