@@ -77,8 +77,8 @@ BLOCK_MSG = (f"I am not going to allow you to spam {DEFAULTUSER}'s PM, You have 
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 AFK_MSG = (f"Hello Sir, {DEFAULTUSER} is offline Just leave Your message, Thankyou!")
 BIO_MSG = (f"")
-ALIVE_S_MSG = (f"Iam Alive!")
-ALIVE_E_MSG = (f"Databases functioning normally!! ")
+ALIVE_S_MSG = (f"I am Alone Survivor!")
+ALIVE_E_MSG = (f"Javes 2.0 Reloaded Extra Extremely🖕🏻 ")
 
 if not os.path.exists('bin'):
     os.mkdir('bin')
