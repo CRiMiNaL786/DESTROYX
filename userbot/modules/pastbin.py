@@ -29,10 +29,12 @@ def progress(current, total):
 DOGBIN_URL = "https://del.dog/"
 try:
 	BOTLOG_CHATID = config.PRIVATE_GROUP_ID
-except:
+except AttributeError:
 	BOTLOG_CHATID = config.BOTLOG_CHATID
+except :
+	BOTLOG_CHATID = None
 else :
-	BOTLOG_CHATID = 0
+	BOTLOG_CHATID = BOTLOG_CHATID
 BOTLOG = True
 
 
