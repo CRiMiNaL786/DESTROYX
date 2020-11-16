@@ -1,16 +1,16 @@
 import logging
 import os
 from datetime import datetime
-from userbot import bot as javes
+from userbot.javes_main.heroku_var import *
 import requests
 from requests import exceptions, get
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-
+from userbot import bot as javes
 from userbot import CMD_HELP
 import userbot
 from userbot import *
-#from userbot.unijavesConfig import Config
+#from userbot.uniborgConfig import Config
 from userbot.utils import admin_cmd
 
 logging.basicConfig(
@@ -19,7 +19,7 @@ logging.basicConfig(
 
 
 def progress(current, total):
-    logger.info(
+    logging.info(
         "Downloaded {} of {}\nCompleted {}".format(
             current, total, (current / total) * 100
         )
@@ -27,8 +27,12 @@ def progress(current, total):
 
 
 DOGBIN_URL = "https://del.dog/"
-
-BOTLOG_CHATID = Config.PRIVATE_GROUP_ID
+try:
+	BOTLOG_CHATID = config.PRIVATE_GROUP_ID
+except :
+	BOTLOG_CHATID = None
+else :
+	BOTLOG_CHATID = BOTLOG_CHATID
 BOTLOG = True
 
 
@@ -46,7 +50,7 @@ async def _(event):
     elif event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await javes.download_media(
+            downloaded_file_name = await borg.download_media(
                 previous_message,
                 Config.TEMP_DOWNLOAD_DIRECTORY,
                 progress_callback=progress,
@@ -92,7 +96,7 @@ async def _(event):
     elif event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await javes.download_media(
+            downloaded_file_name = await borg.download_media(
                 previous_message,
                 Config.TEMP_DOWNLOAD_DIRECTORY,
                 progress_callback=progress,
