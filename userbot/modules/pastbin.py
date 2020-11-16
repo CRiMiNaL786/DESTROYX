@@ -19,7 +19,7 @@ logging.basicConfig(
 
 
 def progress(current, total):
-    logger.info(
+    logging.info(
         "Downloaded {} of {}\nCompleted {}".format(
             current, total, (current / total) * 100
         )
