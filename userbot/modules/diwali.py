@@ -1,6 +1,6 @@
 #made by shivam patel
 from telethon import events
-
+from userbot import bot as borg
 import asyncio
 
 from userbot.utils import admin_cmd
