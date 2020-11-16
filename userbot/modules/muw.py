@@ -1,7 +1,7 @@
 from userbot.utils import admin_cmd
 from userbot import bot as borg
 @borg.on(admin_cmd(pattern=r"wis ?(.*)"))
-async def ues(event):
+async def wis(event):
     if event.fwd_from:
         return
     if event.reply_to_msg_id:
