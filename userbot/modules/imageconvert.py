@@ -24,9 +24,9 @@ import math
 import os
 from pySmartDL import SmartDL
 from userbot.javes_main.heroku_var import *
+config=Config
 
-
-thumb_image_path = config.TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpeg"
+thumb_image_path = Config.TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpeg"
 
 
 @javes.on(admin_cmd("pti (.*)"))
