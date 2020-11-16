@@ -14,7 +14,7 @@ async def ues(event):
             await event.edit("Current Chat ID: `{}`\nFrom User ID: `{}`".format(str(event.chat_id), str(r_msg.from_id))) 
 
         try:
-            new_update = await borg.get_entity(int("{}".format(str(r_msg.from_id))))
+            new_update = await borg.get_entity(int(("{}".format(str(r_msg.from_id))[17:-1])))
         except ValueError:
             new_update = await borg.get_entity('me')
         await event.edit(new_update.stringify())
