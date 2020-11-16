@@ -4,8 +4,8 @@ from telethon import events
 import asyncio
 
 from userbot.utils import admin_cmd
-from userbot import bot as borg
-@borg.on(admin_cmd("hdd"))
+from userbot import bot as javes
+@javes.on(admin_cmd("hdd"))
 async def _(event):
     if event.fwd_from:
         return
@@ -1261,7 +1261,7 @@ async def _(event):
         	
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
-@borg.on(admin_cmd("diwali"))
+@javes.on(admin_cmd("diwali"))
 async def _(event):
     if event.fwd_from:
         return
@@ -1274,7 +1274,7 @@ async def _(event):
         	
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 5])
-@borg.on(admin_cmd("dosto"))
+@javes.on(admin_cmd("dosto"))
 async def _(event):
     if event.fwd_from:
         return
