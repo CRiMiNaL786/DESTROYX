@@ -74,6 +74,7 @@ class config(object):
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
     PRIVATE_GROUP_ID = os.environ.get("BOTLOG_CHATID", None)
     DB_URI = os.environ.get("DATABASE_URL", None)
+    TMP_DOWNLOAD_DIRECTORY=TEMP_DOWNLOAD_DIRECTORY
 class Config(object):
     API_KEY = os.environ.get("TELEGRAM_API_KEY", None)
     APP_ID = os.environ.get("TELEGRAM_API_KEY", None)
@@ -136,6 +137,7 @@ class Config(object):
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
     PRIVATE_GROUP_ID = os.environ.get("BOTLOG_CHATID", None)
     DB_URI = os.environ.get("DATABASE_URL", None)
+    TMP_DOWNLOAD_DIRECTORY=TEMP_DOWNLOAD_DIRECTORY
 class Development(config):
     LOGGER = True
 
