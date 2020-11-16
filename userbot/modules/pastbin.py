@@ -28,7 +28,7 @@ def progress(current, total):
 
 DOGBIN_URL = "https://del.dog/"
 
-BOTLOG_CHATID = config.PRIVATE_GROUP_ID
+BOTLOG_CHATID = config.BOTLOG_CHATID 
 BOTLOG = True
 
 
