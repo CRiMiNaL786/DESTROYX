@@ -1,6 +1,6 @@
 """Syntax: .copy as reply to a message to copy"""
 from telethon import events
-from uniborg.util import admin_cmd
+from userbot.util import admin_cmd
 from userbot import bot as borg
 
 @borg.on(admin_cmd(pattern="copy"))
