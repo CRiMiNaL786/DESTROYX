@@ -14,8 +14,8 @@ async def wis(event):
             await event.edit("Current Chat ID: `{}`\nFrom User ID: `{}`".format(str(event.chat_id), str(r_msg.from_id))) 
         try:
             new_update = await borg.get_entity(int("{}".format(str(r_msg.from_id))))
-        except :
-            new_update = await borg.get_entity('me')
+        except ValueError:
+            new_update = await borg.get_entity(int("{}".format(str(event.chat_id)))
         await event.edit(new_update.stringify())
 @borg.on(admin_cmd(pattern=r"uis ?(.*)"))
 async def ues(event):
