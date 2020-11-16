@@ -1,10 +1,10 @@
 #made by shivam patel
 from telethon import events
-from userbot import bot as borg
+
 import asyncio
 
 from userbot.utils import admin_cmd
-from userbot import bot as javes
+from userbot import bot as borg
 @borg.on(admin_cmd("hdd"))
 async def _(event):
     if event.fwd_from:
