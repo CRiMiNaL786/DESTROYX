@@ -16,7 +16,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
 
 
 @telebot.on(admin_cmd(pattern=r"snd (?P<shortname>\w+)", outgoing=True))
-@telebot.on(sudo_cmd(pattern=r"snd (?P<shortname>\w+)", allow_sudo=True))
+
 async def send(event):
     if event.fwd_from:
         return
