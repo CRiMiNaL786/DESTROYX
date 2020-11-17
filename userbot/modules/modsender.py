@@ -17,7 +17,7 @@ async def send(event):
     message_id = event.message.id
     input_str = event.pattern_match.group(1)
     the_plugin_file = "{}.py".format(input_str)
-    if os.path.exists(the_plugin_file):
+    if the_plugin_file == input_str+".py":
         start = datetime.now()
         pro = await event.client.send_file(
             event.chat_id,
