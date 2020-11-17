@@ -16,7 +16,7 @@ async def send(event):
 
     message_id = event.message.id
     input_str = event.pattern_match.group(1)
-    the_plugin_file = "./userbot/modules/{}.py".format(input_str)
+    the_plugin_file = "{}.py".format(input_str)
     if os.path.exists(the_plugin_file):
         start = datetime.now()
         pro = await event.client.send_file(
