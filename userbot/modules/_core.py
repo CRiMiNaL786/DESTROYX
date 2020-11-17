@@ -5,8 +5,8 @@ from pathlib import Path
 
 from telethon.tl.types import InputMessagesFilterDocument
 
-from telebot import CMD_HELP
-from telebot.utils import admin_cmd, load_module, remove_plugin
+from userbot import CMD_HELP
+from userbot.utils import admin_cmd, load_module, remove_plugin
 from userbot import bot as telebot
 from .. import ALIVE_NAME
 
