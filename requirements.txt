@@ -66,3 +66,4 @@ spamwatch
 virustotal_python
 youtube-search-python
 validators
+numpy
