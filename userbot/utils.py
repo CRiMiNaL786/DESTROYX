@@ -28,7 +28,7 @@ if ENV:
     from userbot.uniborgConfig import Config
 else:
     if os.path.exists("config.py"):
-        from config import Development as Config
+        from userbot.javes_main.heroku_var import Development as Config
 
 def command(**args):
     args["func"] = lambda e: e.via_bot_id is None
