@@ -10,7 +10,7 @@ from userbot.utils import *
 DELETE_TIMEOUT = 3
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Mr.X"
 HELPTYPE=False
-
+#trial
 
 @borg.on(admin_cmd(outgoing=True, pattern="snd ?(.*)"))
 async def cmd_list(event):
