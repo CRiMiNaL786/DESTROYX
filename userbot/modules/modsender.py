@@ -35,15 +35,13 @@ async def cmd_list(event):
                 allow_cache=False,
                 reply_to=message_id,
             )
-            end = datetime.now()
-            time_taken_in_ms = (end - start).seconds
-            await pro.edit(
+        end = datetime.now()
+        time_taken_in_ms = (end - start).seconds
+        await pro.edit(
                 f"__**➥ Plugin Name:- {input_str} .**__\n__**➥ Uploaded in {time_taken_in_ms} seconds.**__\n__**➥ Uploaded by :-**__ {DEFAULTUSER}"
             )
-            await asyncio.sleep(DELETE_TIMEOUT)
-            await event.delete()
-        else:
-            await event.edit("`ERROR S0S : File not found`")
+        await asyncio.sleep(DELETE_TIMEOUT)
+        await event.delete()
         if len(string) > 4095:
             data = string.format(count=catcount, plugincount=plugincount)
             key = (
