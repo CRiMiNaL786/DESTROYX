@@ -1,9 +1,9 @@
 import math
 import os
 import re
-
+from userbot import Config as Var
 from telethon import Button, custom, events
-from userbot import bot as gbot
+from userbot import bot as tgbot
 from userbot import ALIVE_NAME, CMD_LIST
 
 NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD = os.environ.get(
