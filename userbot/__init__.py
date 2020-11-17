@@ -17,6 +17,24 @@ CONSOLE_LOGGER_VERBOSE = config.CONSOLE_LOGGER_VERBOSE
 basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=INFO)
 LOGS = getLogger(__name__)
+if config.STRING_SESSION:
+    session_name = str(config.STRING_SESSION)
+    bot = TelegramClient(StringSession(session_name), config.APP_ID, config.API_HASH)
+else:
+    session_name = "startup"
+    bot = TelegramClient(session_name, config.APP_ID, config.API_HASH)
+
+
+CMD_LIST = {}
+# for later purposes
+CMD_HELP = {}
+INT_PLUG = ""
+LOAD_PLUG = {}
+SUDO_LIST = {}
+# PaperPlaneExtended Support Vars
+
+
+CAT_ID = [" 929138153"]
 ENV = config.ENV
 API_KEY = config.API_KEY
 API_HASH = config.API_HASH
