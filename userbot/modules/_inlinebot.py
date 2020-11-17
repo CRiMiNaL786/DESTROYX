@@ -39,7 +39,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                             "Repo 🛡️", "https://github.com/Sh1vam/javes-2.0"
                         )
                     ],
-                    [Button.url("Join Channel 📃", "t.me/daShivam_Patel,
+                    [Button.url("Join Channel 📃", "t.me/Shivam_Patel"),
                 ],
             )
         await event.answer([result] if result else None)
