@@ -20,7 +20,7 @@ async def cmd_list(event):
     input_str = event.pattern_match.group(1)
     if input_str == "text":
         string = (
-            "Total {count} commands found in {plugincount} plugins of catuserbot\n\n"
+            "Total {count} commands found in {plugincount} plugins of userbot\n\n"
         )
         catcount = 0
         plugincount = 0
@@ -43,7 +43,7 @@ async def cmd_list(event):
                 .get("key")
             )
             url = f"https://nekobin.com/{key}"
-            reply_text = f"**All commands of the catuserbot can be seen [here]({url})**"
+            reply_text = f"**All commands of the userbot can be seen [here]({url})**"
             await event.edit(reply_text)
             return
         await event.edit(string.format(count=catcount, plugincount=plugincount))
@@ -77,7 +77,7 @@ async def cmd_list(event):
         else:
             string = "<b>Please specify which plugin do you want help for !!\
                 \nNumber of plugins : </b><code>{count}</code>\
-                \n<b>Usage:</b> <code>.help</code> plugin name\n\n"
+                \n<b>Usage:</b> <code>.hep</code> plugin name\n\n"
             catcount = 0
             for i in sorted(CMD_LIST):
                 string += "• " + f"<code>{str(i)}</code>"
@@ -103,7 +103,7 @@ async def info(event):
     else:
         string = "<b>Please specify which plugin do you want help for !!\
             \nNumber of plugins : </b><code>{count}</code>\
-            \n<b>Usage : </b><code>.info</code> <plugin name>\n\n"
+            \n<b>Usage : </b><code>.chk</code> <plugin name>\n\n"
         catcount = 0
         for i in sorted(CMD_HELP):
             string += "• " + f"<code>{str(i)}</code>"
