@@ -1,6 +1,6 @@
 #Credits To @Kraken_The_BadASS . Keep credit if you are going to copy paste it.. LOL NOOBS :-) Also Join @Testpy12 for more madafaking awesome plugins.....
 
-
+from userbot import bot as borg
 import os
 import sys
 import logging
