@@ -32,7 +32,11 @@
     "HEROKU_APPNAME": {
       "description": "enter this app name again here, very important for !update command to make javes 2.0 up-to-date ,",
       "value": ""
-      
+    },
+    "INLINE_MODE": {
+      "description": "If you want Inline mode then write True Or leave it.",
+      "value":"False",
+      "required": false     
      },
     "GENIUS_API_TOKEN": {
       "description": "need for !lyrics comand , Get your own api token from https://genius.com/developers",      
@@ -199,7 +203,16 @@
       "description": "BOTLOG_CHATID must be filled correct if you set it true",
       "value": "false",
       "required": false
-    }
+    },
+    "BOT_TOKEN_OF_HER": {
+      "description": "If You have Turned On inline mode. Add this var make a  bot through @BotFather and get bot token.",
+      "value": "",
+      "required": false
+    },
+    "BOT_USERNAME_OF_HER": {
+      "description": "If You Turned on inline mode. Add this var Username Of that Bot.",
+      "value": "",
+      "required": false
   },
   "addons": [
     {
