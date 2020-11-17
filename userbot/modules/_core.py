@@ -14,7 +14,7 @@ from datetime import datetime
 
 DELETE_TIMEOUT = 5
 
-@command(pattern="^!instl", outgoing=True)
+@command(pattern="instl", outgoing=True)
 async def install(event):
     if event.fwd_from:
         return
@@ -22,13 +22,13 @@ async def install(event):
         try:
             downloaded_file_name = await event.client.download_media(  # pylint:disable=E0602
                 await event.get_reply_message(),
-                "userbot/plugins/"  # pylint:disable=E0602
+                "userbot/modules/"  # pylint:disable=E0602
             )
             if "(" not in downloaded_file_name:
                 path1 = Path(downloaded_file_name)
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
-                await event.edit("Installed Plugin `{}` By @uSe_DaRk_PrInCe".format(os.path.basename(downloaded_file_name)))
+                await event.edit("Installed Plugin `{}` ".format(os.path.basename(downloaded_file_name)))
             else:
                 os.remove(downloaded_file_name)
                 await event.edit("Errors! This plugin is already installed/pre-installed.")
@@ -38,13 +38,13 @@ async def install(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@command(pattern="^!snd (?P<shortname>\w+)$", outgoing=True)
+@command(pattern="snd (?P<shortname>\w+)$", outgoing=True)
 async def send(event):
     if event.fwd_from:
         return
     message_id = event.message.id
     input_str = event.pattern_match["shortname"]
-    the_plugin_file = "./userbot/plugins/{}.py".format(input_str)
+    the_plugin_file = "./userbot/modules/{}.py".format(input_str)
     start = datetime.now()
     await event.client.send_file(  # pylint:disable=E0602
         event.chat_id,
@@ -59,7 +59,7 @@ async def send(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@command(pattern="^!unld (?P<shortname>\w+)$", outgoing=True)
+@command(pattern="unld (?P<shortname>\w+)$", outgoing=True)
 async def unload(event):
     if event.fwd_from:
         return
@@ -70,7 +70,7 @@ async def unload(event):
     except Exception as e:
         await event.edit("Successfully unload {shortname}\n{}".format(shortname, str(e)))
 
-@command(pattern="^!lod (?P<shortname>\w+)$", outgoing=True)
+@command(pattern="lod (?P<shortname>\w+)$", outgoing=True)
 async def load(event):
     if event.fwd_from:
         return
