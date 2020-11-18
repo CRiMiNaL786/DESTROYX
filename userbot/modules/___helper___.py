@@ -8,6 +8,7 @@ from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 from userbot.javes_main.heroku_var import Config
 from userbot.javes_main.heroku_var import config as Var
 from userbot import bot as borg
+from userbot import bot
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 
 HELPTYPE = True
