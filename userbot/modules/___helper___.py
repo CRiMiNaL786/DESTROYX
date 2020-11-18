@@ -16,12 +16,22 @@ from importlib import import_module
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Shivam"
 
 HELPTYPE = True
-if tebot:
-      try:
-         await tebot.start() ; LOGS.info("Telegram Bot connected") ; o4 = ", TGBot"
-      except:
-         LOGS.info("Bot Token Wrong/ Expired please add new one  or delete var BOT_TOKEN ") ; quit(1)
+#############################################################################
+async def add_bot(bot_token):
+    await bot.start(bot_token)
+    bot.me = await bot.get_me()
+    bot.uid = telethon.utils.get_peer_id(bot.me)
+if Config.TG_BOT_USER_NAME_BF_HER is not None:
 
+        bot.tgbot = TelegramClient(
+            TG_BOT_TOKEN=Var.TG_BOT_TOKEN_BF_HER, api_id=config.APP_ID, api_hash=config.API_HASH
+        ).start(bot_token=Config.TG_BOT_TOKEN_BF_HER)
+
+        bot.loop.run_until_complete(add_bot(config.TG_BOT_USER_NAME_BF_HER))
+
+else:
+        bot.start()
+##########################################################################
 @borg.on(admin_cmd(outgoing=True, pattern="ihelp ?(.*)"))
 async def cmd_list(event):
     global HELPTYPE
