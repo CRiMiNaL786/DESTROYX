@@ -2,6 +2,13 @@
 ## What is Javes 2.0?
 Javes 2.0 is a telgram userbot that running in python3 + Telethon.
 Born From Javes.
+Against Of Original repo it has many features goss issue is setteled by command .linkshot
+new help modules
+.hlp and .chk is command 
+great feature it has is now it can send plugin by !send command 
+also .updt ahd .updt now are command of new updater
+also many new modules 
+it can install many modules from external sources 
 
 
 ## Tap this img to deploy javes in heroku
