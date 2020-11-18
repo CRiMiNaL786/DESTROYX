@@ -14,7 +14,7 @@ from datetime import datetime
 
 DELETE_TIMEOUT = 5
 
-@command(pattern="^.install", outgoing=True)
+@command(pattern="^.instl", outgoing=True)
 async def install(event):
     if event.fwd_from:
         return
@@ -28,7 +28,7 @@ async def install(event):
                 path1 = Path(downloaded_file_name)
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
-                await event.edit("Installed Plugin `{}` By @uSe_DaRk_PrInCe".format(os.path.basename(downloaded_file_name)))
+                await event.edit("Installed Plugin `{}` 𝙹𝙰𝚅𝙴𝚂 2.0".format(os.path.basename(downloaded_file_name)))
             else:
                 os.remove(downloaded_file_name)
                 await event.edit("Errors! This plugin is already installed/pre-installed.")
@@ -38,7 +38,7 @@ async def install(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@command(pattern="^.send (?P<shortname>\w+)$", outgoing=True)
+@command(pattern="^.snd (?P<shortname>\w+)$", outgoing=True)
 async def send(event):
     if event.fwd_from:
         return
@@ -59,7 +59,7 @@ async def send(event):
     await asyncio.sleep(DELETE_TIMEOUT)
     await event.delete()
 
-@command(pattern="^.unload (?P<shortname>\w+)$", outgoing=True)
+@command(pattern="^.uload (?P<shortname>\w+)$", outgoing=True)
 async def unload(event):
     if event.fwd_from:
         return
