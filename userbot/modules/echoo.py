@@ -78,7 +78,7 @@ async def echo(cat):
             )
     else:
         output_str = "No echo enabled users "
-    if len(output_str) > Config.MAX_MESSAGE_SIZE_LIMIT:
+    if len(output_str) > 494:
         key = (
             requests.post(
                 "https://nekobin.com/api/documents", json={"content": output_str}
