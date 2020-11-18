@@ -10,11 +10,17 @@ from userbot.javes_main.heroku_var import config
 from userbot import bot as borg
 from telethon import TelegramClient, events
 from userbot.utils import *
-
+from userbot import * ;  from sys import * ; from telethon import TelegramClient, functions, types ; from telethon.tl.types import InputMessagesFilterDocument ; from pathlib import Path; from userbot.javes_main.commands import * ; import asyncio, os, traceback, sys, traceback, os, importlib, glob ; javes = tgbot = bot.tgbot = client 
+from telethon.tl.types import InputMessagesFilterDocument
+from importlib import import_module
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Shivam"
 
 HELPTYPE = True
-
+if tebot:
+      try:
+         await tebot.start() ; LOGS.info("Telegram Bot connected") ; o4 = ", TGBot"
+      except:
+         LOGS.info("Bot Token Wrong/ Expired please add new one  or delete var BOT_TOKEN ") ; quit(1)
 
 @borg.on(admin_cmd(outgoing=True, pattern="ihelp ?(.*)"))
 async def cmd_list(event):
@@ -74,10 +80,11 @@ async def cmd_list(event):
                           \nUserbot Helper to reveal all the plugin names"
                           
             try:
-                tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
+                tgbotusername = Var.TG_BOT_USER_NAME_BF_HER   
             except:
-            #tgbotusername = Var.TG_BOT_TOKEN_BF_HER
                 tgbotusername = "@errorsender_bot"
+            except:
+                tgbotusername = Var.TG_BOT_TOKEN_BF_HER
             else:
                 tgbotusername = "errorsender_bot"
             results = await bot.inline_query(  # pylint:disable=E0602
