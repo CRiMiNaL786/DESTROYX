@@ -1,5 +1,4 @@
 Pillow
-collections
 PyGithub
 aiofiles
 aiohttp
