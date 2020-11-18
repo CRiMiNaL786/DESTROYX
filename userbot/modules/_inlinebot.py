@@ -8,6 +8,7 @@ from userbot import ALIVE_NAME, CMD_LIST
 from userbot import * ;  from sys import * ; from telethon import TelegramClient, functions, types ; from telethon.tl.types import InputMessagesFilterDocument ; from pathlib import Path; from userbot.javes_main.commands import * ; import asyncio, os, traceback, sys, traceback, os, importlib, glob ; javes = tgbot = bot.tgbot = client 
 from telethon.tl.types import InputMessagesFilterDocument
 from importlib import import_module
+'''
 #############################################################################
 async def add_bot(bot_token):
     await bot.start(bot_token)
@@ -28,6 +29,7 @@ else:
         bot.start()
         bot.run_until_disconnected()
 ############################################################################
+'''
 NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD = os.environ.get(
     "NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD", 3
 )
