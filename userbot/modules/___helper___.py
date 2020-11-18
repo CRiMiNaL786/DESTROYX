@@ -132,7 +132,7 @@ async def _(event):
     await event.edit(result)
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="stinline (true|false)"))
+@borg.on(admin_cmd(outgoing=True, pattern="steinline (true|false)"))
 async def _(event):
     global HELPTYPE
     input_str = event.pattern_match.group(1)
