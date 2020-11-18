@@ -9,7 +9,7 @@ from userbot.javes_main.heroku_var import Config
 from userbot import bot as borg
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 
-HELPTYPE = Config.INLINE_MODE or True
+HELPTYPE = True
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="ihelp ?(.*)"))
