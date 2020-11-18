@@ -9,9 +9,9 @@ from userbot.javes_main.heroku_var import Config as Var
 from userbot.javes_main.heroku_var import config 
 from userbot import bot as borg
 from telethon import TelegramClient, events
-session_name = "startup"
-bot = TelegramClient(session_name, config.APP_ID, config.API_HASH)
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
+
+
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Shivam"
 
 HELPTYPE = True
 
@@ -73,8 +73,13 @@ async def cmd_list(event):
             help_string = f"Userbot Helper.. Provided by {DEFAULTUSER}\
                           \nUserbot Helper to reveal all the plugin names"
                           
-            tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
+            try:
+                tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
+            except:
             #tgbotusername = Var.TG_BOT_TOKEN_BF_HER
+                tgbotusername = "@errorsender_bot"
+            else:
+                tgbotusername = "errorsender_bot"
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername, help_string
             )
