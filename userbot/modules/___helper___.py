@@ -11,7 +11,7 @@ from userbot import bot as borg
 from telethon import TelegramClient, events
 if config.STRING_SESSION:
     session_name = str(config.STRING_SESSION)
-    bot = TelegramClient(StringSession(session_name), config.APP_ID, config.API_HASH)
+    bot = TelegramClient(config.STRING_SESSION, config.APP_ID, config.API_HASH)
 else:
     session_name = "startup"
     bot = TelegramClient(session_name, config.APP_ID, config.API_HASH)
