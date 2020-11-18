@@ -70,7 +70,7 @@ async def _(event):
    
             
            
-@borg.on(admin_cmd(pattern=f"kill$", outgoing=True))
+@borg.on(admin_cmd(pattern=f"kills$", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
