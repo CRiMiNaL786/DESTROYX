@@ -1,6 +1,6 @@
 import os
 #os.system("pip install validators")
-#os.system("pip install collections")
+os.system("pip install collections")
 #os.system("pip install Pillow")
 
 import re
