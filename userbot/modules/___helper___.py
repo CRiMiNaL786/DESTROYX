@@ -9,7 +9,7 @@ from userbot.javes_main.heroku_var import Config as Var
 from userbot.javes_main.heroku_var import config 
 from userbot import bot as borg
 from telethon import TelegramClient, events
-
+from userbot.utils import *
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Shivam"
 
