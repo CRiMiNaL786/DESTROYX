@@ -24,10 +24,10 @@ async def add_bot(bot_token):
 if Var.TG_BOT_USER_NAME_BF_HER is not None:
 
         bot.tgbot = TelegramClient(
-            "TG_BOT_TOKEN", api_id=config.APP_ID, api_hash=config.API_HASH
-        ).start(bot_token=config.TG_BOT_TOKEN_BF_HER)
+            "TG_BOT_TOKEN", api_id=Var.APP_ID, api_hash=Var.API_HASH
+        ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
 
-        bot.loop.run_until_complete(add_bot(config.TG_BOT_USER_NAME_BF_HER))
+        bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
 
 else:
         bot.start()
