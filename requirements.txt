@@ -1,10 +1,13 @@
 Pillow
+glitch_this
 PyGithub
 aiofiles
 aiohttp
 aria2p
 cryptg
 async_generator
+jikanpy
+keyboard
 beautifulsoup4
 bs4
 bwb
@@ -28,6 +31,7 @@ pytube
 regex
 selenium
 telegraph
+pendulum
 asyncurban
 urbandict
 wikipedia
@@ -51,6 +55,7 @@ humanize
 lxml
 lyricsgenius
 oauth2client
+html_telegraph_poster
 psycopg2
 psycopg2-binary
 pybase64
