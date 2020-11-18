@@ -4,7 +4,7 @@ from telethon.tl.tlobject import TLObject
 from telethon.tl.types import MessageEntityPre
 from telethon.utils import add_surrogate
 
-from .. uniborgConfig import Config
+from userbot.uniborgConfig import Config
 
 
 def mentionuser(name, userid):
