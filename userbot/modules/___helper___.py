@@ -24,7 +24,7 @@ async def add_bot(bot_token):
 if Config.TG_BOT_USER_NAME_BF_HER is not None:
 
         bot.tgbot = TelegramClient(
-            TG_BOT_TOKEN=Var.TG_BOT_TOKEN_BF_HER, api_id=config.APP_ID, api_hash=config.API_HASH
+            "TG_BOT_TOKEN", api_id=config.APP_ID, api_hash=config.API_HASH
         ).start(bot_token=Config.TG_BOT_TOKEN_BF_HER)
 
         bot.loop.run_until_complete(add_bot(config.TG_BOT_USER_NAME_BF_HER))
@@ -94,8 +94,6 @@ async def cmd_list(event):
                 tgbotusername = Var.TG_BOT_USER_NAME_BF_HER   
             except:
                 tgbotusername = "@errorsender_bot"
-            except:
-                tgbotusername = Var.TG_BOT_TOKEN_BF_HER
             else:
                 tgbotusername = "errorsender_bot"
             results = await bot.inline_query(  # pylint:disable=E0602
