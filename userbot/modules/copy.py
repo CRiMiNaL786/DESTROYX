@@ -15,4 +15,4 @@ async def _(event):
         the_real_message = the_real_message.replace("_", "_")
         await event.edit(the_real_message)
     else:
-        await event.edit("Reply to a message with `.copy` to copy it")
+        await event.edit("Reply to a message with `.copy` to copy it works on emojis and text")
