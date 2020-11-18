@@ -9,12 +9,8 @@ from userbot.javes_main.heroku_var import Config as Var
 from userbot.javes_main.heroku_var import config 
 from userbot import bot as borg
 from telethon import TelegramClient, events
-if config.STRING_SESSION:
-    session_name = str(config.STRING_SESSION)
-    bot = TelegramClient(config.STRING_SESSION, config.APP_ID, config.API_HASH)
-else:
-    session_name = "startup"
-    bot = TelegramClient(session_name, config.APP_ID, config.API_HASH)
+session_name = "startup"
+bot = TelegramClient(session_name, config.APP_ID, config.API_HASH)
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 
 HELPTYPE = True
