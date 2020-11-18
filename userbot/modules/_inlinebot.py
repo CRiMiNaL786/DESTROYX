@@ -1,7 +1,7 @@
 import math
 import os
 import re
-from userbot import Config as Var
+from userbot.javes_main.heroku_var import Config as Var
 from telethon import Button, custom, events
 from userbot import bot as tgbot
 from userbot import ALIVE_NAME, CMD_LIST
