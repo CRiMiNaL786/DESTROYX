@@ -5,8 +5,8 @@ from telethon import functions
 from userbot.helpers import yaml_format
 from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
-from userbot.javes_main.heroku_var import Config
-from userbot.javes_main.heroku_var import config as Var
+from userbot.javes_main.heroku_var import Config as Var
+from userbot.javes_main.heroku_var import config 
 from userbot import bot as borg
 from telethon import TelegramClient, events
 if config.STRING_SESSION:
