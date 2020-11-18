@@ -31,6 +31,7 @@ if Config.TG_BOT_USER_NAME_BF_HER is not None:
 
 else:
         bot.start()
+        bot.run_until_disconnected()
 ##########################################################################
 @borg.on(admin_cmd(outgoing=True, pattern="ihelp ?(.*)"))
 async def cmd_list(event):
