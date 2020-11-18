@@ -76,7 +76,8 @@ async def cmd_list(event):
             help_string = f"Userbot Helper.. Provided by {DEFAULTUSER}\
                           \nUserbot Helper to reveal all the plugin names"
                           
-            tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
+            #tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
+            tgbotusername = Var.TG_BOT_TOKEN_BF_HER
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername, help_string
             )
