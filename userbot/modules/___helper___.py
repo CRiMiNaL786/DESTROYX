@@ -6,6 +6,7 @@ from userbot.helpers import yaml_format
 from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 from userbot.javes_main.heroku_var import Config
+from userbot.javes_main.heroku_var import config as Var
 from userbot import bot as borg
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 
