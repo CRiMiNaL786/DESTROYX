@@ -21,11 +21,11 @@ async def add_bot(bot_token):
     await bot.start(bot_token)
     bot.me = await bot.get_me()
     bot.uid = telethon.utils.get_peer_id(bot.me)
-if Config.TG_BOT_USER_NAME_BF_HER is not None:
+if config.TG_BOT_USER_NAME_BF_HER is not None:
 
         bot.tgbot = TelegramClient(
-            "TG_BOT_TOKEN", api_id=config.API_ID, api_hash=config.API_HASH
-        ).start(bot_token=Config.TG_BOT_TOKEN_BF_HER)
+            "TG_BOT_TOKEN", api_id=config.APP_ID, api_hash=config.API_HASH
+        ).start(bot_token=config.TG_BOT_TOKEN_BF_HER)
 
         bot.loop.run_until_complete(add_bot(config.TG_BOT_USER_NAME_BF_HER))
 
