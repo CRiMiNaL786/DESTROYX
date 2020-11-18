@@ -5,7 +5,23 @@ from userbot.javes_main.heroku_var import Config as Var
 from telethon import Button, custom, events
 from userbot import bot as tgbot
 from userbot import ALIVE_NAME, CMD_LIST
+#####################################################################################
+async def add_bot(bot_token):
+    await bot.start(bot_token)
+    bot.me = await bot.get_me()
+    bot.uid = telethon.utils.get_peer_id(bot.me)
+if Var.TG_BOT_USER_NAME_BF_HER is not None:
 
+        bot.tgbot = TelegramClient(
+            "TG_BOT_TOKEN", api_id=config.APP_ID, api_hash=config.API_HASH
+        ).start(bot_token=config.TG_BOT_TOKEN_BF_HER)
+
+        bot.loop.run_until_complete(add_bot(config.TG_BOT_USER_NAME_BF_HER))
+
+else:
+        bot.start()
+        bot.run_until_disconnected()
+#####################################################################################
 NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD = os.environ.get(
     "NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD", 3
 )
