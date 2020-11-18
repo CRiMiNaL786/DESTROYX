@@ -59,7 +59,7 @@ RUN pip3 install --upgrade pip install wheel
 RUN git clone https://github.com/Sh1vam/javes-2.0 /root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
-RUN mv userbot/modules
+RUN mv userbot/modules /root/userbot/modules
 RUN mv userbot/javes_main/extra/apktool /usr/local/bin
 RUN mv userbot/javes_main/extra/apktool.jar /usr/local/bin
 #RUN mv userbot/javes_main/extra/apk.rb /usr/share/metasploit-framework/lib/msf/core/payload
