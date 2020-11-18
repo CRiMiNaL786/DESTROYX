@@ -96,8 +96,8 @@ async def echo(cat):
 
 @bot.on(events.NewMessage(incoming=True))
 async def samereply(cat):
-    if cat.chat_id in Config.UB_BLACK_LIST_CHAT:
-        return
+    #if cat.chat_id in Config.UB_BLACK_LIST_CHAT:
+    #   return
     if is_echo(cat.sender_id, cat.chat_id):
         await asyncio.sleep(2)
         try:
