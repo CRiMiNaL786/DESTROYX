@@ -13,6 +13,11 @@ mee = telegraph.create_account(short_name="shivam")
 
 
 
+
+
+
+
+
 @borg.on(admin_cmd(pattern="recognize ?(.*)"))
 async def _(event):
     if event.fwd_from:
@@ -46,6 +51,13 @@ async def _(event):
       
           else:
               await event.edit("sorry, I couldnt find it")
+
+
+@borg.on(admin_cmd(pattern=r"getrepo"))
+async def source(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("[Click here](https://github.com/Sh1vam/javes-2.0) to open this Upgraded bot.")
+
               
 
 
