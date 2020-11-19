@@ -314,7 +314,7 @@ async def upstream(ups):
         else:
             remote = repo.create_remote("heroku", heroku_git_url)
         try:
-            remote.push(refspec="HEAD:refs/tree/main", force=True)
+            remote.push(refspec="HEAD:refs/heads/master", force=True)
         except GitCommandError as error:
             await ups.edit(f'{txt}\n`Here is the error log:\n{error}`')
             repo.__del__()
@@ -1116,7 +1116,7 @@ async def upstream(ups):
         else:
             remote = repo.create_remote("heroku", heroku_git_url)
         try:
-            remote.push(refspec="HEAD:refs/tree/main", force=True)
+            remote.push(refspec="HEAD:refs/heads/master", force=True)
         except GitCommandError as error:
             await ups.reply(f'{txt}\n`Here is the error log:\n{error}`')
             repo.__del__()
