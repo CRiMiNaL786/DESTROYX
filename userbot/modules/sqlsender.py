@@ -44,7 +44,7 @@ async def send(event):
 
         
 CMD_HELP.update({
-    "install":
+    "sqlsender":
     "`!sqlsend <sql_helpername>`\
 \n**Usage:** send the sql helper\
 \n\n``\
