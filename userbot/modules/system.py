@@ -66,8 +66,9 @@ from userbot.events import javes05
 from userbot.prettyjson import prettyjson
 from userbot import CMD_HELP, ALIVE_NAME, PM_MESSAGE, JAVES_NAME, JAVES_MSG, ORI_MSG, ALIVE_S_MESSAGE, ALIVE_E_MESSAGE, ALIVE_S_MSG, ALIVE_E_MSG
 Heroku = heroku3.from_key(HEROKU_API_KEY)
+GIT_REPO_NAME = "javes-2.0"
 heroku_api = "https://api.heroku.com"
-UPSTREAM_REPO_URL="https://github.com/Sh1vam/javes-2.0/tree/main"
+UPSTREAM_REPO_URL="https://github.com/Sh1vam/javes-2.0"
 
 # ================= CONSTANT =================
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
