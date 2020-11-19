@@ -48,32 +48,7 @@ async def _(event):
               await event.edit("sorry, I couldnt find it")
               
 
-@borg.on(admin_cmd(pattern="instadl ?(.*)"))
-async def _(event):
-    if event.fwd_from:
-        return
-    if not event.reply_to_msg_id:
-        await event.edit("**just Reply to a instagram url only.**")
-        return
-    reply_message = await event.get_reply_message()
-    chat = "@allsaverbot"
-    reply_message.sender
-    await event.edit("**Downloading the post...**")
-    async with event.client.conversation(chat) as conv:
-        try:
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=804576054))
-              response2 = conv.wait_event(events.NewMessage(incoming=True,from_users=804576054))
-              await event.client.forward_messages(chat, reply_message)
-              response = await response 
-              response = await response2
-        except YouBlockedUserError: 
-              await event.reply("```Please unblock (stickers_to_image_bot) ```")
-              return
-        if response.text.startswith("Hi!"):
-             await event.edit("```Can you kindly disable your forward privacy settings```")
-        else: 
-             await event.delete()
-             await event.client.send_message(event.chat_id, response.message)
+
 
 @borg.on(admin_cmd(pattern="wspr ?(.*)"))
 async def wspr(event):
