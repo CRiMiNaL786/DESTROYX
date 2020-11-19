@@ -9,7 +9,7 @@ from importlib import import_module
 #plugin_channel = "@pldhsys"  #this is official plugin channel for javes 
 #####################################
 
-plugin_channel='userbot/modules/*.py'
+plugin_channel='userbot/modules/'
 async def a():
   LOGS.info("Connecting...") ; 
   o = o2 = o3 = o4 = ""
