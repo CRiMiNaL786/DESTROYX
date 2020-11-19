@@ -113,7 +113,6 @@ async def _(event):
 CMD_HELP.update(
     {
         "bots": ".purl <reply to file>\nUse - Get a direct download link of that file/doc/pic/vid\
-        \n\n.instadl <reply to instagram url>\\nUse - Download that instagram post.\
         \n\n.recognize <reply to any media>\\nUse - send details about it.\
         \n\n.wspr <message> <target username/id>\nUse - Send a whisper message to that person.\
         \n\n.limits\nUse - Check if you are limited by telegram."
