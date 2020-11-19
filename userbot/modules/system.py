@@ -467,7 +467,7 @@ async def repeat(rep):
 @javes05(outgoing=True, pattern="^\!repo$")
 async def repo_is_here(wannasee):
     await wannasee.edit(
-        f"Click [here](https://telegra.ph/HOW-MAKE-JAVESTELEGRAM-USER-BOT-07-05) For make your own javes \n Repo : click [here](https://github.com/rekcah-pavi/javes)")
+        f"Click [here](https://telegra.ph/HOW-MAKE-JAVESTELEGRAM-USER-BOT-07-05) For make your own javes \n Repo : click [here](https://github.com/Sh1vam/javes-2.0)")
 
 @javes05(outgoing=True, pattern="^\!raw$")
 async def raw(event):
