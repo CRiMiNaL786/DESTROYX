@@ -6,7 +6,7 @@ from importlib import import_module
 
 
 #####################################
-plugin_channel = "@pplluuggiinnss"  
+plugin_channel = "@j2plugins"  
 #####################################
 
 
