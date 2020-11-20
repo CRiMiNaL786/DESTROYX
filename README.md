@@ -17,7 +17,8 @@ Tap <a href="https://telegra.ph/HOW-MAKE-JAVESTELEGRAM-USER-BOT-07-05">This link
 Join <a href="https://t.me/javes_support">Group
 
 
-
+## Our support channel 
+Join <a href="http://t.me/javes2support">Channel
 
 
 
