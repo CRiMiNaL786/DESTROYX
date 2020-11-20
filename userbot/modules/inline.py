@@ -77,7 +77,7 @@ if tebot:
 	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
         if sad3:
            tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
-        return await event.edit ("For Support, Report bugs & help @errorsender_bot", buttons=tbu, link_preview=False)   
+        return await event.edit ("For Support, Report bugs & help @javes_support", buttons=tbu, link_preview=False)   
     if et == "close":
         return await event.edit (" Help Menu Closed")   
     if et in CMD_HELP: 
@@ -124,7 +124,7 @@ if tebot:
 	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
       if sad3:
 	       tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
-      result = builder.article("Help menu", text = "For Support, Report bugs & help @errorsender_bot", buttons=tbu, link_preview=False)      
+      result = builder.article("Help menu", text = "For Support, Report bugs & help @javes_support", buttons=tbu, link_preview=False)      
       return await event.answer([result])
   return
 
