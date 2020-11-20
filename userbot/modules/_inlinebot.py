@@ -35,7 +35,7 @@ NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD = os.environ.get(
 )
 EMOJI_TO_DISPLAY_IN_HELP = os.environ.get("EMOJI_TO_DISPLAY_IN_HELP", None)
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@Shivam_Patel"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@CriminaL786"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -60,10 +60,12 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                     [custom.Button.inline("Show Stats 🚶", data="terminator")],
                     [
                         Button.url(
-                            "Repo 🛡️", "https://github.com/Sh1vam/javes-2.0"
+                            "Repo 🛡️", "https://github.com/Javes786/javes-2.0"
+				
+				
                         )
                     ],
-                    [Button.url("Join Channel 📃", "t.me/Shivam_Patel"),
+                    [Button.url("Join Channel 📃", "t.me/CriminaL786"),
                 ]
 		   ]
             )
@@ -104,7 +106,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"close")))
     async def on_plug_in_callback_query_handler(event):
         if event.query.user_id == bot.uid:
-            await event.edit("♒menu closed by @Shivam_Patel♒")
+            await event.edit("♒menu closed by @CriminaL786♒")
 
     @tgbot.on(
         events.callbackquery.CallbackQuery(  # pylint:disable=E0602
