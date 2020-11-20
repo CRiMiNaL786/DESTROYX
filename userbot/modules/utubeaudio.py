@@ -1,7 +1,11 @@
 # Plugin made by @hellboi_atul for DARK COBRA..
 # You can use this..but don't edit/remove these comment lines..
-# This module fetches the link from YouTube for the given query..
+# This module fetches the audio from YouTube for the given query..
 # So wahi...Enjoy
+""" This plugin is the V2 of utube.py in DARK COBRA userbot..which directly fetches the audio..
+ it's not necessary for this plugin to always work.. 
+ Audios are auto queued for downloads..
+ This too made by @hellboi_atul .. """
 
 import re
 import random
@@ -28,7 +32,7 @@ def deEmojify(inputString: str) -> str:
     return re.sub(IF_EMOJI, '', inputString)
 
 
-@javes.on(admin_cmd(pattern="utube(?: |$)(.*)"))
+@javes.on(admin_cmd(pattern="uta(?: |$)(.*)"))
 
 async def nope(doit):
     ok = doit.pattern_match.group(1)
@@ -36,10 +40,10 @@ async def nope(doit):
         if doit.is_reply:
             what = (await doit.get_reply_message()).message
         else:
-            await doit.edit("`Please give some query to search..!`")
+            await doit.edit("`Sir please give some query to search and download it for you..!`")
             return
     sticcers = await bot.inline_query(
-        "vid", f"{(deEmojify(ok))}")
+        "Lybot", f"{(deEmojify(ok))}")
     await sticcers[0].click(doit.chat_id,
                             reply_to=doit.reply_to_msg_id,
                             silent=True if doit.is_reply else False,
