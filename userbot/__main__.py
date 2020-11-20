@@ -6,7 +6,7 @@ from importlib import import_module
 
 
 #####################################
-plugin_channel = "@pplluuggiinnss"  #this is official plugin channel for javes 2.0 
+plugin_channel = "@pplluuggiinnss"  
 #####################################
 
 
@@ -46,7 +46,8 @@ async def a():
      la += 1
      LOGS.info(f" loaded {la}/{f} modules")  
   #os.system("rm userbot/modules/*.py") ; 
-  LOGS.info(f"Sucessfully connected with {o}{o2}{o3}{o4} check it by typing !javes in any client's chat, type  .help for more info.")
+  LOGS.info(f"Sucessfully connected with {o}{o2}{o3}{o4} check it by typing !javes in any client's chat, type  .help for more info. For official plugin channel for javes 2.0 got to @J2plugins and for more expirementaal plugin goto @plugines Also U Should Thank to All Contributers in repo:https://github.com/Javes786/javes-2.0")
+
   if len(argv) not in (1, 3, 4):
        await javes.disconnect()
   else:
