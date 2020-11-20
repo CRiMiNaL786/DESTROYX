@@ -6,7 +6,7 @@ from importlib import import_module
 
 
 #####################################
-plugin_channel = "@j2plugins"  #this is official plugin channel for javes 2.0 
+plugin_channel = "@pplluuggiinnss"  #this is official plugin channel for javes 2.0 
 #####################################
 
 
