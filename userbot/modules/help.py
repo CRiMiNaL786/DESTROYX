@@ -15,7 +15,7 @@ if not IN:
         else:
             await event.edit("`Unknown module type !help to see all modules`")
     else:
-        await event.edit(" For Support, Report bugs & help @errorsender_bot ")
+        await event.edit(" For Support, Report bugs & help @javes_support ")
         string = (f"`Use !help <module_name>`\n\n**Currently Loaded [{len(CMD_HELP)}] Modules **\n")
         for i in CMD_HELP:
             string += "`" + str(i)
@@ -35,7 +35,7 @@ async def help(event):
         else:
             await event.reply("`Unknown module type !help to see all modules`")
     else:
-        await event.reply(" For Support, Report bugs & help @errorsender_bot ")
+        await event.reply(" For Support, Report bugs & help @javes_support ")
         string = (f"`Use .help <module_name>`\n\n**Currently Loaded [{len(CMD_HELP)}] Modules **\n")
         for i in CMD_HELP:
             string += "`" + str(i)
