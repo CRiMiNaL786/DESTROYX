@@ -31,7 +31,7 @@ S2_USER = os.environ.get("S2_USER", DEFAULTUSER)
 S3_USER = os.environ.get("S3_USER", DEFAULTUSER)
 
 v = "6.0.0"
-
+MYREPO="https://github.com/Javes786/javes-2.0"
 if rksu:
  if FULL_SUDO:
     sudork = 'Full access'
@@ -67,6 +67,7 @@ async def alive(alive):
                     f"**{ALIVE_S_MMSG}**\n\n"                     
                     f" °  `{JAVES_NNAME}`: **{v}**\n"
                     f" °  `User:` ** {DEFAULTUSER} **\n"
+		    f" °  `Repo:` ** {MYREPO} **\n"
                     f" °  `Telethon`: ** {version.__version__} **\n"
                     f" °  `Python` : ** {platform.python_version()} **\n"                                                                                     
                     f" °  `Os:` ** Kali GNU/Linux Rolling x86_64   **\n"                                       
