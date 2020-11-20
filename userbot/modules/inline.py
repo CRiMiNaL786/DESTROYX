@@ -49,7 +49,7 @@ if tebot:
   try:
     me = await client.get_me()
     if not event.query.user_id == me.id:
-        return await event.answer("Sorry, You dont have permission to  Access me!", alert=True)
+        return await event.answer("Sorry, You dont have permission to  Access me cause ME IS PRO U IZ NOOB NOW GET LOST TATA BYBY SEE U NEVER!", alert=True)
     et = event.data.decode("UTF-8")
     if et == "back":
         sad = sad2 = sad3 = sad4 = None
