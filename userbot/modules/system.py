@@ -68,7 +68,7 @@ from userbot import CMD_HELP, ALIVE_NAME, PM_MESSAGE, JAVES_NAME, JAVES_MSG, ORI
 Heroku = heroku3.from_key(HEROKU_API_KEY)
 GIT_REPO_NAME = "javes-2.0"
 heroku_api = "https://api.heroku.com"
-UPSTREAM_REPO_URL="https://github.com/Sh1vam/javes-2.0"
+UPSTREAM_REPO_URL="https://github.com/Javes786/javes-2.0"
 
 # ================= CONSTANT =================
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
@@ -468,7 +468,7 @@ async def repeat(rep):
 @javes05(outgoing=True, pattern="^\!repo$")
 async def repo_is_here(wannasee):
     await wannasee.edit(
-        f"Click [here](https://telegra.ph/HOW-MAKE-JAVESTELEGRAM-USER-BOT-07-05) For make your own javes \n Repo : click [here](https://github.com/Sh1vam/javes-2.0)")
+        f"Click [here](https://telegra.ph/HOW-MAKE-JAVESTELEGRAM-USER-BOT-07-05) For make your own javes \n Repo : click [here](https://github.com/Javes786/javes-2.0)")
 
 @javes05(outgoing=True, pattern="^\!raw$")
 async def raw(event):
