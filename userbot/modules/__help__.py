@@ -11,7 +11,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 HELPTYPE=False
 
 
-@borg.on(admin_cmd(outgoing=True, pattern="hlp ?(.*)"))
+@borg.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
 async def cmd_list(event):
     global HELPTYPE
     reply_to_id = None
