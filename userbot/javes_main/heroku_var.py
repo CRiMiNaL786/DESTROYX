@@ -1,6 +1,6 @@
 import os
-cIient = "@pldhsys"
-cIientt = "@plugines"
+cIient = "@j2plugins"
+cIientt = "@j2plugins"
 import asyncio
 from sys import version_info
 from logging import *
