@@ -7,6 +7,6 @@ ANIMATED_STICKER_PNAME = os.environ.get("ANIMATED_STICKER_PNAME", "Creepy Animat
 
 AUTONAME = os.environ.get("AUTONAME", None)
 
-CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "https://t.me/danish_00")
+CHANNEL_LINK = os.environ.get("CHANNEL_LINK", "https://t.me/j2plugins")
 
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
