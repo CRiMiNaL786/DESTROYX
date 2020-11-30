@@ -16,7 +16,7 @@ import inspect
 running_processes: dict = {}
 
 
-@javes2supporto(outgoing=True, pattern="^\!term(?: |$|\n)([\s\S]*)")
+@javes2support(outgoing=True, pattern="^\!term(?: |$|\n)([\s\S]*)")
 async def evaluate(event):  
     await event.edit(f"**{JAVES_NNAME}**: `Running Terminal.....`")
     message = (str(event.chat_id) + ':' + str(event.message.id))
