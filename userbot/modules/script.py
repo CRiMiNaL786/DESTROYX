@@ -16,7 +16,7 @@ import inspect
 running_processes: dict = {}
 
 
-@javes05(outgoing=True, pattern="^\!term(?: |$|\n)([\s\S]*)")
+@javes2supporto(outgoing=True, pattern="^\!term(?: |$|\n)([\s\S]*)")
 async def evaluate(event):  
     await event.edit(f"**{JAVES_NNAME}**: `Running Terminal.....`")
     message = (str(event.chat_id) + ':' + str(event.message.id))
@@ -53,7 +53,7 @@ async def evaluate(event):
         
               
         
-@javes.on(rekcah05(pattern=f"term(?: |$|\n)([\s\S]*)", allow_sudo=True))
+@javes.on(criminal786(pattern=f"term(?: |$|\n)([\s\S]*)", allow_sudo=True))
 async def evaluate(event):  
   if not FULL_SUDO:
       await query.reply(f"`{JAVES_NNAME}:` **Sorry , Normal Sudo cant acess this comand,  active advance sudo by set  FULL_SUDO as true in heroku var**") 
@@ -98,7 +98,7 @@ async def evaluate(event):
 
 
 
-@javes05(outgoing=True, pattern=r"^\!exec(?: |$)([\s\S]*)")
+@javes2support(outgoing=True, pattern=r"^\!exec(?: |$)([\s\S]*)")
 async def run(run_q):
     code = run_q.pattern_match.group(1)
     
@@ -153,7 +153,7 @@ execute. Use !help script for an example.**")
                          "`\n**Result: **\n`No Result Returned/False`")
 
 
-@javes.on(rekcah05(pattern=f"exec(?: |$)([\s\S]*)", allow_sudo=True))
+@javes.on(criminal786(pattern=f"exec(?: |$)([\s\S]*)", allow_sudo=True))
 async def run(run_q):
   if not FULL_SUDO:
       await query.reply(f"`{JAVES_NNAME}:` **Sorry , Normal Sudo cant acess this comand,  active advance sudo by set  FULL_SUDO as true in heroku var**") 
@@ -210,7 +210,7 @@ execute. Use !help script for an example.**")
                          f"{codepre}"
                          "`\n**Result: **\n`No Result Returned/False`")
 
-@javes05(outgoing=True, pattern="^\!eval(?: |$)(.*)")
+@javes2support(outgoing=True, pattern="^\!eval(?: |$)(.*)")
 async def evaluate(query):
     if query.pattern_match.group(1):
         expression = query.pattern_match.group(1)
@@ -253,7 +253,7 @@ async def evaluate(query):
                          "`\n**Exception: **\n"
                          f"`{err}`")
   
-@javes.on(rekcah05(pattern=f"eval(?: |$)(.*)", allow_sudo=True))
+@javes.on(criminal786(pattern=f"eval(?: |$)(.*)", allow_sudo=True))
 async def evaluate(query):
   if not FULL_SUDO:
       await query.reply(f"`{JAVES_NNAME}:` **Sorry , Normal Sudo cant acess this comand,  active advance sudo by set  FULL_SUDO as true in heroku var**") 
@@ -301,7 +301,7 @@ async def evaluate(query):
 
 
 
-@javes05(outgoing=True, pattern="^\!hash (.*)")
+@javes2support(outgoing=True, pattern="^\!hash (.*)")
 async def gethash(hash_q):
     hashtxt_ = hash_q.pattern_match.group(1)
     hashtxt = open("hashdis.txt", "w+")
@@ -335,7 +335,7 @@ async def gethash(hash_q):
 
 
 
-@javes.on(rekcah05(pattern=f"hash (.*)", allow_sudo=True))
+@javes.on(criminal786(pattern=f"hash (.*)", allow_sudo=True))
 async def gethash(hash_q):
     hashtxt_ = hash_q.pattern_match.group(1)
     hashtxt = open("hashdis.txt", "w+")
@@ -369,7 +369,7 @@ async def gethash(hash_q):
 
 
 
-@javes05(outgoing=True, pattern="^\!base64 (en|de) (.*)")
+@javes2support(outgoing=True, pattern="^\!base64 (en|de) (.*)")
 async def endecrypt(query):
     if query.pattern_match.group(1) == "en":
         lething = str(
@@ -384,7 +384,7 @@ async def endecrypt(query):
 
 
 
-@javes.on(rekcah05(pattern=f"base64 (en|de) (.*)", allow_sudo=True))
+@javes.on(criminal786(pattern=f"base64 (en|de) (.*)", allow_sudo=True))
 async def endecrypt(query):
     if query.pattern_match.group(1) == "en":
         lething = str(
