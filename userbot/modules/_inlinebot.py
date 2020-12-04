@@ -55,7 +55,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
         if event.query.user_id == bot.uid and query == "stats":
             result = builder.article(
                 title="Stats",
-                text=f"**Showing Stats For {DEFAULTUSER}'s userbot** \nNote --> Only Owner Can Check This \n(C) @Shivam_Patel",
+                text=f"**Showing Stats For {DEFAULTUSER}'s userbot** \nNote --> Only Owner Can Check This \n(C) @CRiMiNaL786",
                 buttons=[
                     [custom.Button.inline("Show Stats 🚶", data="terminator")],
                     [
@@ -65,7 +65,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 				
                         )
                     ],
-                    [Button.url("Join Channel 📃", "t.me/CriminaL786"),
+                    [Button.url("Join Channel 📃", "t.me/Javes2support"),
                 ]
 		   ]
             )
