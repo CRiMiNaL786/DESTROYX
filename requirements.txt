@@ -78,4 +78,4 @@ youtube-search-python
 validators
 numpy
 fontTools
-var
+
