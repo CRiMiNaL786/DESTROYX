@@ -3,7 +3,7 @@ glitch_this
 PyGithub
 aiofiles
 aiohttp
-aria2p
+#aria2p 
 cryptg
 async_generator
 jikanpy
@@ -49,7 +49,7 @@ gTTS-token
 eyed3
 hachoir
 heroku
-heroku3
+heroku3==4.2.3
 httplib2
 humanize
 lxml
@@ -78,4 +78,3 @@ youtube-search-python
 validators
 numpy
 fontTools
-
