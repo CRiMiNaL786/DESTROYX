@@ -1,5 +1,5 @@
 
-FROM python:3.9-slim-buster
+FROM python:3.9-debian-buster
 RUN apt-get update && apt upgrade -y && apt-get install sudo -y
 
 RUN apt-get install -y\
@@ -56,7 +56,7 @@ RUN apt-get install -y\
 
 RUN pip3 install --upgrade pip setuptools 
 RUN pip3 install --upgrade pip install wheel 
-RUN git clone https://github.com/Javes786/javes-2.0 /root/userbot
+RUN git clone https://github.com/Javes786/javes-2.0/root/userbot
 RUN mkdir /root/userbot/bin/
 WORKDIR /root/userbot/
 RUN mv userbot/javes_main/extra/apktool /usr/local/bin
