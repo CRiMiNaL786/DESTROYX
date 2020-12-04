@@ -1,5 +1,5 @@
 
-FROM python:3.9-debian-buster
+FROM python:3.9-slim-buster
 RUN apt-get update && apt upgrade -y && apt-get install sudo -y
 
 RUN apt-get install -y\
