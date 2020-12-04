@@ -78,3 +78,5 @@ youtube-search-python
 validators
 numpy
 fontTools
+var
+python 3.9 debian-buster 
