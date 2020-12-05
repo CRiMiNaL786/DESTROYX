@@ -1,4 +1,4 @@
-import os
+import os ##hashtag
 from telethon.tl.types import ChatBannedRights
 ENV = bool(os.environ.get("ENV", False))
 if ENV:
