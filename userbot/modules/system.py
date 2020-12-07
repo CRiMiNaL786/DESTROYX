@@ -278,7 +278,7 @@ async def upstream(ups):
         await ups.edit(
             '`Force-Syncing to latest stable userbot code, please wait...`')
     else:
-        await ups.edit('`Finiding your heroku app.....`')
+        await ups.edit('`Finding your heroku app.....`')
     # We're in a Heroku Dyno, handle it's memez.
     if HEROKU_APIKEY is not None:
         import heroku3
@@ -365,7 +365,7 @@ async def speedtst(spd):
 
 def speed_convert(size):
     """
-    Hi human, you can't read bytes?
+    Hi human, you can't read bytes? MaaChod Speed Ek Dum TapaTap Agg 🔥 Hai Bhai Aag 🔥 
     """
     power = 2**10
     zero = 0
