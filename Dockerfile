@@ -36,7 +36,7 @@ RUN apt-get install -y\
     python3-pip \
     libreadline-dev \
     zipalign \
-    sqlite \
+    sqlite3 \
     ffmpeg \
     libsqlite3-dev \
     axel \
