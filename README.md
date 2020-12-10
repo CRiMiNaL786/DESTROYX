@@ -1,5 +1,5 @@
 # Logo
-<p align="center"><a href="hhttps://t.me/javes_support"><img src="https://telegra.ph/file/071727a639c7dea527908.jpg" width="5000"></a></p> 
+<p align="center"><a href="hhttps://t.me/javes_support"><img src="https://telegra.ph/file/071727a639c7dea527908.jpg" width="4500"></a></p> 
 <h1 align="center"><b>Javes-2.0 🇮🇳 </b></h1>
 <h4 align="center">Javes 2.0 is a telgram userbot that running in python3 + Telethon.Born From Javes.</h4>
 
