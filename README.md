@@ -18,9 +18,9 @@
 
 # How To
 
-<a href="https://youtu.be/xfHcm_e92eQ"><img src="https://img.shields.io/badge/How%20To-Deploy-red.svg?logo=Youtube"></a>
+<a href="http://youtube.com/watch?v=aWnWbFGXp5U"><img src="https://img.shields.io/badge/How%20To-Deploy-red.svg?logo=Youtube"></a>
 
-<a href="https://app.gitbook.com/@poxsisofficial/s/blackBlack Lightning /"><img src="https://img.shields.io/badge/Read%20More-GitBook-red.svg"></a>
+
 
 
 
