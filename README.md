@@ -83,13 +83,13 @@ python3 -m Javes0-2.0
 # Licence
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 
-Black Lightning Userbot is Free Software: You can use, study share and improve it at your
+Javes-2.0 Userbot is Free Software: You can use, study share and improve it at your
 will. Specifically you can redistribute and/or modify it under the terms of the
 [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
 published by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version. 
 =======
-<p align="center"><a href="https://t.me/blacklightningsupport"><img src=" https://telegra.ph/file/46374b4c4da3a5dc1aa98.jpg" width="5000"></a></p> 
+<p align="center"><a href="https://t.me/blacklightningsupport"><img src=" https://telegra.ph/file/46374b4c4da3a5dc1aa98.jpg" width="3000"></a></p> 
 <h1 align="center"><b>Black Lightning -USERBOT 🇮🇳 </b></h1>
 <h4 align="center">A Powerful, Smart And Simple Userbot In Telethon.</h4>
 
