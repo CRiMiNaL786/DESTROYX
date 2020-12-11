@@ -349,3 +349,4 @@ async def draw_meme(image_path, text):
     photo = os.path.join(TEMP_DOWNLOAD_DIRECTORY, photu)
     img.save(photo, "png")
     return photo
+CMD_HELP.update({"mmf2.py":".mmf"})
