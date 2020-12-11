@@ -1,60 +1,88 @@
-from userbot import * ;  from sys import * ; from telethon import TelegramClient, functions, types ; from telethon.tl.types import InputMessagesFilterDocument ; from pathlib import Path; from userbot.javes_main.commands import * ; import asyncio, os, traceback, sys, traceback, os, importlib, glob ; javes = tgbot = bot.tgbot = client 
-from telethon.tl.types import InputMessagesFilterDocument
-from importlib import import_module
+import glob
+import logging
+from pathlib import Path
+from sys import argv
+
+import telethon.utils
+from telethon import TelegramClient
+
+from userbot import CMD_HNDLR, bot
+from userbot.Config import Var
+from userbot.uniborgConfig import Config
+from userbot.utils import load_assistant, load_module, start_assistant
+
+TELE = Var.PRIVATE_GROUP_ID
+BOTNAME = Var.TG_BOT_USER_NAME_BF_HER
+LOAD_MYBOT = Var.LOAD_MYBOT
+sed = logging.getLogger(Javes")
 
 
+async def add_bot(bot_token):
+    await bot.start(bot_token)
+    bot.me = await bot.get_me()
+    bot.uid = telethon.utils.get_peer_id(bot.me)
 
 
-#####################################
-plugin_channel = "@j2plugins"  
-#####################################
+async def startup_log_all_done():
+    try:
+        await bot.send_message(
+            TELE,
+            f"**Black Lightning has been deployed.\nSend** `{CMD_HNDLR}alive` **to see if the bot is working.\n\nAdd** @{BOTNAME} **to this group and make it admin for enabling all the features of userbot**",
+        )
+    except BaseException:
+        print("Either PRIVATE_GROUP_ID is wrong or you have left the group.")
 
 
-async def a():
-  LOGS.info("Connecting...") ; 
-  o = o2 = o3 = o4 = ""
-  la = 0
-  try:
-     await client.start() ; LOGS.info("client connected") ; o = "Client1"
-  except:
-    LOGS.info("Telegram String Session Wrong or Expired Please Add new one ") ; quit(1)
-  if client2:
-      try:
-        await client2.start() ; LOGS.info("client2 connected") ; o2 = ", Client2"
-      except:
-         LOGS.info("client2 Session string Wrong/Expired Please add new string session or delete var S2") ; quit(1)
-  if client3:
-      try:
-         await client3.start() ; LOGS.info("client3 connected") ; o3 = ", Client3"
-      except:
-         LOGS.info("client3 Session string Wrong/Expired Please add new string  or delete var S3 ") ; quit(1)
-  if tebot:
-      try:
-         await tebot.start() ; LOGS.info("Telegram Bot connected") ; o4 = ", TGBot"
-      except:
-         LOGS.info("Bot Token Wrong/ Expired please add new one  or delete var BOT_TOKEN ") ; quit(1)
-  test1 = await client.get_messages(plugin_channel, None , filter=InputMessagesFilterDocument) ; total = int(test1.total) ; total_doxx = range(0, total)
-  for ixo in total_doxx:
-       mxo = test1[ixo].id ; await client.download_media(await client.get_messages(cIient, ids=mxo), "userbot/modules/")
-  ar = glob.glob("userbot/modules/*.py")
-  f = len(ar)
-  LOGS.info(f" loading {f} modules it may take 1 minute please wait")
-  for i in ar:
-     br = os.path.basename(i)
-     cr = (os.path.splitext(br)[0])
-     import_module(f"userbot.modules.{cr}")
-     la += 1
-     LOGS.info(f" loaded {la}/{f} modules")  
-  #os.system("rm userbot/modules/*.py") ; 
-  LOGS.info(f"Sucessfully connected with {o}{o2}{o3}{o4} check it by typing !javes in any client's chat, type  .help for more info. For official plugin channel for javes 2.0 got to @J2plugins and for more expirementaal plugin goto @plugines Also U Should Thank to All Contributers in repo:https://github.com/Javes786/javes-2.0")
+if len(argv) not in (1, 3, 4):
+    bot.disconnect()
+else:
+    bot.tgbot = None
+    if Var.TG_BOT_USER_NAME_BF_HER is not None:
+        print("Initiating Inline Bot")
+        # ForTheGreatrerGood of beautification
+        bot.tgbot = TelegramClient(
+            "TG_BOT_TOKEN", api_id=Var.APP_ID, api_hash=Var.API_HASH
+        ).start(bot_token=Var.TG_BOT_TOKEN_BF_HER)
+        print("Initialisation finished, no errors")
+        print("Starting Userbot")
+        bot.loop.run_until_complete(add_bot(Var.TG_BOT_USER_NAME_BF_HER))
+        print("Startup Completed")
+    else:
+        bot.start()
 
-  if len(argv) not in (1, 3, 4):
-       await javes.disconnect()
-  else:
-       await javes.run_until_disconnected()
-       
+path = "userbot/modules/*.py"
+files = glob.glob(path)
+for name in files:
+    with open(name) as f:
+        path1 = Path(f.name)
+        shortname = path1.stem
+        load_module(shortname.replace(".py", ""))
 
-        
+print("Javes 2.0 has been deployed! ")
 
-javes.loop.run_until_complete(a())
+print("Setting up Javes 2.0")
+path = "userbot/modules/assistant/*.py"
+files = glob.glob(path)
+for name in files:
+    with open(name) as f:
+        path1 = Path(f.name)
+        shortname = path1.stem
+        start_assistant(shortname.replace(".py", ""))
 
+if Config.ENABLE_ASSISTANTBOT == "ENABLE":
+    path = "userbot/modules/assistant/*.py"
+    files = glob.glob(path)
+    for name in files:
+        with open(name) as f:
+            path1 = Path(f.name)
+            shortname = path1.stem
+            load_assistant(shortname.replace(".py", ""))
+    sed.info("Javes 2.0  Bot Have Been Installed Successfully !")
+else:
+    sed.info("Javes 2.0 Has Been Installed Sucessfully !")
+    sed.info("You Can Visit @javes_support For Any Support Or Doubts")
+
+if len(argv) not in (1, 3, 4):
+    bot.disconnect()
+else:
+    bot.run_until_disconnected()
