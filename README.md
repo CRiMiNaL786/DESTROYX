@@ -48,7 +48,7 @@ Special Thanks To Our contributors Pro Boy , Danish00 , Shivam and Shiwa.
 Simply clone the repository and run the main file:
 ```sh
 git clone https://github.com/Javes786/javes-2.0
-cd Javes-2.0
+cd javes-2.0
 virtualenv -p /usr/bin/python3 venv
 . ./venv/bin/activate
 pip install -r requirements.txt
