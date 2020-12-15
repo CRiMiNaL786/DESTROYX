@@ -45,7 +45,7 @@ Special Thanks To Our contributors Pro Boy , Danish00 , Shivam and Shiwa.
 
 # The Normal Way
 
-Simply clone the repository and run the main file:
+Simply copy these commands and paste in Termux:
 ```apt-get update
 
 apt-get upgrade -y
