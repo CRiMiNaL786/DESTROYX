@@ -46,14 +46,19 @@ Special Thanks To Our contributors Pro Boy , Danish00 , Shivam and Shiwa.
 # The Normal Way
 
 Simply clone the repository and run the main file:
-```sh
-git clone https://github.com/Javes786/javes-2.0
-cd javes-2.0
-virtualenv -p /usr/bin/python3 venv
-. ./venv/bin/activate
-pip install -r requirements.txt
-# <Create local_config.py with variables as given below>
-python3 -m javes-2.0
+```apt-get update
+
+apt-get upgrade -y
+
+pkg upgrade -y
+
+pkg install python wget -y
+
+wget https://raw.githubusercontent.com/Javes786/javes-2.0/master/telesetup.py
+
+pip install telethon
+
+python telesetup.py
 ```
 
 
