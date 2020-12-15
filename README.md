@@ -16,7 +16,7 @@
 
 
 
-# How To
+# TuToRiaL
 
 <a href="http://youtube.com/watch?v=aWnWbFGXp5U"><img src="https://img.shields.io/badge/How%20To-Deploy-red.svg?logo=Youtube"></a>
 
