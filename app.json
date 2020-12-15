@@ -79,6 +79,19 @@
       "description": "Important for wark some plugins,bot logs , make super group with @criminal786bot then type /id to get this value",
       "value": "0",
       "required": true
+
+     },
+     "BOT_TOKEN": {
+      "description": "Recommended for INLINE_MODE,"
+      "value": "0"
+      "required": true
+      
+    },
+    "INLINE_MODE": {
+      "description": "BOT_TOKEN must be filled correct if you set this true",
+      "value":"False",
+      "required": false
+       
     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "BOTLOG_CHATID must be filled correct if you set it true",
