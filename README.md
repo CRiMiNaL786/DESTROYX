@@ -39,7 +39,7 @@
 
 
 # Credit
-Special Thanks To Our contributors Pro Boy , Danish00 , Shivam and Shiwa.
+Special Thanks To Our contributors Pro Boy , Danish00 , Shivam , Shiwa And Anmol.
 
 
 
@@ -47,21 +47,13 @@ Special Thanks To Our contributors Pro Boy , Danish00 , Shivam and Shiwa.
 
 Simply copy these commands and paste in Termux:
 ```apt-get update
-
 apt-get upgrade -y
-
 pkg upgrade -y
-
 pkg install python wget -y
-
 wget https://raw.githubusercontent.com/Javes786/javes-2.0/master/telesetup.py
-
 pip install telethon
-
 python telesetup.py
 ```
-
-
 
 
 
