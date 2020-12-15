@@ -75,7 +75,7 @@ python telesetup.py
     
     [-] API_HASH :   You can get this value from https://my.telegram.org
     
-[+] The Lightning Bot will not work without setting the mandatory vars.
+[+] The Javes-2.0 User Bot will not work without setting the mandatory vars.
 ```
 
 
