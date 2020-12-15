@@ -82,7 +82,7 @@
 
      },
      "BOT_TOKEN": {
-      "description": "Recommended for INLINE_MODE,"
+      "description": "Recommended for INLINE_MODE",
       "value": "true",
       "required": true
       
