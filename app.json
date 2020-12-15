@@ -68,18 +68,7 @@
       "description": "need for !weather command, (API key)from https://api.openweathermap.org",
       "value": "Enter api here if you need ",
       "required": false
-      
-    },
-    "BOT_TOKEN": {
-      "description": "Recommended for INLINE_MODE,"
-      "value": ""
-      
-    },
-    "INLINE_MODE": {
-      "description": "BOT_TOKEN must be filled correct if you set this true",
-      "value":"False",
-      "required": false
-       
+
     },
     "BOTLOG": {
       "description": "Recommeded to true ,BOTLOG_CHATID must be filled correct if you set it true",
