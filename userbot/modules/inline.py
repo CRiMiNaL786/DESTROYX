@@ -1,6 +1,6 @@
 
-#telegram channel @javes05
-#from https://t.me/pldhsys
+#telegram channel @javes2support
+#from https://t.me/j2plugins
 
 
 
@@ -77,7 +77,7 @@ if tebot:
 	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
         if sad3:
            tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
-        return await event.edit ("Support Channel For Report bugs & help @javes05", buttons=tbu, link_preview=False)   
+        return await event.edit ("Support Channel For Report bugs & help @javes2support", buttons=tbu, link_preview=False)   
     if et == "close":
         return await event.edit (" Help Menu Closed")   
     if et in CMD_HELP: 
@@ -124,7 +124,7 @@ if tebot:
 	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
       if sad3:
 	       tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
-      result = builder.article("Help menu", text = "Support Channel For Report bugs & help @javes05", buttons=tbu, link_preview=False)      
+      result = builder.article("Help menu", text = "Support Channel For Report bugs & help @javes2support", buttons=tbu, link_preview=False)      
       return await event.answer([result])
   return
 
