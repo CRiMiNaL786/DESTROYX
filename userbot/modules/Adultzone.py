@@ -1,4 +1,4 @@
-# credits to userge
+# credits to Pawan
 # ported to Pawanbir by @I_AM_PAWANBIR
 # will be adding more soon
 
