@@ -1,4 +1,4 @@
-# by @mrconfused (@sandy1709)
+# by @mrconfused (@sandy1709) Bhadwa hai Ye Cat Userbot Ka Owner
 
 import asyncio
 import os
