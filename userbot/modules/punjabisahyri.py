@@ -15,7 +15,7 @@ from userbot.utils import admin_cmd, edit_or_reply
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "@javes_support"
 
 
-@bot.on(admin_cmd(pattern=r"plove$", outgoing=True))
+@bot.on(admin_cmd("plove$")
 async def _(event):
     if event.fwd_from:
         return
@@ -41,7 +41,7 @@ async def _(event):
     if h==9:
         await event.edit(f"Meri kisi gal te naraj na hovi, \nAkhian nu hanjua nal na dhovi, \nMildi a khushi tenu hasde dekh ke\n Sanu maut v aa jave ta v na rovi…\n\n\n✍️{DEFAULTUSER}")  
 
-@bot.on(admin_cmd(pattern=r"psad$", outgoing=True))
+@bot.on(admin_cmd("psad$")
 async def _(event):
     if event.fwd_from: 
         return
