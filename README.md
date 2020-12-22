@@ -50,7 +50,7 @@ Simply copy these commands and paste in Termux:
 apt-get upgrade -y
 pkg upgrade -y
 pkg install python wget -y
-wget https://raw.githubusercontent.com/Javes786/javes-2.0/master/telesetup.py
+wget https://raw.githubusercontent.com/Javes786/javes-2.0/main/telesetup.py
 pip install telethon
 python telesetup.py
 ```
