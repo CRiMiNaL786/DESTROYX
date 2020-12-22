@@ -13,7 +13,7 @@ async def _(event):
     a.close()
     a = await event.reply("Reading file...")
     if len(c) > 4095:
-        await a.edit("The Total words in this file is more than telegram limits.")
+        await a.edit("The Total words in this file is more than a bitch can write this file is useless👍.")
     else:
         await event.client.send_message(event.chat_id, f"{c}")
         await a.delete()
