@@ -86,6 +86,11 @@
       "value": "",
       "required": true
       
+    "PLUGIN_CHANNEL": {
+    "description": "Channel Where You Save Your Plugins",
+    "value": "",
+    "required": true 
+   },
     },
     "INLINE_MODE": {
       "description": "BOT_TOKEN must be filled correct if you set this true",
