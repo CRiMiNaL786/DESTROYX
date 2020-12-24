@@ -38,8 +38,6 @@
       "description": "need for !lyrics command , Get your own api token from https://genius.com/developers",      
        "value": "Enter genius api here if you need ",
        "required": false
-      
-      
     },
     "COUNTRY": {
       "description": "Set your Country to be used in the !time and !date commands.",
@@ -86,11 +84,11 @@
       "value": "",
       "required": true
       
-    "PLUGIN_CHANNEL": {
-    "description": "Channel Where You Save Your Plugins",
-    "value": "",
-    "required": true 
-   },
+     "PLUGIN_CHANNEL": {
+     "description": "Channel Where You Save Your Plugins",
+     "value": "",
+     "required": true 
+    },
     },
     "INLINE_MODE": {
       "description": "BOT_TOKEN must be filled correct if you set this true",
