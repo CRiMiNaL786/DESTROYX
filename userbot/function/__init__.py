@@ -15,7 +15,7 @@ from pymediainfo import MediaInfo
 from telethon.tl.types import MessageMediaPhoto
 
 BASE_URL = "https://isubtitles.org"
-from userbot.thunderconfig import Config
+from userbot.javesConfig import Config
 
 sedpath = Config.TMP_DOWNLOAD_DIRECTORY
 from userbot import logging
