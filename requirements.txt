@@ -73,6 +73,7 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
+pymediainfo
 youtube-dl
 pytz
 qrcode
