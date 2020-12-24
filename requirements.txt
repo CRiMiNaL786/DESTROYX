@@ -17,6 +17,7 @@ opencv-python--headless
 keyboard
 beautifulsoup4
 bs4
+opencv-contrib-python
 bwb
 wand
 pyrogram
