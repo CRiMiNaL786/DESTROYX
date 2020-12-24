@@ -85,7 +85,7 @@
       "required": true
      },
      "PLUGIN_CHANNEL": {
-     "description": "Channel Where You Save Your Plugins",
+     "description": "Same Valus As BOTOG",
      "value": "",
      "required": true 
     
