@@ -53,6 +53,7 @@ if ENV:
         )
         # chat ids or usernames, it is recommended to use chat ids,
         # providing usernames means an additional overhead for the user
+        CMD_HNDLR = os.environ.get("CMD_HNDLR", "\!")
         CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
         # Get your own API key from https://www.remove.bg/ or
         # feel free to use http://telegram.dog/Remove_BGBot
