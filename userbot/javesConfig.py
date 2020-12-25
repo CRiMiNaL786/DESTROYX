@@ -52,7 +52,7 @@ class Config(object):
     MAX_MESSAGE_SIZE_LIMIT = 4095
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
     GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", "root")
-    CMD_HNDLR = os.environ.get("CMD_HNDLR", "\.")
+    CMD_HNDLR = os.environ.get("CMD_HNDLR", "\!")
     TAG_FEATURE = os.environ.get("TAG_FEATURE", "DISABLE")
     MAX_SPAM = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 5))
     SPOTIFY_USERNAME = os.environ.get("SPOTIFY_USERNAME", None)
