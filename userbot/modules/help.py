@@ -20,7 +20,7 @@ from userbot import ALIVE_NAME, CMD_HELP, CMD_HNDLR, CMD_LIST
 from userbot.config import Config
 from userbot import bot as borg
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Black Lightning User"
-CMD_HNDLR = Config.COMMAND_HAND_LER 
+CMD_HNDLR = os.environ.get("CUSTOM_CMD_HNDLR", "'") 
 CUSTOM_HELP_EMOJI = os.environ.get("CUSTOM_HELP_EMOJI", "⨵")
 
 if CMD_HNDLR is None:
