@@ -9,13 +9,13 @@ from telethon import events
 
 from userbot import CMD_LIST, LOAD_PLUG, bot
 from userbot.Config import Var
-from userbot.javesConfig import Config
+from userbot.javesConfig import javesConfig
 from userbot.events import *
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
     parse_mode = parse_mode or "md"
-    if event.sender_id in Config.SUDO_USERS:
+    if event.sender_id in javesConfig.SUDO_USERS:
         reply_to = await event.get_reply_message()
         if reply_to:
             return await reply_to.reply(
@@ -26,9 +26,9 @@ async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
 
 
 sedprint = logging.getLogger("MODULES")
-cmdhandler = Config.CMD_HNDLR if Config.CMD_HNDLR else "!"
-bothandler = Config.BOT_HANDLER
-sudo_hndlr = Config.SUDO_HNDLR if Config.SUDO_HNDLR else "."
+cmdhandler = javesConfig.CMD_HNDLR if javesConfig.CMD_HNDLR else "!"
+bothandler = javesConfig.BOT_HANDLER
+sudo_hndlr = javesConfig.SUDO_HNDLR if javesConfig.SUDO_HNDLR else "."
 
 
 def command(**args):
@@ -74,7 +74,7 @@ def command(**args):
                 pass
 
         if allow_sudo:
-            args["from_users"] = list(Config.SUDO_USERS)
+            args["from_users"] = list(javesConfig.SUDO_USERS)
             # Mutually exclusive with outgoing (can only set one of either).
             args["incoming"] = True
         del allow_sudo
@@ -129,7 +129,7 @@ def load_module(shortname):
         mod.logger = logging.getLogger(shortname)
         # support for uniborg
         sys.modules["uniborg.util"] = userbot.utils
-        mod.Config = Config
+        mod.javesConfig = javesConfig
         mod.borg = bot
         mod.userbot = bot
         # auto-load
@@ -186,12 +186,12 @@ def admin_cmd(pattern=None, command=None, **args):
             except BaseException:
                 CMD_LIST.update({file_test: [cmd]})
         else:
-            if len(Config.CMD_HNDLR) == 2:
-                darkreg = "^" + Config.CMD_HNDLR
-                reg = Config.CMD_HNDLR[1]
-            elif len(Config.CMD_HNDLR) == 1:
-                darkreg = "^\\" + Config.CMD_HNDLR
-                reg = Config.CMD_HNDLR
+            if len(javesConfig.CMD_HNDLR) == 2:
+                darkreg = "^" + javesConfig.CMD_HNDLR
+                reg = javesConfig.CMD_HNDLR[1]
+            elif len(javesConfig.CMD_HNDLR) == 1:
+                darkreg = "^\\" + javesConfig.CMD_HNDLR
+                reg = javesConfig.CMD_HNDLR
             args["pattern"] = re.compile(darkreg + pattern)
             if command is not None:
                 cmd = reg + command
@@ -207,7 +207,7 @@ def admin_cmd(pattern=None, command=None, **args):
     args["outgoing"] = True
     # should this command be available for other users?
     if allow_sudo:
-        args["from_users"] = list(Config.SUDO_USERS)
+        args["from_users"] = list(javesConfig.SUDO_USERS)
         # Mutually exclusive with outgoing (can only set one of either).
         args["incoming"] = True
         del args["allow_sudo"]
@@ -218,7 +218,7 @@ def admin_cmd(pattern=None, command=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
+    black_list_chats = list(javesConfig.UB_BLACK_LIST_CHAT)
     if len(black_list_chats) > 0:
         args["chats"] = black_list_chats
 
@@ -404,7 +404,7 @@ def time_formatter(milliseconds: int) -> str:
 
 class Loader:
     def __init__(self, func=None, **args):
-        self.Config = Config
+        self.javesConfig = javesConfig
         bot.add_event_handler(func, events.NewMessage(**args))
 
 
@@ -453,7 +453,7 @@ def sudo_cmd(pattern=None, **args):
 
 
 async def edit_or_reply(event, text):
-    if event.sender_id in Config.SUDO_USERS:
+    if event.sender_id in javesConfig.SUDO_USERS:
         reply_to = await event.get_reply_message()
         if reply_to:
             return await reply_to.reply(text)
@@ -462,7 +462,7 @@ async def edit_or_reply(event, text):
 
 
 async def eor(event, text):
-    if event.sender_id in Config.SUDO_USERS:
+    if event.sender_id in javesConfig.SUDO_USERS:
         reply_to = await event.get_reply_message()
         if reply_to:
             return await reply_to.reply(text)
@@ -545,7 +545,7 @@ def only_pro():
     def decorator(func):
         @functools.wraps(func)
         async def wrapper(event):
-            kek = list(Config.SUDO_USERS)
+            kek = list(javesConfig.SUDO_USERS)
             mm = bot.uid
             if event.sender_id == mm:
                 await func(event)
@@ -606,7 +606,7 @@ def peru_only():
     def decorator(func):
         @functools.wraps(func)
         async def wrapper(event):
-            kek = list(Config.SUDO_USERS)
+            kek = list(javesConfig.SUDO_USERS)
             mm = bot.uid
             if event.sender_id == mm:
                 await func(event)
