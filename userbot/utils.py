@@ -11,6 +11,10 @@ from userbot import CMD_LIST, LOAD_PLUG, bot
 from userbot.Config import Var
 from userbot.javesConfig import javesConfig
 from userbot.events import *
+sedprint = logging.getLogger("MODULES")
+cmdhandler = javesConfig.CMD_HNDLR if javesConfig.CMD_HNDLR else "!"
+bothandler = javesConfig.BOT_HANDLER
+sudo_hndlr = javesConfig.SUDO_HNDLR if javesConfig.SUDO_HNDLR else "."
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
@@ -25,10 +29,7 @@ async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     return await event.edit(text, parse_mode=parse_mode, link_preview=link_preview)
 
 
-sedprint = logging.getLogger("MODULES")
-cmdhandler = javesConfig.CMD_HNDLR if javesConfig.CMD_HNDLR else "!"
-bothandler = javesConfig.BOT_HANDLER
-sudo_hndlr = javesConfig.SUDO_HNDLR if javesConfig.SUDO_HNDLR else "."
+
 
 
 def command(**args):
