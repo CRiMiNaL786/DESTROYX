@@ -6,15 +6,15 @@ import re
 from pathlib import Path
 
 from telethon import events
-
+import os
 from userbot import CMD_LIST, LOAD_PLUG, bot
 from userbot.Config import Var
 from userbot.config import Config
 from userbot.events import *
 sedprint = logging.getLogger("MODULES")
-cmdhandler = Config.CMD_HNDLR if Config.CMD_HNDLR else "!"
-bothandler = Config.BOT_HANDLER
-sudo_hndlr = Config.SUDO_HNDLR if Config.SUDO_HNDLR else "."
+cmdhandler = cmdhandler = os.environ.get("CMD_HNDLR","'")
+bothandler = cmdhandler = os.environ.get("BOT_CMD_HNDLR","/")
+sudo_hndlr = cmdhandler = os.environ.get("SUDO_CMD_HNDLR","\")
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
