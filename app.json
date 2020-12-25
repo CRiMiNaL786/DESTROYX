@@ -38,8 +38,6 @@
       "description": "need for !lyrics command , Get your own api token from https://genius.com/developers",      
        "value": "Enter genius api here if you need ",
        "required": false
-      
-      
     },
     "COUNTRY": {
       "description": "Set your Country to be used in the !time and !date commands.",
@@ -85,7 +83,12 @@
       "description": "Recommended for INLINE_MODE",
       "value": "",
       "required": true
-      
+     },
+     "PLUGIN_CHANNEL": {
+     "description": "Same Valus As BOTOG",
+     "value": "",
+     "required": true 
+    
     },
     "INLINE_MODE": {
       "description": "BOT_TOKEN must be filled correct if you set this true",
@@ -214,11 +217,10 @@
       "required": false
     }
   },
-  "addons": [
-    {
-      "plan": "heroku-postgresql",
-      "options": {
-      }
-    }
-  ]
-}
+  "addons": [{
+   "plan": "heroku-postgresql",
+   "options": {
+    "version": "12"
+   }
+  }]
+ }

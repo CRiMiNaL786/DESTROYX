@@ -1,5 +1,6 @@
 import os
 from sys import version_info
+import logging
 from logging import basicConfig, getLogger, INFO, DEBUG, WARNING
 from distutils.util import strtobool as sb
 from pySmartDL import SmartDL
@@ -11,6 +12,10 @@ from var import Var
 load_dotenv("config.env")
 from userbot.javes_main.heroku_var import config
 from .function import javesfunction as topfunc
+
+sed = logging.getLogger("WARNING")
+sedprint = logging.getLogger("WARNING")
+
 CONSOLE_LOGGER_VERBOSE = config.CONSOLE_LOGGER_VERBOSE
 basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=INFO)
