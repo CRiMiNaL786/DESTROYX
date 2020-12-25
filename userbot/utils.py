@@ -12,9 +12,9 @@ from userbot.Config import Var
 from userbot.config import Config
 from userbot.events import *
 sedprint = logging.getLogger("MODULES")
-cmdhandler = cmdhandler = os.environ.get("CMD_HNDLR","'")
-bothandler = cmdhandler = os.environ.get("BOT_CMD_HNDLR","/")
-sudo_hndlr = cmdhandler = os.environ.get("SUDO_CMD_HNDLR","\")
+cmdhandler = os.environ.get("CMD_HNDLR","'")
+bothandler = os.environ.get("BOT_CMD_HNDLR","/")
+sudo_hndlr = os.environ.get("SUDO_CMD_HNDLR","\")
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
