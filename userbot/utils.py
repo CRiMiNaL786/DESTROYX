@@ -23,10 +23,6 @@ async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
             )
         return await event.reply(text, parse_mode=parse_mode, link_preview=link_preview)
     return await event.edit(text, parse_mode=parse_mode, link_preview=link_preview)
-sedprint = logging.getLogger("PLUGINS")
-cmdhandler = Config.CMD_HNDLR if Config.CMD_HNDLR else "."
-bothandler = Config.BOT_HANDLER
-sudo_hndlr = Config.SUDO_HNDLR if Config.SUDO_HNDLR else "!"
 
 
 sedprint = logging.getLogger("MODULES")
