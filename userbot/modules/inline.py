@@ -11,6 +11,9 @@ import time
 from userbot import bot as borg
 from userbot import CMD_HELP,  client
 from userbot.javes_main.heroku_var import config as Config
+from userbot.javes_main.heroku_var import config as Var
+from userbot.javes_main.heroku_var import config as var
+from userbot.javes_main.heroku_var import config
 from telethon import Button, custom, events
 
 from userbot import CMD_LIST
