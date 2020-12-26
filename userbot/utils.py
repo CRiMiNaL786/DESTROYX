@@ -1,4 +1,4 @@
-import os
+
 from userbot import bot as borg
 import functools
 import inspect
@@ -15,19 +15,9 @@ from userbot.events import *
 sedprint = logging.getLogger("MODULES")
 cmdhandler = os.environ.get("CMD_HNDLR","'")
 bothandler = os.environ.get("BOT_CMD_HNDLR","/")
-sudo_hndlr = os.environ.get("SUDO_CMD_HNDLR","\")
+sudo_hndlr = os.environ.get("SUDO_CMD_HNDLR","`")
 
-async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
-    link_preview = link_preview or False
-    parse_mode = parse_mode or "md"
-    if event.sender_id in Config.SUDO_USERS:
-        reply_to = await event.get_reply_message()
-        if reply_to:
-            return await reply_to.reply(
-                text, parse_mode=parse_mode, link_preview=link_preview
-            )
-        return await event.reply(text, parse_mode=parse_mode, link_preview=link_preview)
-    return await event.edit(text, parse_mode=parse_mode, link_preview=link_preview)
+
 
 
 
