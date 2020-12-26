@@ -24,7 +24,7 @@ from telethon import Button, custom, events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST, CUSTOM_PMPERMIT, bot
-from userbot.Config import Var
+from userbot.config import Config
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 NOOBPIC = (
@@ -35,12 +35,12 @@ NOOBPIC = (
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 myid = bot.uid
-mybot = Var.TG_BOT_USER_NAME_BF_HER
+mybot = Config.TG_BOT_USER_NAME_BF_HER
 if mybot.startswith("@"):
     botname = mybot
 else:
     botname = f"@{mybot}"
-LOG_GP = Var.PRIVATE_GROUP_ID
+LOG_GP = Config.PRIVATE_GROUP_ID
 MESAG = (
     str(CUSTOM_PMPERMIT)
     if CUSTOM_PMPERMIT
@@ -49,7 +49,7 @@ MESAG = (
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else " נανєѕ User"
 USER_BOT_WARN_ZERO = "`I had warned you not to spam. Now you have been blocked and reported until further notice.`\n\n**GoodBye!** "
 
-if Var.LOAD_MYBOT == "True":
+if Config.LOAD_MYBOT == "True":
     USER_BOT_NO_WARN = (
         "**PM Security of [{}](tg://user?id={})**\n\n"
         "{}\n\n"
@@ -58,7 +58,7 @@ if Var.LOAD_MYBOT == "True":
             DEFAULTUSER, myid, MESAG, botname
         )
     )
-elif Var.LOAD_MYBOT == "False":
+elif Config.LOAD_MYBOT == "False":
     USER_BOT_NO_WARN = (
         "**PM Security of [{}](tg://user?id={})**\n\n"
         "{}\n"
@@ -75,7 +75,7 @@ NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD = int(
     os.environ.get("NO_OF_COLOUMS_DISPLAYED_IN_H_ME_CMD", 3)
 )
 
-if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
+if Config.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
     async def inline_handler(event):
