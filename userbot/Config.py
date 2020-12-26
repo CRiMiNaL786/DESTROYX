@@ -138,5 +138,3 @@ class Config(object):
 class Development(Config):
     LOGGER = True
     # Here for later purposes
-
-
