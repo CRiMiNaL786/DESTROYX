@@ -19,6 +19,13 @@ sedprint = logging.getLogger("WARNING")
 CONSOLE_LOGGER_VERBOSE = config.CONSOLE_LOGGER_VERBOSE
 basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=INFO)
+if Var.STRING_SESSION:
+    session_name = str(Var.STRING_SESSION)
+    bot = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
+else:
+    session_name = "startup"
+    bot = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
+    
 LOGS = getLogger(__name__)
 ENV = config.ENV
 API_KEY = config.API_KEY
