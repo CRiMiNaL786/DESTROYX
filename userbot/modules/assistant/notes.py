@@ -2,8 +2,8 @@ from telethon import events, utils
 from telethon.tl import types
 
 from userbot import bot
-from userbot.Config import Var
-from userbot.plugins.sql_helper.snips_sql import (
+from userbot.Config import Config
+from userbot.modules.sql_helper.snips_sql import (
     add_snip,
     get_all_snips,
     get_snips,
@@ -86,7 +86,7 @@ async def on_snip_list(event):
             OUT_STR += f"➤ `?{a_snip.snip}` \n"
     else:
         OUT_STR = "No Snips. Start Saving using `/addnote`"
-    if len(OUT_STR) > Var.MAX_MESSAGE_SIZE_LIMIT:
+    if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "snips.text"
             await borg.send_file(
