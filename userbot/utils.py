@@ -210,7 +210,7 @@ def admin_cmd(pattern=None, command=None, **args):
 
     # add blacklist chats, UB should not respond in these chats
     args["blacklist_chats"] = True
-    black_list_chats = list(Config.UB_BLACK_LIST_CHAT)
+    black_list_chats = int(os.environ.get("UB_BLACK_LIST_CHAT",None))
     if len(black_list_chats) > 0:
         args["chats"] = black_list_chats
 
