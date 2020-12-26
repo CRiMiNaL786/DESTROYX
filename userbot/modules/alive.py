@@ -1,7 +1,7 @@
 import platform
 import sys
 from telethon import version
-from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME)
+from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME)
 from userbot.events import javes05, rekcah05 
 import os
 import asyncio
