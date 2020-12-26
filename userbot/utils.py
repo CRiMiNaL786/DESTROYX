@@ -13,7 +13,7 @@ from userbot.Config import Var
 from userbot.config import Config
 from userbot.events import *
 sedprint = logging.getLogger("MODULES")
-cmdhandler = os.environ.get("CMD_HNDLR","'")
+cmdhandler = os.environ.get("CMD_HNDLR","!")
 bothandler = os.environ.get("BOT_CMD_HNDLR","/")
 sudo_hndlr = os.environ.get("SUDO_CMD_HNDLR","`")
 
@@ -178,12 +178,12 @@ def admin_cmd(pattern=None, command=None, **args):
             except BaseException:
                 CMD_LIST.update({file_test: [cmd]})
         else:
-            if len(Config.CMD_HNDLR) == 2:
-                darkreg = "^" + Config.CMD_HNDLR
-                reg = Config.CMD_HNDLR[1]
-            elif len(Config.CMD_HNDLR) == 1:
-                darkreg = "^\\" + Config.CMD_HNDLR
-                reg = Config.CMD_HNDLR
+            if len(cmdhandler) == 2:
+                darkreg = "^" + cmdhandler
+                reg = cmdhandler[1]
+            elif len(cmdhandler) == 1:
+                darkreg = "^\\" + cmdhandler
+                reg = cmdhandler
             args["pattern"] = re.compile(darkreg + pattern)
             if command is not None:
                 cmd = reg + command
