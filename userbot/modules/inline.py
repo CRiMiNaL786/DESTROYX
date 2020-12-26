@@ -1,5 +1,5 @@
-#telegram channel @javes05
-#from https://t.me/pldhsys
+#telegram channel @javes2support
+#from https://t.me/j2plugins
 
 
 import io
