@@ -1,5 +1,11 @@
 from userbot import bot as borg
 from userbot.events import *
+from userbot.config import Config
+
+sedprint = logging.getLogger("MODULES")
+cmdhandler = CMD_HNDLR = os.environ.get("CMD_HNDLR", "\!")
+bothandler = BOT_HANDLER = os.environ.get("BOT_HANDLER", "\`")
+sudo_hndlr = SUDO_HNDLR = os.environ.get("SUDO_HNDLR", "\.")
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
