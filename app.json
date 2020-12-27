@@ -84,18 +84,11 @@
       "value": "",
       "required": true
      },
-     "PLUGIN_CHANNEL": {
-     "description": "Same Valus As BOTOG",
-     "value": "",
-     "required": true 
-    
-    },
-    "INLINE_MODE": {
+      "INLINE_MODE": {
       "description": "BOT_TOKEN must be filled correct if you set this true",
       "value":"False",
       "required": false
-       
-    },
+     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "BOTLOG_CHATID must be filled correct if you set it true",
       "value": "False",
