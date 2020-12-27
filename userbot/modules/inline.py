@@ -60,7 +60,7 @@ from math import ceil
 import requests
 from telethon import Button, custom, events, functions
 from youtubesearchpython import SearchVideos
-from userbot.javes_main.heroku_var import Var
+
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 
 
