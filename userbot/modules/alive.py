@@ -4,6 +4,10 @@ from telethon import version
 from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME)
 from userbot.events import javes05, rekcah05 
 import os
+shivam = "8a3ab7aa9d71c29aae187.mp4"
+if not os.path.exists(shivam):
+	os.system("wget https://telegra.ph/file/8a3ab7aa9d71c29aae187.mp4")
+	shivam="8a3ab7aa9d71c29aae187.mp4"
 import asyncio
 from telethon import events
 import heroku3
@@ -63,7 +67,7 @@ else:
 
 @client.on(events.NewMessage(outgoing=True, pattern='!javes'))
 async def alive(alive):
-    await alive.edit(""
+    text=(""
                     f"**{ALIVE_S_MMSG}**\n\n"                     
                     f" °  `{JAVES_NNAME}`: **{v}**\n"
                     f" °  `User:` ** {DEFAULTUSER} **\n"
@@ -76,11 +80,12 @@ async def alive(alive):
                     f" °  `SpamProtect:` ** {ss} **\n"       
                     f" °  `Uptime:` ** {str(datetime.now() - START_TIME).split('.')[0]} **\n\n"                                   
                     f"**{ALIVE_E_MMSG}**")
-
+    await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
+    await alive.delete()
 if client2:
  @client2.on(events.NewMessage(outgoing=True, pattern='!javes'))
  async def alive(alive):
-    await alive.edit(""
+    text=(""
                     f"**{ALIVE_S_MMSG}**\n\n"                     
                     f" °  `{S2_NAME}`: **{v}**\n"
                     f" °  `User:` ** {S2_USER} **\n"
@@ -93,11 +98,12 @@ if client2:
                     f" °  `SpamProtect:` ** {ss} **\n"       
                     f" °  `Uptime:` ** {str(datetime.now() - START_TIME).split('.')[0]} **\n\n"                                   
                     f"**{ALIVE_E_MMSG}**")
-
+    await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
+    await alive.delete()
 if client3:
  @client3.on(events.NewMessage(outgoing=True, pattern='!javes'))
  async def alive(alive):
-    await alive.edit(""
+    text=(""
                     f"**{ALIVE_S_MMSG}**\n\n"                     
                     f" °  `{S3_NAME}`: **{v}**\n"
                     f" °  `User:` ** {S3_USER} **\n"
@@ -110,12 +116,15 @@ if client3:
                     f" °  `SpamProtect:` ** {ss} **\n"       
                     f" °  `Uptime:` ** {str(datetime.now() - START_TIME).split('.')[0]} **\n\n"                                   
                     f"**{ALIVE_E_MMSG}**")
-
+    await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
+    await alive.delete()
 
 @javes05(outgoing=True, pattern="^\.alive$")
 @javes05(outgoing=True, pattern="^\!alive$")
 async def alive(alive):
-    await alive.edit("Iam On type` !javes `or` !help `for more info")
+    text=("Iam On type` !javes `or` !help `for more info")
+    await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
+    await alive.delete()
 
 
 
@@ -124,7 +133,7 @@ async def alive(alive):
 @bot.on(rekcah05(pattern=f"sudo$", allow_sudo=True))
 @bot.on(rekcah05(pattern=f"javes$", allow_sudo=True))
 async def alive(alive):
-    await alive.reply(""
+    text=(""
                     f"**{ALIVE_S_MMSG}**\n\n"                     
                     f" °  `{JAVES_NNAME}`: **{v}**\n"
                     f" °  `Sudo Id:` ** {rksu} **\n"
@@ -137,3 +146,5 @@ async def alive(alive):
                     f" °  `SpamProtect:` ** {ss} **\n"                    
                     f" °  `Uptime:` ** {str(datetime.now() - START_TIME).split('.')[0]} **\n\n"                                   
                     f"**{ALIVE_E_MMSG}**")
+    await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
+    await alive.delete()
