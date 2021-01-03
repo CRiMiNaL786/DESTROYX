@@ -38,12 +38,12 @@ import traceback
 import os
 import userbot.utils
 PLUGIN_CHANNEL=int(os.environ.get("PLUGIN_CHANNEL",-100))
-@command(pattern="^.extdl", outgoing=True)
+@command(pattern="^!extdl", outgoing=True)
 async def install(event):
     if event.fwd_from:
         return
     chat = PLUGIN_CHANNEL
-    documentss = await borg.get_messages(chat, None , filter=InputMessagesFilterDocument)
+    documentss = await bot.get_messages(chat, None , filter=InputMessagesFilterDocument)
     total = int(documentss.total)
     total_doxx = range(0, total)
     await event.delete()
