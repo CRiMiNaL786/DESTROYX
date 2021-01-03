@@ -25,6 +25,7 @@ Since a long time...
 """
 #modified by sh1vam
 from userbot import bot
+from userbot import bot as borg
 from telethon import events
 from telethon import functions, types
 from telethon.tl.types import InputMessagesFilterDocument
