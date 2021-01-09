@@ -1,8 +1,25 @@
-# Logo
-<p align="center"><a href="hhttps://t.me/javes_support"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" width="4500"></a></p> 
-<h1 align="center"><b>Javes-2.0 🇮🇳 </b></h1>
-<h4 align="center">Javes 2.0 is a telgram userbot that running in python3 + Telethon.Born From Javes.</h4>
+<h2 align="center"><b>Owner: <a href="https://telegram.dog/criminaL786">『 ツᴅɪᴄͥᴛᴀᴛᴏͣʀͫ乛ᴀᴍᴀᴀɴ々』</a></b></h2>
+<br>
+<p align="center">
+   <a href="https://github.com/Javes786/javes-2.0"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" alt="JAVES 2.0" width=400px></a>
+   <br>
+   <br>
+</p>
+<h1>JAVES 2.0</h1>
+<b>Javes 2.0 is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
+<br>
+<br>
 
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/Javes786/javes-2.0)
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?&style=flat-square)]( https://github.com/Javes786/javes-2.0#copyright--license)
+[![Stars](https://img.shields.io/github/stars/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/stargazers)
+[![Forks](https://img.shields.io/github/forks/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/network/members)
+[![Issues Open](https://img.shields.io/github/issues/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues)
+[![Issues Closed](https://img.shields.io/github/issues-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues?q=is:closed)
+[![PR Open](https://img.shields.io/github/issues-pr/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls)
+[![PR Closed](https://img.shields.io/github/issues-pr-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls?q=is:closed)
+![Repo Size](https://img.shields.io/github/repo-size/Javes786/javes-2.0?style=flat-square)
+<br>
 
 
 
@@ -30,7 +47,10 @@
 
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Javes786/javes-2.0)
 
-
+# Requirements 
+* Python 3.8 or Higher
+* Telegram [API Keys](https://my.telegram.org/apps)
+* String [Gernate from here](https://repl.it/@Javes786/Javes-20-String-session#main.py)
 
 
 # String
@@ -39,7 +59,7 @@
 
 
 # Credit
-Special Thanks To Our contributors Pro Boy , Danish00 , Shivam , Shiwa And Anmol.
+Special Thanks To Our contributors Pro Boy , Danish00 , Shivam , Shiwa ,Pawan And Anmol.
 
 
 
