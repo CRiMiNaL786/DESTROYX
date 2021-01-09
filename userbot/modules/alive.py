@@ -4,10 +4,8 @@ from telethon import version
 from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME)
 from userbot.events import javes05, rekcah05 
 import os
-shivam = "8a3ab7aa9d71c29aae187.mp4"
-if not os.path.exists(shivam):
-	os.system("wget https://telegra.ph/file/8a3ab7aa9d71c29aae187.mp4")
-	shivam="8a3ab7aa9d71c29aae187.mp4"
+shivam = os.environ.get("ALIVE_PIC","https://telegra.ph/file/8a3ab7aa9d71c29aae187.mp4")
+
 import asyncio
 from telethon import events
 import heroku3
