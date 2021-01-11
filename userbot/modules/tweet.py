@@ -291,17 +291,17 @@ async def tweet(event):
 
 CMD_HELP.update(
     {
-        "nekobot": ".tweet <username>.<tweet>"
-        "\nUsage: Create tweet with custom username.\n\n"
-        ".trump <tweet>"
-        "\nUsage: Create tweet for Donald Trump.\n\n"
-        ".modi <tweet>"
-        "\nUsage: Create tweet for `Narendra Modi`.\n\n"
-        ".cmm <text>"
-        "\nUsage: Create banner for Change My Mind.\n\n"
-        ".waifu <text>"
-        "\nUsage: Random anime girl stickers.\n\n"
-        ".type <text>"
-        "\nUsage: random sticker is writing your text."
+        "nekobot :  .tweet <username>.<tweet>
+         \nUsage: Create tweet with custom username.\n\n
+         .trump <tweet>
+         \nUsage: Create tweet for Donald Trump.\n\n
+         .modi <tweet>
+         \nUsage: Create tweet for `Narendra Modi`.\n\n
+         .cmm <text>
+         \nUsage: Create banner for Change My Mind.\n\n
+         .waifu <text>
+         \nUsage: Random anime girl stickers.\n\n
+         .type <text>
+         \nUsage: random sticker is writing your text."
     }
 )
