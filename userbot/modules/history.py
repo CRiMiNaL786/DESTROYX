@@ -13,7 +13,7 @@ from userbot.utils import admin_cmd
 #team mates @danish_00,@Shivam_Patel,@xditya,@The_Siddharth_Nigam
 from userbot import bot as javes
 #team mates @danish_00,@Shivam_Patel,@xditya,@The_Siddharth_Nigam
-@javes.on(admin_cmd(pattern="sangu ?(.*)"))
+@javes.on(admin_cmd(pattern="history ?(.*)"))
 #team mates @danish_00,@Shivam_Patel,@xditya,@The_Siddharth_Nigam
 async def _(event):
     if event.fwd_from:
