@@ -11,7 +11,6 @@ from telethon.sessions import StringSession
 from var import Var
 load_dotenv("config.env")
 from userbot.javes_main.heroku_var import config
-from .function import javesfunction as topfunc
 
 sed = logging.getLogger("WARNING")
 sedprint = logging.getLogger("WARNING")
