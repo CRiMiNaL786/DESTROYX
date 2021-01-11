@@ -3,11 +3,14 @@ virtualenv
 setuptools
 wheel
 Pillow
+#pymediainfo
+#MediaInfo
+moviepy
 glitch_this
 PyGithub
 aiofiles
 aiohttp
-#aria2p 
+aria2p 
 cloudmersive_virus_api_client 
 psutil
 cryptg
@@ -17,7 +20,6 @@ opencv-python--headless
 keyboard
 beautifulsoup4
 bs4
-opencv-contrib-python
 bwb
 wand
 pyrogram
@@ -63,6 +65,7 @@ httplib2
 humanize
 lxml
 lyricsgenius
+python-telegram-bot
 oauth2client
 html_telegraph_poster
 psycopg2
@@ -73,7 +76,6 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
-pymediainfo
 youtube-dl
 pytz
 qrcode
@@ -84,7 +86,8 @@ sqlalchemy
 python-dateutil
 spamwatch
 virustotal_python
-youtube-search-python
+youtube-search-python==1.3.2
 validators
 numpy
 fontTools
+opencv-contrib-python-headless
