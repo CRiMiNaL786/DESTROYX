@@ -55,21 +55,6 @@ async def _(event):
 
 
 
-              
-
-
-
-@borg.on(admin_cmd(pattern="wspr ?(.*)"))
-async def wspr(event):
-    if event.fwd_from:
-        return
-    wwwspr = event.pattern_match.group(1)
-    botusername = "@whisperBot"
-    if event.reply_to_msg_id:
-        await event.get_reply_message()
-    tap = await bot.inline_query(botusername, wwwspr)
-    await tap[0].click(event.chat_id)
-    await event.delete()
 
 @borg.on(admin_cmd(pattern="purl ?(.*)"))
 async def _(event):
@@ -123,7 +108,6 @@ CMD_HELP.update(
     {
         "bots": ".purl <reply to file>\nUse - Get a direct download link of that file/doc/pic/vid\
         \n\n.recognize <reply to any media>\\nUse - send details about it.\
-        \n\n.wspr <message> <target username/id>\nUse - Send a whisper message to that person.\
         \n\n.limits\nUse - Check if you are limited by telegram."
     }
 )
