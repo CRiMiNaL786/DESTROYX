@@ -1,6 +1,7 @@
 from userbot import bot as borg
 from userbot.events import *
-
+from userbot import config as Config
+from userbot import config
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
     parse_mode = parse_mode or "md"
