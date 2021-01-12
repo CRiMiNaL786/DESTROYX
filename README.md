@@ -11,7 +11,7 @@
 <br>
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/Javes786/javes-2.0)
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg?&style=flat-square)]( https://github.com/Javes786/javes-2.0#copyright--license)
+[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/Javes786/javes-2.0#copyright--license)
 [![Stars](https://img.shields.io/github/stars/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/stargazers)
 [![Forks](https://img.shields.io/github/forks/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/network/members)
 [![Issues Open](https://img.shields.io/github/issues/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues)
