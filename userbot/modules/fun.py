@@ -1339,6 +1339,18 @@ async def lol(e):
                      "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `") 
  
  
+@javes05(outgoing=True, pattern="^.amaan$")
+async def amaan(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        await e.edit("`\n╱╭━━━╮               `"
+                     "`\n╱┃╭━╮┃               `"
+                     "`\n╱┃┃╱┃┣╮╭┳━━┳━━┳━╮  `"
+                     "`\n╱┃╰━╯┃╰╯┃╭╮┃╭╮┃╭╮╮ `"
+                     "`\n╱┃╭━╮┃┃┃┃╭╮┃╭╮┃┃┃┃ `"
+                     "`\n╱╰╯╱╰┻┻┻┻╯╰┻╯╰┻╯╰╯ `") 
+
+
+
                                                                                    
 @javes05(outgoing=True, pattern="^.lool$")
 async def lool(e):
