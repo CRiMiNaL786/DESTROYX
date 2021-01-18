@@ -32,7 +32,7 @@ S3_NAME = os.environ.get("S3_NAME", JAVES_NNAME)
 S2_USER = os.environ.get("S2_USER", DEFAULTUSER)
 S3_USER = os.environ.get("S3_USER", DEFAULTUSER)
 
-v = "2.0"
+v = "2.0.0"
 
 if rksu:
  if FULL_SUDO:
@@ -120,7 +120,7 @@ if client3:
 @javes05(outgoing=True, pattern="^\.alive$")
 @javes05(outgoing=True, pattern="^\!alive$")
 async def alive(alive):
-    text=("Iam On type` !javes `or` !help `for more info")
+    text=("Iam On type` !javes `or` !help `for more info....")
     await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
     await alive.delete()
 
