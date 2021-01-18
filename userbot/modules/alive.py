@@ -67,7 +67,7 @@ else:
 async def alive(alive):
     text=(""
                     f"**{ALIVE_S_MMSG}**\n\n"                     
-                    f" °  `{JAVES_NAME}`: **{v}**\n"
+                    f" °  `{JAVES_NNAME}`: **{v}**\n"
                     f" °  `User:` ** {DEFAULTUSER} **\n"
                     f" °  `Telethon`: ** {version.__version__} **\n"
                     f" °  `Python` : ** {platform.python_version()} **\n"                                                                                     
