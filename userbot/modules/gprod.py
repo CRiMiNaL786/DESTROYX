@@ -41,7 +41,7 @@ async def get_full_user(event):
         try:
             user_obj = await event.client.get_entity(user)
         except Exception as err:
-            return await event.edit("Error... Please report at @Dark_cobra_support_group", str(err))           
+            return await event.edit("Error... Please report at @Javes_suPPorT", str(err))           
     return user_obj, extra
 
 #made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam#made by @danish_00 with sh1vam
