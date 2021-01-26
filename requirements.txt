@@ -91,3 +91,4 @@ validators
 numpy
 fontTools
 opencv-contrib-python-headless
+webdriver_manager
