@@ -19,7 +19,7 @@ try:
   from userbot import bot, client2 , client3
 except:
 	pass
-
+ALIVE_NAME=os.environ.get("ALIVE_NAME","Javes 2.0")
 SPAM_PROTECT = os.environ.get("SPAM_PROTECT", None)
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 ALIVE_S_MMSG = str(ALIVE_S_MESSAGE) if ALIVE_S_MESSAGE else str(ALIVE_S_MSG)
