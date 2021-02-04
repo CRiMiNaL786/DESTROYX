@@ -62,7 +62,7 @@ google-auth-oauthlib
 googletrans==4.0.0-rc1
 google_images_download
 gTTS
-gTTS-token
+gTTS-token 
 eyed3
 hachoir
 heroku
