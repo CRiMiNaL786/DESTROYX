@@ -59,7 +59,7 @@ gitpython
 google-api-python-client
 google-auth-oauthlib
 #googletrans
-googletrans==3.1.0a0
+googletrans==4.0.0-rc1
 google_images_download
 gTTS
 gTTS-token
