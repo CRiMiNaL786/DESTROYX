@@ -19,12 +19,12 @@ try:
   from userbot import bot, client2 , client3
 except:
 	pass
-ALIVE_NAME = os.environ.get("ALIVE_NAME","Javes 2.0")
+
 SPAM_PROTECT = os.environ.get("SPAM_PROTECT", None)
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 ALIVE_S_MMSG = str(ALIVE_S_MESSAGE) if ALIVE_S_MESSAGE else str(ALIVE_S_MSG)
 ALIVE_E_MMSG = str(ALIVE_E_MESSAGE) if ALIVE_E_MESSAGE else str(ALIVE_E_MSG)
-DEFAULTUSER = os.environ.get("ALIVE_NAME","Javes 2.0")
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 START_TIME = datetime.now()
 client = bot
 S2_NAME = os.environ.get("S2_NAME", JAVES_NNAME)
