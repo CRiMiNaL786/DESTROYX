@@ -67,6 +67,7 @@ COUNTRY = config.COUNTRY
 TZ_NUMBER = config.TZ_NUMBER
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
+YOUR_SHORT_NAME = os.environ.get("YOUR_SHORT_NAME", None)
 CLEAN_WELCOME = config.CLEAN_WELCOME
 BIO_PREFIX = config.BIO_PREFIX
 DEFAULT_BIO = config.DEFAULT_BIO
