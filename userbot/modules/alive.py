@@ -1,7 +1,7 @@
 import platform
 import sys
 from telethon import version
-from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME)
+from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME, YOUR_SHORT_NAME)
 from userbot.events import javes05, rekcah05 
 import os
 shivam = os.environ.get("ALIVE_PIC","https://telegra.ph/file/8a3ab7aa9d71c29aae187.mp4")
@@ -24,7 +24,7 @@ SPAM_PROTECT = os.environ.get("SPAM_PROTECT", None)
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 ALIVE_S_MMSG = str(ALIVE_S_MESSAGE) if ALIVE_S_MESSAGE else str(ALIVE_S_MSG)
 ALIVE_E_MMSG = str(ALIVE_E_MESSAGE) if ALIVE_E_MESSAGE else str(ALIVE_E_MSG)
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else JAVES_NAME
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else YOUR_SHORT_NAME
 START_TIME = datetime.now()
 client = bot
 S2_NAME = os.environ.get("S2_NAME", JAVES_NNAME)
