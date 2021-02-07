@@ -52,7 +52,8 @@ UNAPPROVED_MSG = (
    f"`{JAVES_NNAME}:`**{PM_MESSAGE}**")
 swapi = os.environ.get("SPAMWATCH_API_KEY", None)
 SPAMWATCH_SHOUT = os.environ.get("SPAMWATCH_SHOUT", None)
-    
+MAX_PM = int(os.environ.get("MAX_PM", 3))
+
 if PM_AUTO_BAN:
  @javess(incoming=True, disable_edited=True, disable_errors=True)
  async def permitpm(event):    
@@ -86,10 +87,10 @@ if PM_AUTO_BAN:
                     COUNT_PM.update({event.chat_id: 1})
                 else:
                     COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
-                if COUNT_PM[event.chat_id] == 3:
+                if COUNT_PM[event.chat_id] == MAX_PM:
                     await event.respond(
                              f"`{JAVES_NNAME}`: ** Dont spam my master's pm this is your last warning!!**")
-                if COUNT_PM[event.chat_id] > 3:
+                if COUNT_PM[event.chat_id] > MAX_PM:
                     await event.respond(
                              f"`{JAVES_NNAME}`: ** {BLOCK_MMSG} **")                        
                     try:
