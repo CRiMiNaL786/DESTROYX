@@ -379,7 +379,7 @@ CMD_HELP.update({
 \n\n!gmute <username> / <userid> / <reply to a user>\
 \n**Usage**: Globel mute the user  \
 \n\n!ungmute <username> / <userid> / <reply to a user>\
-\n**Usage**: Remove user form gmute list \
+\n**Usage**: Remove user from gmute list \
 \n\n**All commands support sudo**\
 "
 })
