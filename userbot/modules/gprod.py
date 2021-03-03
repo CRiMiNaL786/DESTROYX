@@ -162,6 +162,7 @@ CMD_HELP.update({
 \n**Usage**: Forcefully Adds the particular person in groups in which you are admin and will promote his/her  \
 \n\n.gdemote <username> / <userid> / <reply to a user>\
 \n**Usage**: Demotes the user in which you and he/she is comman and if you are admin  \ 
-\n\n**Commands Doesn't Require Sudo**\
+\n**Commands Doesn't Require Sudo**\
 "
-})
+}
+)
