@@ -45,7 +45,7 @@
 # Requirements 
 * Python 3.8 or Higher
 * Telegram [API Keys](https://my.telegram.org/apps)
-* String [Gernate from here](https://repl.it/@Javes786/Javes-20-String-session#main.py)
+* String [Generate from here](https://repl.it/@Javes786/Javes-20-String-session#main.py)
 
 
 # String
