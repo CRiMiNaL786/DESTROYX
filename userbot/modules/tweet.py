@@ -291,7 +291,7 @@ async def tweet(event):
 
 CMD_HELP.update(
     {
-        "nekobot": ".tweet <username>.<tweet>"
+        "tweets": ".tweet <username>.<tweet>"
         "\nUsage: Create tweet with custom username.\n\n"
         ".trump <tweet>"
         "\nUsage: Create tweet for Donald Trump.\n\n"
