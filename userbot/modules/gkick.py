@@ -119,6 +119,7 @@ CMD_HELP.update({
     "gkick":
     "!gkick/.gkick <username> / <userid> / <reply to a user>\
 \n\nUsage:Globally kicks the person in comman groups \
-\n\nCommands Doesn't Require Sudo\
+\n\nCommand Also Work On Sudo\
 "
-})
+}
+)
