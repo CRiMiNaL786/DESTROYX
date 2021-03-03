@@ -13,6 +13,7 @@ from re import match
 import aiofiles
 from selenium import webdriver
 from userbot import bot as javes
+from userbot import CMD_HELP
 from userbot.javes_main.heroku_var import Config
 from userbot.utils import admin_cmd
 from selenium import webdriver
@@ -81,3 +82,5 @@ async def webss(message):
     )
     os.remove(file_path)
     driver.quit()
+
+CMD_HELP.update({"Webss":"\n\n.webss link "})
