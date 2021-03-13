@@ -1,1 +1,1 @@
-worker: python3 -m userbot
+worker: python3 sh1vamrun.py
