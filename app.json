@@ -49,6 +49,11 @@
       "value": "1",
       "required": false
     },
+    "TAG_LOG": {
+      "description": "your private group id same as botlog_chatid.",
+      "value": "",
+      "required": true
+    },
     "FULL_SUDO": {
       "description": "if you set it true sudo users can access your full datas ",
       "value": "",
