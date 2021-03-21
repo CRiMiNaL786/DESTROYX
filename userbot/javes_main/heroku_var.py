@@ -16,6 +16,7 @@ class config(object):
     API_KEY = os.environ.get("TELEGRAM_API_KEY", None)
     APP_ID = os.environ.get("TELEGRAM_API_KEY", None)
     API_HASH = os.environ.get("TELEGRAM_API_HASH", None)
+    TAG_LOG =int(os.environ.get("TAG_LOG",None))
     STRING_SESSION = os.environ.get("TELEGRAM_STRING_SESSION", None)
     SCREEN_SHOT_KEY = os.environ.get("SCREEN_SHOT_KEY", None)
     SCREEN_SHOT_LAYER_ACCESS_KEY = SCREEN_SHOT_KEY
@@ -76,9 +77,11 @@ class config(object):
     MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", 3))
     PRIVATE_GROUP_ID = os.environ.get("BOTLOG_CHATID", None)
     DB_URI = os.environ.get("DATABASE_URL", None)
+    TAG_LOG =int(os.environ.get("TAG_LOG",None))
     TMP_DOWNLOAD_DIRECTORY=TEMP_DOWNLOAD_DIRECTORY
 class Config(object):
     API_KEY = os.environ.get("TELEGRAM_API_KEY", None)
+    TAG_LOG =int(os.environ.get("TAG_LOG",None))
     APP_ID = os.environ.get("TELEGRAM_API_KEY", None)
     API_HASH = os.environ.get("TELEGRAM_API_HASH", None)
     STRING_SESSION = os.environ.get("TELEGRAM_STRING_SESSION", None)
@@ -140,6 +143,7 @@ class Config(object):
     PRIVATE_GROUP_ID = os.environ.get("BOTLOG_CHATID", None)
     DB_URI = os.environ.get("DATABASE_URL", None)
     SCREEN_SHOT_KEY = os.environ.get("SCREEN_SHOT_KEY", None)
+    TAG_LOG =int(os.environ.get("TAG_LOG",None))
     SCREEN_SHOT_LAYER_ACCESS_KEY = SCREEN_SHOT_KEY
     TMP_DOWNLOAD_DIRECTORY=TEMP_DOWNLOAD_DIRECTORY
 class Development(config):
