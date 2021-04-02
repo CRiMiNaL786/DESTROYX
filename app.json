@@ -41,7 +41,7 @@
     },
     "COUNTRY": {
       "description": "Set your Country to be used in the !time and !date commands.",
-      "value": "Sri Lanka",
+      "value": "India",
       "required": false
     },
     "TZ_NUMBER": {
@@ -84,7 +84,7 @@
       "required": false
     },
     "BOTLOG_CHATID": {
-      "description": "Important for wark some plugins,bot logs , make super group with @criminal786bot then type /id to get this value",
+      "description": "Important for wark some plugins,bot logs , make super group with @MissRose_bot then type /id to get this value",
       "value": "0",
       "required": true
 
