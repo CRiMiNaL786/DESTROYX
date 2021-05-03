@@ -2,12 +2,12 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.b (the "License");
 # you may not use this file except in compliance with the License.
-#
+#Added Sudo control in bigspam By @CrimiNaL786
 
 import asyncio
 from asyncio import wait
-from userbot.events import rekcah05
-client = javes 
+from telethon import events
+from userbot.events import rekcah05, javes
 from userbot.events import javes05
 from userbot import BOTLOG_CHATID, JAVES_NAME, JAVES_MSG, CMD_HELP
 from userbot.events import register
