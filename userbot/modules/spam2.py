@@ -6,7 +6,10 @@
 
 import asyncio
 from asyncio import wait
-
+from userbot.events import rekcah05
+client = javes = bot 
+from userbot.events import javes05
+from userbot import bot, BOTLOG_CHATID, JAVES_NAME, JAVES_MSG, CMD_HELP
 
 from userbot.events import register
 
@@ -32,8 +35,11 @@ async def spammer(e):
                 "#SPAM \n\n"
                 "Spam was executed successfully"
                 )
-                               
-@register(outgoing=True, pattern="^.bigspam")
+
+
+
+@javes.on(rekcah05(pattern=f"bigspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^!bigspam(?: |$)(.*)")                              
 async def bigspam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
@@ -49,6 +55,7 @@ async def bigspam(e):
                 "Bigspam was executed successfully"
                 )
         
+
         
 @register(outgoing=True, pattern="^.picspam")
 async def tiny_pic_spam(e):
