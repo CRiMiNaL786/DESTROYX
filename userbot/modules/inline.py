@@ -150,8 +150,11 @@ if tebot:
 
     else:
         try:
-            await event.answer("Please Wait Sir,Or Try Other Button", alert=True)
-
+            await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
+        except:
+               await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
+        except Exception as e:     
+                    	      return await event.edit(str(e))
         
 if tebot:
  @tebot.on(events.InlineQuery)  
