@@ -150,10 +150,7 @@ if tebot:
 
     else:
         try:
-            await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
-        except:     
-    	       return await event.edit(str(e))
-
+            await event.answer("Please Wait Sir,Or Try Other Button", alert=True)
 
         
 if tebot:
