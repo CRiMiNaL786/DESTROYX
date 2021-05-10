@@ -152,9 +152,9 @@ if tebot:
         try:
             await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
         except:
-               await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
-        except Exception as e:     
-    	                 return await event.edit(str(e))
+            await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
+  except Exception as e:     
+    	return await event.edit(str(e))
 
 
         
