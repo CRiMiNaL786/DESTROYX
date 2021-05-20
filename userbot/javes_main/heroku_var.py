@@ -22,6 +22,8 @@ class config(object):
     SCREEN_SHOT_LAYER_ACCESS_KEY = SCREEN_SHOT_KEY
     BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", None))
     BOTLOG = sb(os.environ.get("BOTLOG", "False"))
+    CMD_HNDLR = os.environ.get("CMD_HNDLR", None)
+    SUDO_HNDLR = os.environ.get("SUDO_HNDLR", None)
     LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
     GENIUS = os.environ.get("GENIUS_API_TOKEN", None)
     GENIUS_API_TOKEN = os.environ.get("GENIUS_API_TOKEN", None)
