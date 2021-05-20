@@ -159,8 +159,8 @@ if bool(ENV):
     SUDO_USERS = os.environ.get("SUDO_USERS", None)
 
     # CommandHandler
-    CMD_HNDLR = os.environ.get("CMD_HNDLR", r"\")
-    SUDO_HNDLR = os.environ.get("SUDO_HNDLR", r"\")
+    CMD_HNDLR = os.environ.get("CMD_HNDLR", None)
+    SUDO_HNDLR = os.environ.get("SUDO_HNDLR", None)
 
     # Heroku Credentials for updater.
     HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
