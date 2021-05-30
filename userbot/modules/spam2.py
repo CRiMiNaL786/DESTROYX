@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.b (the "License");
 # you may not use this file except in compliance with the License.
-#Added Sudo control in bigspam By @CrimiNaL786
+#Added Sudo control By @CrimiNaL786
 
 import asyncio
 from asyncio import wait
@@ -12,29 +12,14 @@ from userbot.events import javes05
 from userbot import BOTLOG_CHATID, JAVES_NAME, JAVES_MSG, CMD_HELP
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.tspam")
+@javes.on(rekcah05(pattern=f"tspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^!tspam(?: |$)(.*)")
 async def tmeme(e):
     tspam = str(e.text[7:])
     message = tspam.replace(" ", "")
     for letter in message:
         await e.respond(letter)
     await e.delete()
-
-@register(outgoing=True, pattern="^.spam")
-async def spammer(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        counter = int(message[6:8])
-        spam_message = str(e.text[8:])
-        await asyncio.wait([e.respond(spam_message) for i in range(counter)])
-        await e.delete()
-        if LOGGER:
-            await e.client.send_message(
-                LOGGER_GROUP,
-                "#SPAM \n\n"
-                "Spam was executed successfully"
-                )
-
 
 
 @javes.on(rekcah05(pattern=f"bigspam(?: |$)(.*)", allow_sudo=True))
@@ -55,8 +40,8 @@ async def bigspam(e):
                 )
         
 
-        
-@register(outgoing=True, pattern="^.picspam")
+@javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^!picspam(?: |$)(.*)")        
 async def tiny_pic_spam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
@@ -72,7 +57,9 @@ async def tiny_pic_spam(e):
                 "#PICSPAM \n\n"
                 "PicSpam was executed successfully"
                 )
-@register(outgoing=True, pattern="^.delayspam (.*)")
+
+@javes.on(rekcah05(pattern=f"delayspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^!delayspam(?: |$)(.*)")
 async def spammer(e):
     spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
     counter = int(e.pattern_match.group(1).split(' ', 2)[1])
@@ -86,8 +73,8 @@ async def spammer(e):
             LOGGER_GROUP, "#DelaySPAM\n"
             "DelaySpam was executed successfully")
         
-            
-@register(outgoing=True, pattern="^.mspam (.*)")
+@javes.on(rekcah05(pattern=f"mspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^!mspam(?: |$)(.*)")            
 
 async def tiny_pic_spam(e):
 
@@ -124,3 +111,5 @@ async def tiny_pic_spam(e):
   except:      
 
         return await e.reply(f"**Error**\nUsage `!mspam <count> reply to a sticker/gif/photo/video`")
+
+#Added Sudo control by @CriminaL786
