@@ -13,7 +13,7 @@ FULL_SUDO = os.environ.get("FULL_SUDO", None)
 async def scam(e):
     if not e.is_private:
               chat = await e.get_chat() ; admin = chat.admin_rights ; creator = chat.creator
-              if not admin and not creator and chat.id == -1001288555028:
+              if not admin and not creator and chat.id == -1001161290784:
                      	return
     try:
        await e.delete()
@@ -98,7 +98,7 @@ async def tmeme(e):
   except:      
         return await e.reply(f"**Error**\nusage `!wspam  <text> <text> <text>`")
 
-@javes.on(rekcah05(pattern=f"(?:spam|sp)\s(.*)", allow_sudo=True))
+@javes.on(rekcah05(pattern=f"(?:spa|sp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:spam|sp)\s(.*)")
 async def spammer(e):
   sender = await e.get_sender() ; me = await e.client.get_me()
@@ -115,7 +115,7 @@ async def spammer(e):
   except:      
         return await e.reply(f"**Error**\nusage `!spam <time in seconds> <text>`")
 
-@javes.on(rekcah05(pattern=f"(?:mspam|msp)\s(.*)", allow_sudo=True))
+@javes.on(rekcah05(pattern=f"(?:mspa|msp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:mspam|msp)\s(.*)")
 async def tiny_pic_spam(e):
   sender = await e.get_sender() ; me = await e.client.get_me()
@@ -183,7 +183,7 @@ async def spammer(e):
 CMD_HELP.update({
     "spam":
     "⚠️ Spam at your own risk !!\
-\n\n`!spam/!sp` <count> <text>\
+\n\n`!spa/!sp` <count> <text>\
 \n**Usage:**  Floods text in the chat !!\
 \n\n`!scam/!sc` <time in seconds> <action>\
 \n**Usage:**  Scam by fake actions like typing, sending photo......!!\
@@ -193,7 +193,7 @@ CMD_HELP.update({
 \n**Usage:**  Repeats the text for a number of times.\
 \n\n`!wspam/!wsp` <text>\
 \n**Usage:**  Spam the text word by word.\
-\n\n`!mspam/!msp` <count> <reply to a media message>\
+\n\n`!mspa/!msp` <count> <reply to a media message>\
 \n**Usage:**  As if text spam was not enough !!\
 \n\n`!delayspam/!dsp` <delay> <count> <text>\
 \n**Usage:**  spam with custom delay.\
