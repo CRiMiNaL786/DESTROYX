@@ -2,7 +2,7 @@ from telethon import events
 
 from userbot import ALIVE_NAME, bot
 
-currentversion = "4.9"
+currentversion = "1.0"
 
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Javes"
