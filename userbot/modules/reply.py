@@ -14,7 +14,8 @@ async def _(event):
         x=await tebot.forward_messages(me.id,event.message)
         await x.reply(f'`userid` **=** {sendr} , `profile` **=** [UserProfile](tg://user?id={sendr})\n __To reply to user__ **Use** !reply {sendr};(your message or reply to a message)')
 
-@register(outgoing=True, pattern=r"^!reply")
+
+@register(outgoing=True, pattern=r"^!reply(?: |$)(.*)")
 async def rekcah05(event):
     try :
         lb,cn=event.text[7:].split(";")
