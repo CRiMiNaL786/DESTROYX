@@ -28,9 +28,10 @@ async def rekcah05(event):
         await tebot.send_message(entity=int(lb),message=reply)
         await event.edit(f"Your Message sent to [User](tg://user?id={lb})")
 
-     else:
+    """ else:
         lb =event.text[7:]
         reply = await event.get_reply_message()
         await tebot.forward_messages(int(lb),reply)
         await event.edit(f"Your Message sent to [User](tg://user?id={lb})")
         return
+        """
