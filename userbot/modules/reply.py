@@ -6,7 +6,7 @@ from telethon.tl.types import Channel, Chat, User
 from telethon import TelegramClient
 from userbot.__init__ import tebot
 
-@tebot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+
 async def _(event):
     me = await client.get_me()
     sendr = event.chat_id
