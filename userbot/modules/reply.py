@@ -1,12 +1,12 @@
-from userbot import tgbot,client,bot
+from userbot import tebot,client,bot
 from userbot.utils import register
 from telethon import events
 from telethon.tl import functions, types
 from telethon.tl.types import Channel, Chat, User
 from telethon import TelegramClient
-from userbot import tgbot as bot
+from userbot import __init
 
-@tgbot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+@tebot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def _(event):
     me = await client.get_me()
     sendr = event.chat_id
@@ -18,18 +18,18 @@ async def _(event):
 async def rekcah05(event):
     try :
         lb,cn=event.text[7:].split(";")
-        await tgbot.send_message(entity=int(lb),message=cn)
+        await tebot.send_message(entity=int(lb),message=cn)
         await event.edit(f"Message sent to [User](tg://user?id={lb})")
 
     except:
         lb =event.text[7:]
         reply = await event.get_reply_message()
-        await tgbot.send_message(entity=int(lb),message=reply)
+        await tebot.send_message(entity=int(lb),message=reply)
         await event.edit(f"Your Message sent to [User](tg://user?id={lb})")
 
         '''else:
         lb =event.text[7:]
         reply = await event.get_reply_message()
-        await tgbot.forward_messages(int(lb),reply)
+        await tebot.forward_messages(int(lb),reply)
         await event.edit(f"Your Message sent to [User](tg://user?id={lb})")
         return'''
