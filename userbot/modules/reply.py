@@ -1,5 +1,5 @@
 from userbot import tebot,client,bot
-from userbot.utils import register
+from userbot.utils import register, admin_cmd, rekcah05
 from telethon import events
 from telethon.tl import functions, types
 from telethon.tl.types import Channel, Chat, User
