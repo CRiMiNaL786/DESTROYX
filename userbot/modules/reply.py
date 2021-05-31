@@ -3,6 +3,8 @@ from userbot.utils import register
 from telethon import events
 from telethon.tl import functions, types
 from telethon.tl.types import Channel, Chat, User
+from telethon import TelegramClient
+from userbot import tgbot as bot
 
 @tgbot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def _(event):
@@ -13,7 +15,7 @@ async def _(event):
         await x.reply(f'`userid` **=** {sendr} , `profile` **=** [UserProfile](tg://user?id={sendr})\n __To reply to user__ **Use** !reply {sendr};(your message or reply to a message)')
 
 @register(outgoing=True, pattern=r"^!reply")
-async def sh1vam(event):
+async def rekcah05(event):
     try :
         lb,cn=event.text[7:].split(";")
         await tgbot.send_message(entity=int(lb),message=cn)
