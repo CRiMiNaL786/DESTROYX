@@ -2,6 +2,17 @@ from userbot import bot
 from telethon import events
 borg = bot
 import asyncio
+from userbot import bot as  borg
+from userbot import CMD_HELP
+
+
+
+
+#unknown credit
+
+
+
+
 @bot.on(events.NewMessage(pattern=".fed"))
 async def myfeds(event):
   LEGENDX = await event.edit("Wᴇɪᴛ ᴍᴀsᴛᴇʀ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ᴀʟʟ ғᴇᴅs...``")
