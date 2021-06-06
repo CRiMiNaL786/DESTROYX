@@ -98,43 +98,6 @@ async def tmeme(e):
   except:      
         return await e.reply(f"**Error**\nusage `!wspam  <text> <text> <text>`")
 
-@javes.on(rekcah05(pattern=f"(?:spa|sp)\s(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern=r"^\!(?:spam|sp)\s(.*)")
-async def spammer(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    counter = int(e.pattern_match.group(1).split(' ', 1)[0])
-    spam_message = str(e.pattern_match.group(1).split(' ', 1)[1])
-    await asyncio.wait([e.respond(spam_message) for i in range(counter)])
-  except:      
-        return await e.reply(f"**Error**\nusage `!spam <time in seconds> <text>`")
-
-@javes.on(rekcah05(pattern=f"(?:mspa|msp)\s(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern=r"^\!(?:mspam|msp)\s(.*)")
-async def tiny_pic_spam(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    counter = int(e.pattern_match.group(1).split(' ', 1)[0])
-    reply_message = await e.get_reply_message() 
-    if not reply_message or not e.reply_to_msg_id or not reply_message.media or not reply_message.media:
-       return await e.edit("```Reply to a media message```")
-    message = reply_message.media
-    for i in range(1, counter):
-        await e.client.send_file(e.chat_id, message)
-  except:      
-        return await e.reply(f"**Error**\nusage `!dspam <count> reply to a media/photo/video`")
 
 @javes.on(rekcah05(pattern=f"(?:dmspam|dmsp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:dmspam|dmsp)\s(.*)")
@@ -183,8 +146,6 @@ async def spammer(e):
 CMD_HELP.update({
     "spam":
     "⚠️ Spam at your own risk !!\
-\n\n`!spa/!sp` <count> <text>\
-\n**Usage:**  Floods text in the chat !!\
 \n\n`!scam/!sc` <time in seconds> <action>\
 \n**Usage:**  Scam by fake actions like typing, sending photo......!!\
 \n\n`!cspam/!csp` <text>\
@@ -193,8 +154,6 @@ CMD_HELP.update({
 \n**Usage:**  Repeats the text for a number of times.\
 \n\n`!wspam/!wsp` <text>\
 \n**Usage:**  Spam the text word by word.\
-\n\n`!mspa/!msp` <count> <reply to a media message>\
-\n**Usage:**  As if text spam was not enough !!\
 \n\n`!delayspam/!dsp` <delay> <count> <text>\
 \n**Usage:**  spam with custom delay.\
 \n\n`!dmspam/!dmsp` <delay> <count> <reply to a media message>\
