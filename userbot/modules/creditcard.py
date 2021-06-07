@@ -8,18 +8,18 @@
 
 import os
 import asyncio
-from userbot import faker
+from userbot
 from faker import Faker as gand
-from userbot.utils import admin_cmd as devil_cmd
-from userbot import bot as devil
+from userbot.utils import admin_cmd
+from userbot import bot as borg
 from userbot import bot
-devil = bot
+borg = bot
 
 
 
 
-@devil.on(devil_cmd("cc"))
-async def _devil(dark):
+@bot.on(admin_cmd("cc"))
+async def _borg(dark):
     cyber = gand()
     killer = cyber.name()
     kali = cyber.address()
