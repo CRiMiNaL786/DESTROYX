@@ -8,6 +8,7 @@
 
 import os
 import asyncio
+from telethon import events
 from userbot.events import javes05
 from faker import Faker as gand
 from userbot.utils import admin_cmd, register
@@ -19,7 +20,7 @@ borg = bot
 
 
 @bot.on(admin_cmd("cc"))
-async def _borg(dark):
+async def _events(dark):
     cyber = gand()
     killer = cyber.name()
     kali = cyber.address()
