@@ -1,4 +1,4 @@
-from userbot import bot as borg
+from userbot import bot 
 from telethon import events
 import asyncio
 borg = bot
