@@ -39,6 +39,21 @@ async def bigspam(e):
                 "Bigspam was executed successfully"
                 )
         
+@javes.on(rekcah05(pattern=f"spam(?: |$)(.*)",allow_sudo=True))
+@javes05(outgoing=True, pattern="^!spam(?: |$)(.*)")
+async def spammer(e):
+    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        message = e.text
+        counter = int(message[6:8])
+        spam_message = str(e.text[8:])
+        await asyncio.wait([e.respond(spam_message) for i in range(counter)])
+        await e.delete()
+        if LOGGER:
+            await e.client.send_message(
+                LOGGER_GROUP,
+                "#SPAM \n\n"
+                "Spam was executed successfully"
+                )
 
 @javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern="^!picspam(?: |$)(.*)")        
