@@ -8,9 +8,9 @@
 
 import os
 import asyncio
-from userbot
+from userbot.events import javes05
 from faker import Faker as gand
-from userbot.utils import admin_cmd
+from userbot.utils import admin_cmd, register
 from userbot import bot as borg
 from userbot import bot
 borg = bot
