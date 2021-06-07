@@ -1,6 +1,7 @@
 from userbot import bot as borg
 from telethon import events
 import asyncio
+bot = borg
 from userbot import bot as  borg
 from userbot import CMD_HELP
 
