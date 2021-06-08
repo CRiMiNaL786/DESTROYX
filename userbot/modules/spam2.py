@@ -9,6 +9,7 @@ from asyncio import wait
 from telethon import events
 from userbot import bot as borg
 from userbot import bot
+borg = bot
 from userbot.events import rekcah05, javes
 from userbot.events import javes05
 from userbot import BOTLOG_CHATID, JAVES_NAME, JAVES_MSG, CMD_HELP
