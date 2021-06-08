@@ -8,14 +8,15 @@ from userbot import CMD_HELP
 
 
 
-#unknown credit
+#CREDITS => @LEGENDX22
+#Baki pta nhi agar kisi hor ka hua toh contact kr lena bhaiya pehle @Criminal786
 
 
 
 
-@bot.on(events.NewMessage(pattern=".fed"))
+@bot.on(events.NewMessage(pattern=".fed", outgoing=True))
 async def myfeds(event):
-  GAAND = await event.edit("Wᴇɪᴛ ᴍᴀsᴛᴇʀ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ᴀʟʟ ғᴇᴅs...``")
+  GAAND = await event.edit("Wᴇɪᴛ ᴍᴀsᴛᴇʀ ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ ᴀʟʟ ғᴇᴅs...")
   async with borg.conversation("missrose_bot") as rose:
     await rose.send_message("/start")
     await rose.get_response()
