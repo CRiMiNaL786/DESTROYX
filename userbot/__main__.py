@@ -1,10 +1,11 @@
-from userbot import *
+import glob
+import os
 from sys import *
-from telethon import TelegramClient, functions, types
+
 from telethon.tl.types import InputMessagesFilterDocument
-from pathlib import Path
+
+from userbot import *
 from userbot.javes_main.commands import *
-import asyncio, os, traceback, sys, traceback, os, importlib, glob
 
 javes = tgbot = bot.tgbot = client
 from importlib import import_module

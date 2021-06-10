@@ -14,7 +14,6 @@ try:
     a = 1
 except:
     a = 2
-    pass
 Vapi = os.environ.get("VTOTAL_API", None)
 from userbot import CMD_HELP, JAVES_MSG, JAVES_NAME, TEMP_DOWNLOAD_DIRECTORY, bot
 
@@ -171,7 +170,7 @@ async def vt(event):
         return await event.edit("`Unknown command type !help virus_scan for more info")
     test = vr["json_resp"]
     link = test["permalink"]
-    scan_id = test["scan_id"]
+    test["scan_id"]
     response_code = test["response_code"]
     return await event.edit(
         ""
@@ -266,7 +265,7 @@ async def vt(event):
         return await rkp.edit("`Unknown command type !help virus_scan for more info")
     test = vr["json_resp"]
     link = test["permalink"]
-    scan_id = test["scan_id"]
+    test["scan_id"]
     response_code = test["response_code"]
     return await rkp.edit(
         ""

@@ -149,7 +149,6 @@ async def install(event):
                 except:
                     text += f"**× Failed to install** {(os.path.basename(downloaded_file_name))}\n"
                     os.remove(downloaded_file_name)
-                    pass
             else:
                 text += f"** Skiped** {(os.path.basename(downloaded_file_name))}\n"
                 os.remove(downloaded_file_name)
