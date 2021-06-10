@@ -1,67 +1,78 @@
+# Telegram javes05
 
 
-#Telegram javes05
-
-
-import asyncio, time, io, math, os, logging, asyncio, shutil, re, subprocess, json
+import asyncio
+import json
+import os
+import subprocess
+import time
 from datetime import datetime
-from hachoir.metadata import extractMetadata
-from hachoir.parser import createParser
-from base64 import b64decode
-from pySmartDL import SmartDL
-from telethon.tl.types import DocumentAttributeVideo, DocumentAttributeAudio
-from userbot.javes_main.commands import progress, humanbytes, time_formatter, admin_cmd
-from userbot import client, TEMP_DOWNLOAD_DIRECTORY, CMD_HELP, COUNTRY, TZ_NUMBER
+
+from telethon.tl.types import DocumentAttributeAudio
+
+from userbot import CMD_HELP, COUNTRY, TEMP_DOWNLOAD_DIRECTORY, TZ_NUMBER, client
+from userbot.javes_main.commands import progress
+
 thumb_image_path = TEMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
-from userbot.events import javes05, rekcah05, progress
+from userbot.events import javes05, progress, rekcah05
+
 javes = client
 from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, Chat, User
+
 FULL_SUDO = os.environ.get("FULL_SUDO", None)
-from telethon.tl import functions, types
-from userbot import client, BOTLOG_CHATID, CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, TEMP_DOWNLOAD_DIRECTORY, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot
-from telethon.tl.functions.messages import GetHistoryRequest, CheckChatInviteRequest, GetFullChatRequest
-from telethon.errors import (ChannelInvalidError, ChannelPrivateError, ChannelPublicGroupNaError, InviteHashEmptyError, InviteHashExpiredError, InviteHashInvalidError)
-from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
-from telethon.errors import FloodWaitError
-from bs4 import BeautifulSoup
-from time import sleep
-from html import unescape
-from urllib.parse import quote_plus
-from urllib.error import HTTPError
-from telethon import events
-from requests import get
-from googleapiclient.errors import HttpError
+from datetime import datetime as dt
+
+from emoji import get_emoji_regexp
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
-from emoji import get_emoji_regexp
+from pytz import country_names as c_n
+from pytz import country_timezones as c_tz
+from pytz import timezone as tz
+from telethon import events
+from telethon.errors import (
+    ChannelInvalidError,
+    ChannelPrivateError,
+    ChannelPublicGroupNaError,
+)
+from telethon.tl import functions, types
+from telethon.tl.functions.channels import GetFullChannelRequest
+from telethon.tl.functions.messages import GetFullChatRequest
 from youtube_dl import YoutubeDL
-from youtube_dl.utils import (DownloadError, ContentTooShortError,
-                              ExtractorError, GeoRestrictedError,
-                              MaxDownloadsReached, PostProcessingError,
-                              UnavailableVideoError, XAttrMetadataError)
-from html import unescape
-from re import findall
-from asyncio import sleep
-from datetime import datetime as dt
-from pytz import country_names as c_n, country_timezones as c_tz, timezone as tz
-def deEmojify(inputString):   
-    return get_emoji_regexp().sub(u'', inputString)
-from telethon.errors.rpcerrorlist import YouBlockedUserError
+from youtube_dl.utils import (
+    ContentTooShortError,
+    DownloadError,
+    ExtractorError,
+    GeoRestrictedError,
+    MaxDownloadsReached,
+    PostProcessingError,
+    UnavailableVideoError,
+    XAttrMetadataError,
+)
+
+from userbot import BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot, client
+
+
+def deEmojify(inputString):
+    return get_emoji_regexp().sub("", inputString)
+
+
 import random
+
+from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 CARBONLANG = "auto"
 TRT_LANG = TTS_LANG = "en"
 
 
 try:
-   from youtubesearchpython import SearchVideos 
+    from youtubesearchpython import SearchVideos
 except:
-	os.system("pip install pip install youtube-search-python")
-	from youtubesearchpython import SearchVideos 
-	pass
+    os.system("pip install pip install youtube-search-python")
+    from youtubesearchpython import SearchVideos
+
 
 async def get_chatinfo(event):
     chat = event.pattern_match.group(1)
@@ -87,7 +98,9 @@ async def get_chatinfo(event):
             await event.reply("`Invalid channel/group`")
             return None
         except ChannelPrivateError:
-            await event.reply("`This is a private channel/group or I am banned from there`")
+            await event.reply(
+                "`This is a private channel/group or I am banned from there`"
+            )
             return None
         except ChannelPublicGroupNaError:
             await event.reply("`Channel or supergroup doesn't exist`")
@@ -97,8 +110,9 @@ async def get_chatinfo(event):
             return None
     return chat_info
 
+
 async def get_tz(con):
-    """ Get time zone of the given country. """
+    """Get time zone of the given country."""
     if "(Uk)" in con:
         con = con.replace("Uk", "UK")
     if "(Us)" in con:
@@ -137,12 +151,8 @@ def inline_mention(user):
 def user_full_name(user):
     names = [user.first_name, user.last_name]
     names = [i for i in list(names) if i]
-    full_name = ' '.join(names)
+    full_name = " ".join(names)
     return full_name
- 
-
-
-
 
 
 @javes05(outgoing=True, pattern="^!reupload (.*)")
@@ -152,12 +162,13 @@ async def _(event):
         return
     thumb = None
     if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path    
-    sender = await event.get_sender() ; me = await event.client.get_me()
+        thumb = thumb_image_path
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")
+        rkp = await event.edit("`processing...`")
     input_str = event.pattern_match.group(1)
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -171,10 +182,10 @@ async def _(event):
         downloaded_file_name = await client.download_media(
             reply_message,
             downloaded_file_name,
-            )
+        )
         ms_one = (end - start).seconds
         if os.path.exists(downloaded_file_name):
-            c_time = time.time()
+            time.time()
             await client.send_file(
                 event.chat_id,
                 downloaded_file_name,
@@ -183,47 +194,75 @@ async def _(event):
                 allow_cache=False,
                 reply_to=event.message.id,
                 thumb=thumb,
-                )
+            )
             end_two = datetime.now()
             os.remove(downloaded_file_name)
             ms_two = (end_two - end).seconds
-            await rkp.edit("Downloaded in {} seconds. Uploaded in {} seconds.".format(ms_one, ms_two))
+            await rkp.edit(
+                "Downloaded in {} seconds. Uploaded in {} seconds.".format(
+                    ms_one, ms_two
+                )
+            )
         else:
             await rkp.edit("File Not Found {}".format(input_str))
     else:
         await rkp.edit("Syntax // !reupload file.name as reply to a Telegram media")
 
 
-
-
 @javes05(outgoing=True, pattern="^!search (.*)")
 @javes.on(rekcah05(pattern=f"search (.*)", allow_sudo=True))
 async def telethon_search(event):
- if event.is_private:
-     return await rk.reply("`**Error! Permission Denied.**") 
- query = event.pattern_match.group(1)
- group = event.chat.title
- gr = (await client.get_entity(group))
- (await client.send_message(event.input_chat, f"**Search Query:** `{query}`\n\n**Results**\n\nMsg~> " + "\nMsg~> ".join(map(lambda x:f"[{x}](tg://privatepost?channel={gr.id}&post={x})", [msg.id for msg in await client.get_messages(group, search=query, limit=25) if msg.entities and [e for e in msg.entities if isinstance(e, (types.MessageEntityCode, types.MessageEntityPre))]])), link_preview=False, reply_to=event.reply_to_msg_id))
- await event.delete()
-
+    if event.is_private:
+        return await rk.reply("`**Error! Permission Denied.**")
+    query = event.pattern_match.group(1)
+    group = event.chat.title
+    gr = await client.get_entity(group)
+    (
+        await client.send_message(
+            event.input_chat,
+            f"**Search Query:** `{query}`\n\n**Results**\n\nMsg~> "
+            + "\nMsg~> ".join(
+                map(
+                    lambda x: f"[{x}](tg://privatepost?channel={gr.id}&post={x})",
+                    [
+                        msg.id
+                        for msg in await client.get_messages(
+                            group, search=query, limit=25
+                        )
+                        if msg.entities
+                        and [
+                            e
+                            for e in msg.entities
+                            if isinstance(
+                                e, (types.MessageEntityCode, types.MessageEntityPre)
+                            )
+                        ]
+                    ],
+                )
+            ),
+            link_preview=False,
+            reply_to=event.reply_to_msg_id,
+        )
+    )
+    await event.delete()
 
 
 @javes.on(rekcah05(pattern=f"stats(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern=r"^!stats(?: |$)(.*)") 
-async def stats(event: NewMessage.Event) -> None:  
-    sender = await event.get_sender() ; me = await event.client.get_me()
+@javes05(outgoing=True, pattern=r"^!stats(?: |$)(.*)")
+async def stats(event: NewMessage.Event) -> None:
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")
+        rkp = await event.edit("`processing...`")
     if not sender.id == me.id and not FULL_SUDO:
-       return await rkp.edit("`Sorry normal sudo users cant access this command..`")
+        return await rkp.edit("`Sorry normal sudo users cant access this command..`")
     try:
-       await e.delete()
+        await e.delete()
     except:
-    	pass    
-    waiting_message = await rkp.edit('`Collecting.........`')
+        pass
+    waiting_message = await rkp.edit("`Collecting.........`")
     start_time = time.time()
     private_chats = 0
     bots = 0
@@ -235,12 +274,10 @@ async def stats(event: NewMessage.Event) -> None:
     creator_in_channels = 0
     unread_mentions = 0
     unread = 0
-    largest_group_member_count = 0
-    largest_group_with_admin = 0
     dialog: Dialog
     async for dialog in event.client.iter_dialogs():
         entity = dialog.entity
-        if isinstance(entity, Channel):           
+        if isinstance(entity, Channel):
             if entity.broadcast:
                 broadcast_channels += 1
                 if entity.creator or entity.admin_rights:
@@ -249,7 +286,7 @@ async def stats(event: NewMessage.Event) -> None:
                     creator_in_channels += 1
             elif entity.megagroup:
                 groups += 1
-                if entity.creator or entity.admin_rights:                    
+                if entity.creator or entity.admin_rights:
                     admin_in_groups += 1
                 if entity.creator:
                     creator_in_groups += 1
@@ -267,93 +304,113 @@ async def stats(event: NewMessage.Event) -> None:
         unread += dialog.unread_count
     stop_time = time.time() - start_time
     full_name = inline_mention(await event.client.get_me())
-    response = f' **Stats for {full_name}** \n\n'
-    response += f'**Private Chats:** {private_chats} \n'
-    response += f'   • `Users: {private_chats - bots}` \n'
-    response += f'   • `Bots: {bots}` \n'
-    response += f'**Groups:** {groups} \n'
-    response += f'**Channels:** {broadcast_channels} \n'
-    response += f'**Admin in Groups:** {admin_in_groups} \n'
-    response += f'   • `Creator: {creator_in_groups}` \n'
-    response += f'   • `Admin Rights: {admin_in_groups - creator_in_groups}` \n'
-    response += f'**Admin in Channels:** {admin_in_broadcast_channels} \n'
-    response += f'   • `Creator: {creator_in_channels}` \n'
-    response += f'   • `Admin Rights: {admin_in_broadcast_channels - creator_in_channels}` \n'
-    response += f'**Unread:** {unread} \n'
-    response += f'**Unread Mentions:** {unread_mentions} \n\n'
-    response += f'__It Took:__ {stop_time:.02f}s \n'
+    response = f" **Stats for {full_name}** \n\n"
+    response += f"**Private Chats:** {private_chats} \n"
+    response += f"   • `Users: {private_chats - bots}` \n"
+    response += f"   • `Bots: {bots}` \n"
+    response += f"**Groups:** {groups} \n"
+    response += f"**Channels:** {broadcast_channels} \n"
+    response += f"**Admin in Groups:** {admin_in_groups} \n"
+    response += f"   • `Creator: {creator_in_groups}` \n"
+    response += f"   • `Admin Rights: {admin_in_groups - creator_in_groups}` \n"
+    response += f"**Admin in Channels:** {admin_in_broadcast_channels} \n"
+    response += f"   • `Creator: {creator_in_channels}` \n"
+    response += (
+        f"   • `Admin Rights: {admin_in_broadcast_channels - creator_in_channels}` \n"
+    )
+    response += f"**Unread:** {unread} \n"
+    response += f"**Unread Mentions:** {unread_mentions} \n\n"
+    response += f"__It Took:__ {stop_time:.02f}s \n"
     await waiting_message.edit(response)
-
-
-
-
-
-
-
-
 
 
 @javes05(pattern="!inviteall(?: |$)(.*)", outgoing=True)
 @javes.on(rekcah05(pattern=f"inviteall(?: |$)(.*)", allow_sudo=True))
-async def get_users(event):   
-    sender = await event.get_sender() ; me = await event.client.get_me()
+async def get_users(event):
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")
-    rk1 = await get_chatinfo(event) ; chat = await event.get_chat()
+        rkp = await event.edit("`processing...`")
+    rk1 = await get_chatinfo(event)
+    chat = await event.get_chat()
     if event.is_private:
-              return await rkp.edit("`Sorry, Can add users here`")    
-    s = 0 ; f = 0 ; error = 'None'   
-  
+        return await rkp.edit("`Sorry, Can add users here`")
+    s = 0
+    f = 0
+    error = "None"
+
     await rkp.edit("**TerminalStatus**\n\n`Collecting Users.......`")
     async for user in event.client.iter_participants(rk1.full_chat.id):
-                try:
-                    if error.startswith("Too"):
-                        return await rkp.edit(f"**Terminal Finished With Error**\n(`May Got Limit Error from telethon Please try agin Later`)\n**Error** : \n`{error}`\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people")
-                    await event.client(functions.channels.InviteToChannelRequest(channel=chat,users=[user.id]))
-                    s = s + 1                                                    
-                    await rkp.edit(f"**Terminal Running...**\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people\n\n**× LastError:** `{error}`")                
-                except Exception as e:
-                    error = str(e) ; f = f + 1             
-    return await rkp.edit(f"**Terminal Finished** \n\n• Successfully Invited `{s}` people \n• failed to invite `{f}` people")
-    
-
+        try:
+            if error.startswith("Too"):
+                return await rkp.edit(
+                    f"**Terminal Finished With Error**\n(`May Got Limit Error from telethon Please try agin Later`)\n**Error** : \n`{error}`\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people"
+                )
+            await event.client(
+                functions.channels.InviteToChannelRequest(channel=chat, users=[user.id])
+            )
+            s = s + 1
+            await rkp.edit(
+                f"**Terminal Running...**\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people\n\n**× LastError:** `{error}`"
+            )
+        except Exception as e:
+            error = str(e)
+            f = f + 1
+    return await rkp.edit(
+        f"**Terminal Finished** \n\n• Successfully Invited `{s}` people \n• failed to invite `{f}` people"
+    )
 
 
 @javes05(pattern="!inviteall2(?: |$)(.*)", outgoing=True)
-async def get_users(event):   
-    rk1 = await get_chatinfo(event) ; chat = await event.get_chat()
+async def get_users(event):
+    rk1 = await get_chatinfo(event)
+    chat = await event.get_chat()
     if event.is_private:
-              return await event.edit("`Sorry, Can add users here`")
+        return await event.edit("`Sorry, Can add users here`")
     if not BOTLOG_CHATID:
-	         return await event.edit (f"`Failed to Channed Bot log Chat \nPlease add bot log chat to use this`")
-    s = 0 ; f = 0 ; error = 'None'   
-    await event.delete()    
+        return await event.edit(
+            f"`Failed to Channed Bot log Chat \nPlease add bot log chat to use this`"
+        )
+    s = 0
+    f = 0
+    error = "None"
+    await event.delete()
     test = "**TerminalStatus**\n\n`Collecting Users.......`"
     rkp = await client.send_message(BOTLOG_CHATID, test)
     async for user in event.client.iter_participants(rk1.full_chat.id):
-                try:
-                    if error.startswith("Too"):
-                        return await rkp.edit(f"**Terminal Finished With Error**\n(`May Got Limit Error from telethon Please try agin Later`)\n**Error** : \n`{error}`\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people")
-                    await event.client(functions.channels.InviteToChannelRequest(channel=chat,users=[user.id]))
-                    s = s + 1                                                    
-                    await rkp.edit(f"**Terminal Running...**\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people\n\n**× LastError:** `{error}`")                
-                except Exception as e:
-                    error = str(e) ; f = f + 1             
-    return await rkp.edit(f"**Terminal Finished** \n\n• Successfully Invited `{s}` people \n• failed to invite `{f}` people")
-    
-    
+        try:
+            if error.startswith("Too"):
+                return await rkp.edit(
+                    f"**Terminal Finished With Error**\n(`May Got Limit Error from telethon Please try agin Later`)\n**Error** : \n`{error}`\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people"
+                )
+            await event.client(
+                functions.channels.InviteToChannelRequest(channel=chat, users=[user.id])
+            )
+            s = s + 1
+            await rkp.edit(
+                f"**Terminal Running...**\n\n• Invited `{s}` people \n• Failed to Invite `{f}` people\n\n**× LastError:** `{error}`"
+            )
+        except Exception as e:
+            error = str(e)
+            f = f + 1
+    return await rkp.edit(
+        f"**Terminal Finished** \n\n• Successfully Invited `{s}` people \n• failed to invite `{f}` people"
+    )
+
+
 @javes05(outgoing=True, pattern="^!tagall$")
 @javes.on(rekcah05(pattern=f"tagall$", allow_sudo=True))
 async def _(event):
-    sender = await event.get_sender() ; me = await event.client.get_me()
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")
+        rkp = await event.edit("`processing...`")
     if event.is_private:
-              return await rkp.edit("`Sorry, Can tag users here`")
+        return await rkp.edit("`Sorry, Can tag users here`")
     mentions = "@tagedall"
     chat = await event.get_input_chat()
     async for x in bot.iter_participants(chat, 100):
@@ -366,29 +423,24 @@ async def _(event):
 @javes.on(rekcah05(pattern=f"crblang (.*)", allow_sudo=True))
 async def setlang(prog):
     try:
-       await prog.delete()
+        await prog.delete()
     except:
-       pass      
+        pass
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.reply(f"Language for carbon.now.sh set to {CARBONLANG}")
 
 
- 
-
- 
-
-
- 
 @javes05(outgoing=True, pattern=r"^!tts2(?: |$)([\s\S]*)")
 @javes.on(rekcah05(pattern=f"tts2(?: |$)([\s\S]*)", allow_sudo=True))
-async def text_to_speech(query):    
-    sender = await query.get_sender() ; me = await query.client.get_me()
+async def text_to_speech(query):
+    sender = await query.get_sender()
+    me = await query.client.get_me()
     if not sender.id == me.id:
         rkp = await query.reply("`processing...`")
     else:
-    	rkp = await query.edit("`processing...`")
-    
+        rkp = await query.edit("`processing...`")
+
     textx = await query.get_reply_message()
     message = query.pattern_match.group(1)
     if message:
@@ -396,20 +448,19 @@ async def text_to_speech(query):
     elif textx:
         message = textx.text
     else:
-        return await rkp.edit(
-            "`Give a text or reply to a message for Text-to-Speech!`")
- 
+        return await rkp.edit("`Give a text or reply to a message for Text-to-Speech!`")
+
     try:
         gTTS(message, lang=TTS_LANG)
     except AssertionError:
         return await rkp.edit(
-            'The text is empty.\n'
-            'Nothing left to speak after pre-precessing, tokenizing and cleaning.'
+            "The text is empty.\n"
+            "Nothing left to speak after pre-precessing, tokenizing and cleaning."
         )
     except ValueError:
-        return await rkp.edit('Language is not supported.')
+        return await rkp.edit("Language is not supported.")
     except RuntimeError:
-        return await rkp.edit('Error loading the languages dictionary.')
+        return await rkp.edit("Error loading the languages dictionary.")
     tts = gTTS(message, lang=TTS_LANG)
     tts.save("tts.mp3")
     with open("tts.mp3", "rb") as audio:
@@ -423,14 +474,16 @@ async def text_to_speech(query):
         os.remove("tts.mp3")
         return
 
+
 @javes05(outgoing=True, pattern=r"^!trt(?: |$)([\s\S]*)")
 @javes.on(rekcah05(pattern=f"trt(?: |$)([\s\S]*)", allow_sudo=True))
-async def translateme(trans):   
-    sender = await trans.get_sender() ; me = await trans.client.get_me()
+async def translateme(trans):
+    sender = await trans.get_sender()
+    me = await trans.client.get_me()
     if not sender.id == me.id:
         rkp = await trans.reply("`processing...`")
     else:
-    	rkp = await trans.edit("`processing...`")    
+        rkp = await trans.edit("`processing...`")
     translator = Translator()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
@@ -444,21 +497,21 @@ async def translateme(trans):
         reply_text = translator.translate(deEmojify(message), dest=TRT_LANG)
     except ValueError:
         return await rkp.edit("Invalid destination language.")
-    source_lan = LANGUAGES[f'{reply_text.src.lower()}']
-    transl_lan = LANGUAGES[f'{reply_text.dest.lower()}']
-    reply_text = f"From **{source_lan.title()}**\nTo **{transl_lan.title()}:**\n\n{reply_text.text}" 
+    source_lan = LANGUAGES[f"{reply_text.src.lower()}"]
+    transl_lan = LANGUAGES[f"{reply_text.dest.lower()}"]
+    reply_text = f"From **{source_lan.title()}**\nTo **{transl_lan.title()}:**\n\n{reply_text.text}"
     return await rkp.edit(reply_text)
-    
- 
- 
+
+
 @javes05(pattern="!lang (trt|tts) (.*)", outgoing=True)
 @javes.on(rekcah05(pattern=f"lang (trt|tts) (.*)", allow_sudo=True))
 async def lang(value):
-    sender = await value.get_sender() ; me = await value.client.get_me()
+    sender = await value.get_sender()
+    me = await value.client.get_me()
     if not sender.id == me.id:
         rkp = await value.reply("`processing...`")
     else:
-    	rkp = await value.edit("`processing...`")    
+        rkp = await value.edit("`processing...`")
     util = value.pattern_match.group(1).lower()
     if util == "trt":
         scraper = "Translator"
@@ -483,84 +536,61 @@ async def lang(value):
                 f"`Invalid Language code !!`\n`Available language codes for TTS`:\n\n`{tts_langs()}`"
             )
     return await rkp.edit(f"`Language for {scraper} changed to {LANG.title()}.`")
-    
 
 
-
-
-
- 
- 
 @javes05(outgoing=True, pattern=r"!get (audio|video) (.*)")
 @javes.on(rekcah05(pattern=f"get (audio|video) (.*)", allow_sudo=True))
 async def download_video(v_url):
-    sender = await v_url.get_sender() ; me = await v_url.client.get_me()
+    sender = await v_url.get_sender()
+    me = await v_url.client.get_me()
     if not sender.id == me.id:
         rkp = await v_url.reply("`processing...`")
     else:
-    	rkp = await v_url.edit("`processing...`")    
+        rkp = await v_url.edit("`processing...`")
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
     await rkp.edit("`Preparing to download...`")
     if type == "audio":
         opts = {
-            'format':
-            'bestaudio',
-            'addmetadata':
-            True,
-            'key':
-            'FFmpegMetadata',
-            'writethumbnail':
-            True,
-            'prefer_ffmpeg':
-            True,
-            'geo_bypass':
-            True,
-            'nocheckcertificate':
-            True,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '320',
-            }],
-            'outtmpl':
-            '%(id)s.mp3',
-            'quiet':
-            True,
-            'logtostderr':
-            False
+            "format": "bestaudio",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "writethumbnail": True,
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "320",
+                }
+            ],
+            "outtmpl": "%(id)s.mp3",
+            "quiet": True,
+            "logtostderr": False,
         }
         video = False
         song = True
- 
+
     elif type == "video":
         opts = {
-            'format':
-            'best',
-            'addmetadata':
-            True,
-            'key':
-            'FFmpegMetadata',
-            'prefer_ffmpeg':
-            True,
-            'geo_bypass':
-            True,
-            'nocheckcertificate':
-            True,
-            'postprocessors': [{
-                'key': 'FFmpegVideoConvertor',
-                'preferedformat': 'mp4'
-            }],
-            'outtmpl':
-            '%(id)s.mp4',
-            'logtostderr':
-            False,
-            'quiet':
-            True
+            "format": "best",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
+            ],
+            "outtmpl": "%(id)s.mp4",
+            "logtostderr": False,
+            "quiet": True,
         }
         song = False
         video = True
- 
+
     try:
         await rkp.edit("`Fetching data, please wait..`")
         with YoutubeDL(opts) as rip:
@@ -588,47 +618,48 @@ async def download_video(v_url):
         return await rkp.edit(f"{str(type(e)): {str(e)}}")
     c_time = time.time()
     if song:
-        await rkp.edit(
-            f"`Preparing to upload audio:`\n**{rip_data['title']}**")
+        await rkp.edit(f"`Preparing to upload audio:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
             supports_streaming=True,
             attributes=[
-                DocumentAttributeAudio(duration=int(rip_data['duration']),
-                                       title=str(rip_data['title']),
-                                       performer=str(rip_data['uploader']))
+                DocumentAttributeAudio(
+                    duration=int(rip_data["duration"]),
+                    title=str(rip_data["title"]),
+                    performer=str(rip_data["uploader"]),
+                )
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp3")))
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await rkp.edit(
-            f"`Preparing to upload video:`\n**{rip_data['title']}**")
+        await rkp.edit(f"`Preparing to upload video:`\n**{rip_data['title']}**")
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
-            caption=rip_data['title'],
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp4")))
+            caption=rip_data["title"],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp4")
         await v_url.delete()
- 
+
 
 @javes05(outgoing=True, pattern=r"^\!tts(?: |$)([\s\S]*)")
 @javes.on(rekcah05(pattern=f"tts(?: |$)([\s\S]*)", allow_sudo=True))
 async def _(event):
-    sender = await event.get_sender() ; me = await event.client.get_me()
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")   
+        rkp = await event.edit("`processing...`")
     input_str = event.pattern_match.group(1)
     start = datetime.now()
     if event.reply_to_msg_id:
@@ -636,7 +667,7 @@ async def _(event):
         text = previous_message.message
         lan = input_str
     elif "|" in input_str:
-        lan, text = input_str.split("|")        
+        lan, text = input_str.split("|")
     else:
         await rkp.edit("Error usage tts <langcode> <reply to a message>")
         return
@@ -651,27 +682,35 @@ async def _(event):
         command_to_execute = [
             "ffmpeg",
             "-i",
-             required_file_name,
-             "-map",
-             "0:a",
-             "-codec:a",
-             "libopus",
-             "-b:a",
-             "100k",
-             "-vbr",
-             "on",
-             required_file_name + ".opus"
+            required_file_name,
+            "-map",
+            "0:a",
+            "-codec:a",
+            "libopus",
+            "-b:a",
+            "100k",
+            "-vbr",
+            "on",
+            required_file_name + ".opus",
         ]
         try:
-            t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
+            t_response = subprocess.check_output(
+                command_to_execute, stderr=subprocess.STDOUT
+            )
         except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
-            await rkp.edit(str(exc))            
+            await rkp.edit(str(exc))
         else:
             os.remove(required_file_name)
             required_file_name = required_file_name + ".opus"
         end = datetime.now()
         ms = (end - start).seconds
-        await bot.send_file( event.chat_id, required_file_name, reply_to=event.message.reply_to_msg_id, allow_cache=False, voice_note=True )
+        await bot.send_file(
+            event.chat_id,
+            required_file_name,
+            reply_to=event.message.reply_to_msg_id,
+            allow_cache=False,
+            voice_note=True,
+        )
         os.remove(required_file_name)
         await rkp.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
         await asyncio.sleep(5)
@@ -680,16 +719,18 @@ async def _(event):
         await rkp.edit(str(e))
 
 
-
 @javes05(outgoing=True, pattern="^!time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
-@javes.on(rekcah05(pattern=f"time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?", allow_sudo=True))
+@javes.on(
+    rekcah05(pattern=f"time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?", allow_sudo=True)
+)
 async def time_func(tdata):
-    sender = await tdata.get_sender() ; me = await tdata.client.get_me()
+    sender = await tdata.get_sender()
+    me = await tdata.client.get_me()
     if not sender.id == me.id:
         rkp = await tdata.reply("`processing...`")
     else:
-    	rkp = await tdata.edit("`processing...`")
-    
+        rkp = await tdata.edit("`processing...`")
+
     con = tdata.pattern_match.group(1).title()
     tz_num = tdata.pattern_match.group(2)
     t_form = "%H:%M"
@@ -727,27 +768,30 @@ async def time_func(tdata):
             return
     dtnow = dt.now(tz(time_zone)).strftime(t_form)
     if c_name != COUNTRY:
-        await rkp.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
+        await rkp.edit(f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
         return
     elif COUNTRY:
-        await rkp.edit(f"`It's`  **{dtnow}**  `here, in {COUNTRY}"
-                         f"({time_zone} timezone).`")
+        await rkp.edit(
+            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+        )
         return
 
 
 @javes05(outgoing=True, pattern="^!date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
-@javes.on(rekcah05(pattern=f"date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?", allow_sudo=True))
+@javes.on(
+    rekcah05(pattern=f"date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?", allow_sudo=True)
+)
 async def date_func(dat):
-    sender = await dat.get_sender() ; me = await dat.client.get_me()
+    sender = await dat.get_sender()
+    me = await dat.client.get_me()
     if not sender.id == me.id:
         rkp = await dat.reply("`processing...`")
     else:
-    	rkp = await dat.edit("`processing...`")   
+        rkp = await dat.edit("`processing...`")
     con = dat.pattern_match.group(1).title()
     tz_num = dat.pattern_match.group(2)
     d_form = "%d/%m/%y - %A"
-    c_name = ''
+    c_name = ""
     if len(con) > 4:
         try:
             c_name = c_n[con]
@@ -781,12 +825,12 @@ async def date_func(dat):
             return
     dtnow = dt.now(tz(time_zone)).strftime(d_form)
     if c_name != COUNTRY:
-        await rkp.edit(
-            f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
+        await rkp.edit(f"`It's`  **{dtnow}**  `in {c_name}({time_zone} timezone).`")
         return
     elif COUNTRY:
-        await rkp.edit(f"`It's`  **{dtnow}**  `here, in {COUNTRY}"
-                       f"({time_zone} timezone).`")
+        await rkp.edit(
+            f"`It's`  **{dtnow}**  `here, in {COUNTRY}" f"({time_zone} timezone).`"
+        )
         return
 
 
@@ -795,11 +839,12 @@ async def date_func(dat):
 async def _(event):
     if event.fwd_from:
         return
-    sender = await event.get_sender() ; me = await event.client.get_me()
+    sender = await event.get_sender()
+    me = await event.client.get_me()
     if not sender.id == me.id:
         rkp = await event.reply("`processing...`")
     else:
-    	rkp = await event.edit("`processing...`")   
+        rkp = await event.edit("`processing...`")
     input_str = event.pattern_match.group(1)
     to_rip_mesg = event
     if event.reply_to_msg_id and (not input_str or input_str == "reply"):
@@ -812,22 +857,20 @@ async def _(event):
     async with event.client.conversation(chat_e, timeout=180) as conv:
         try:
             await conv.send_message(input_str)
-            response = await conv.wait_event(events.MessageEdited(
-                incoming=True,
-                from_users=chat_e.id
-            ))          
+            response = await conv.wait_event(
+                events.MessageEdited(incoming=True, from_users=chat_e.id)
+            )
             row = random.randint(0, 8)
             column = random.randint(0, 2)
             await response.click(row, column)
-            response = await conv.wait_event(events.NewMessage(
-                incoming=True,
-                from_users=chat_e.id
-            ))
+            response = await conv.wait_event(
+                events.NewMessage(incoming=True, from_users=chat_e.id)
+            )
             response_caption = response.message.message
-            response_caption_sp = response_caption.split("\n")           
+            response_caption_sp = response_caption.split("\n")
             response_caption = "\n".join(response_caption_sp[0:2])
             carbon_media = response.message.media
-            await to_rip_mesg.reply(response_caption, file=carbon_media)          
+            await to_rip_mesg.reply(response_caption, file=carbon_media)
             await rkp.delete()
         except YouBlockedUserError:
             await rkp.reply("Please unblock me (@CarbonNowShBot)")
@@ -836,55 +879,49 @@ async def _(event):
 
 @javes.on(rekcah05(pattern=f"song (.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"!song (.*)")
-async def download_video(v_url):  
-    lazy = v_url ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
+async def download_video(v_url):
+    lazy = v_url
+    sender = await lazy.get_sender()
+    me = await lazy.client.get_me()
     if not sender.id == me.id:
         rkp = await lazy.reply("`processing...`")
     else:
-    	rkp = await lazy.edit("`processing...`")   
+        rkp = await lazy.edit("`processing...`")
     url = v_url.pattern_match.group(1)
     if not url:
-         return await rkp.edit("`Error \nusage song <song name>`")
-    search = SearchVideos(url, offset = 1, mode = "json", max_results = 1)
+        return await rkp.edit("`Error \nusage song <song name>`")
+    search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
-    q = p.get('search_result')
+    q = p.get("search_result")
     try:
-       url = q[0]['link']
+        url = q[0]["link"]
     except:
-    	return await rkp.edit("`failed to find`")
+        return await rkp.edit("`failed to find`")
     type = "audio"
     await rkp.edit("`Preparing to download...`")
     if type == "audio":
         opts = {
-            'format':
-            'bestaudio',
-            'addmetadata':
-            True,
-            'key':
-            'FFmpegMetadata',
-            'writethumbnail':
-            True,
-            'prefer_ffmpeg':
-            True,
-            'geo_bypass':
-            True,
-            'nocheckcertificate':
-            True,
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '320',
-            }],
-            'outtmpl':
-            '%(id)s.mp3',
-            'quiet':
-            True,
-            'logtostderr':
-            False
+            "format": "bestaudio",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "writethumbnail": True,
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "320",
+                }
+            ],
+            "outtmpl": "%(id)s.mp3",
+            "quiet": True,
+            "logtostderr": False,
         }
         video = False
-        song = True    
+        song = True
     try:
         await rkp.edit("`Fetching data, please wait..`")
         with YoutubeDL(opts) as rip:
@@ -920,85 +957,84 @@ async def download_video(v_url):
         return
     c_time = time.time()
     if song:
-        await rkp.edit(f"`Preparing to upload song:`\
+        await rkp.edit(
+            f"`Preparing to upload song:`\
         \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        \nby *{rip_data['uploader']}*"
+        )
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
             supports_streaming=True,
             attributes=[
-                DocumentAttributeAudio(duration=int(rip_data['duration']),
-                                       title=str(rip_data['title']),
-                                       performer=str(rip_data['uploader']))
+                DocumentAttributeAudio(
+                    duration=int(rip_data["duration"]),
+                    title=str(rip_data["title"]),
+                    performer=str(rip_data["uploader"]),
+                )
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp3")))
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await rkp.edit(f"`Preparing to upload song :`\
+        await rkp.edit(
+            f"`Preparing to upload song :`\
         \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        \nby *{rip_data['uploader']}*"
+        )
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
             caption=url,
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp4")))
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp4")
         await rkp.delete()
 
+
 @javes.on(rekcah05(pattern=f"vsong (.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"!vsong (.*)")
-async def download_video(v_url):  
-    lazy = v_url ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
+async def download_video(v_url):
+    lazy = v_url
+    sender = await lazy.get_sender()
+    me = await lazy.client.get_me()
     if not sender.id == me.id:
         rkp = await lazy.reply("`processing...`")
     else:
-    	rkp = await lazy.edit("`processing...`")   
+        rkp = await lazy.edit("`processing...`")
     url = v_url.pattern_match.group(1)
     if not url:
-         return await rkp.edit("`Error \nusage song <song name>`")
-    search = SearchVideos(url, offset = 1, mode = "json", max_results = 1)
+        return await rkp.edit("`Error \nusage song <song name>`")
+    search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
-    q = p.get('search_result')
+    q = p.get("search_result")
     try:
-       url = q[0]['link']
+        url = q[0]["link"]
     except:
-    	return await rkp.edit("`failed to find`")
+        return await rkp.edit("`failed to find`")
     type = "audio"
     await rkp.edit("`Preparing to download...`")
     if type == "audio":
         opts = {
-            'format':
-            'best',
-            'addmetadata':
-            True,
-            'key':
-            'FFmpegMetadata',
-            'prefer_ffmpeg':
-            True,
-            'geo_bypass':
-            True,
-            'nocheckcertificate':
-            True,
-            'postprocessors': [{
-                'key': 'FFmpegVideoConvertor',
-                'preferedformat': 'mp4'
-            }],
-            'outtmpl':
-            '%(id)s.mp4',
-            'logtostderr':
-            False,
-            'quiet':
-            True
+            "format": "best",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
+            ],
+            "outtmpl": "%(id)s.mp4",
+            "logtostderr": False,
+            "quiet": True,
         }
         song = False
         video = True
@@ -1037,47 +1073,50 @@ async def download_video(v_url):
         return
     c_time = time.time()
     if song:
-        await rkp.edit(f"`Preparing to upload song `\
+        await rkp.edit(
+            f"`Preparing to upload song `\
         \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        \nby *{rip_data['uploader']}*"
+        )
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp3",
             supports_streaming=True,
             attributes=[
-                DocumentAttributeAudio(duration=int(rip_data['duration']),
-                                       title=str(rip_data['title']),
-                                       performer=str(rip_data['uploader']))
+                DocumentAttributeAudio(
+                    duration=int(rip_data["duration"]),
+                    title=str(rip_data["title"]),
+                    performer=str(rip_data["uploader"]),
+                )
             ],
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp3")))
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await rkp.edit(f"`Preparing to upload video song :`\
+        await rkp.edit(
+            f"`Preparing to upload video song :`\
         \n**{rip_data['title']}**\
-        \nby *{rip_data['uploader']}*")
+        \nby *{rip_data['uploader']}*"
+        )
         await v_url.client.send_file(
             v_url.chat_id,
             f"{rip_data['id']}.mp4",
             supports_streaming=True,
-            caption=rip_data['title'],
-            progress_callback=lambda d, t: asyncio.get_event_loop(
-            ).create_task(
-                progress(d, t, v_url, c_time, "Uploading..",
-                         f"{rip_data['title']}.mp4")))
+            caption=rip_data["title"],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+            ),
+        )
         os.remove(f"{rip_data['id']}.mp4")
         await rkp.delete()
 
 
-
-
-
-CMD_HELP.update({
-    "tools":
-    "`!reupload <customname>`\
+CMD_HELP.update(
+    {
+        "tools": "`!reupload <customname>`\
 \n**Usage:** Reply to a media / video / photo to reupload with your custom name\
 \n\n`!search <keyword>`\
 \n**Usage:** Search given keyword in group and give results\
@@ -1101,11 +1140,5 @@ CMD_HELP.update({
 \n**Usage:** Get the date of a country. \
 \n\n**All Commands Support Sudo type !help sudo fore more info**\
 "
-})
-
-
-
-
-
-
-
+    }
+)

@@ -18,7 +18,9 @@ pm_caption += f"➥ **My Boss** : {DEFAULTUSER} \n"
 pm_caption += "➥ **Heroku Database** : `AWS - Working Properly`\n\n"
 pm_caption += "➥ **License** : [GNU General Public License v3.0](https://github.com/KeinShin/Black-Lightning/blob/master/LICENSE)\n"
 pm_caption += "➥ **Copyright** : By [Javes](GitHub.com/Javes786)\n"
-pm_caption += "[Assistant By Javes 🇮🇳](https://telegra.ph/file/2f2b8d40e3f2fa4acdc8f.mp4)"
+pm_caption += (
+    "[Assistant By Javes 🇮🇳](https://telegra.ph/file/2f2b8d40e3f2fa4acdc8f.mp4)"
+)
 
 
 @tgbot.on(events.NewMessage(pattern="^/alive", func=lambda e: e.sender_id == bot.uid))

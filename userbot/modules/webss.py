@@ -5,25 +5,25 @@
 # Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
 # All rights reserved.
-#PORTED TO JAVES BY SH1VAM
+# PORTED TO JAVES BY SH1VAM
 import asyncio
 import os
 from re import match
 
 import aiofiles
 from selenium import webdriver
-from userbot import bot as javes
+from webdriver_manager.chrome import ChromeDriverManager
+
 from userbot import CMD_HELP
+from userbot import bot as javes
 from userbot.javes_main.heroku_var import Config
 from userbot.utils import admin_cmd
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 @javes.on(admin_cmd("webss (.*)"))
 async def webss(message):
-    king= message.text
-    amaan=king[7:]
+    king = message.text
+    amaan = king[7:]
     link_match = match(r"\bhttps?://.*\.\S+", amaan)
     if not link_match:
         await message.edit("`I need a valid link to take screenshots from.`")
@@ -39,8 +39,10 @@ async def webss(message):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
-    #driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver = webdriver.Chrome((ChromeDriverManager().install()),chrome_options=chrome_options)
+    # driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver = webdriver.Chrome(
+        (ChromeDriverManager().install()), chrome_options=chrome_options
+    )
     driver.get(link)
     height = driver.execute_script(
         "return Math.max(document.body.scrollHeight, document.body.offsetHeight, "
@@ -64,10 +66,10 @@ async def webss(message):
     im_png = driver.get_screenshot_as_png()
     driver.close()
     message_id = message.message.id
-    reply = await message.get_reply_message()
+    await message.get_reply_message()
     if message.reply_to_msg_id:
         message_id = message.reply_to_msg_id
-    file_path = os.path.join(Config.TEMP_DOWNLOAD_DIRECTORY , "webss.png")
+    file_path = os.path.join(Config.TEMP_DOWNLOAD_DIRECTORY, "webss.png")
     async with aiofiles.open(file_path, "wb") as out_file:
         await out_file.write(im_png)
     await asyncio.gather(
@@ -83,4 +85,5 @@ async def webss(message):
     os.remove(file_path)
     driver.quit()
 
-CMD_HELP.update({"Webss":"\n\n.webss link "})
+
+CMD_HELP.update({"Webss": "\n\n.webss link "})

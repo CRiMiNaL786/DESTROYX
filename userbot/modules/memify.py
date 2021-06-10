@@ -1,19 +1,29 @@
-import os
 import asyncio
-import lottie
-from userbot import LOGS , CMD_HELP
-from userbot.helpers import take_screen_shot ,runcmd, convert_toimage, convert_tosticker, cat_meme, cat_meeme
-from userbot.utils import admin_cmd
+import os
+
+from userbot import CMD_HELP, LOGS
 from userbot import bot as borg
+from userbot.helpers import (
+    cat_meeme,
+    cat_meme,
+    convert_toimage,
+    convert_tosticker,
+    runcmd,
+    take_screen_shot,
+)
+from userbot.utils import admin_cmd
+
 if not os.path.isdir("./temp"):
     os.makedirs("./temp")
+
+
 @borg.on(admin_cmd(outgoing=True, pattern="(mms|mmf) ?(.*)"))
 async def memes(cat):
     cmd = cat.pattern_match.group(1)
     catinput = cat.pattern_match.group(2)
     reply = await cat.get_reply_message()
     if not (reply and (reply.media)):
-        await cat.edit( "`Reply to supported Media...`")
+        await cat.edit("`Reply to supported Media...`")
         return
     catid = cat.reply_to_msg_id
     if catinput:
@@ -42,9 +52,7 @@ async def memes(cat):
     import pybase64
 
     if catsticker.endswith(".tgs"):
-        await cat.edit(
-            "Memifying🔸🔸🔸 "
-        )
+        await cat.edit("Memifying🔸🔸🔸 ")
         catfile = os.path.join("./temp/", "meme.png")
         catcmd = (
             f"lottie_convert.py --frame 0 -if lottie -of png {catsticker} {catfile}"
@@ -55,9 +63,7 @@ async def memes(cat):
             LOGS.info(stdout + stderr)
         meme_file = catfile
     elif catsticker.endswith(".webp"):
-        await cat.edit(
-            "Memifying🔸🔸🔸"
-        )
+        await cat.edit("Memifying🔸🔸🔸")
         catfile = os.path.join("./temp/", "memes.jpg")
         os.rename(catsticker, catfile)
         if not os.path.lexists(catfile):
@@ -65,9 +71,7 @@ async def memes(cat):
             return
         meme_file = catfile
     elif catsticker.endswith((".mp4", ".mov")):
-        await cat.edit(
-            "Memifying🔸🔸🔸"
-        )
+        await cat.edit("Memifying🔸🔸🔸")
         catfile = os.path.join("./temp/", "memes.jpg")
         await take_screen_shot(catsticker, 0, catfile)
         if not os.path.lexists(catfile):
@@ -75,9 +79,7 @@ async def memes(cat):
             return
         meme_file = catfile
     else:
-        await cat.edit(
-            "Memifying🔸🔸🔸"
-        )
+        await cat.edit("Memifying🔸🔸🔸")
         meme_file = catsticker
     try:
         san = pybase64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -99,13 +101,15 @@ async def memes(cat):
     for files in (catsticker, meme_file):
         if files and os.path.exists(files):
             os.remove(files)
-            
-CMD_HELP.update({
-    "memify":
-    "**Plugin : **`memify`\
+
+
+CMD_HELP.update(
+    {
+        "memify": "**Plugin : **`memify`\
     \n\n**Syntax :** `.mms toptext ; bottomtext`\
     \n**Usage : **Creates a image meme with give text at specific locations and sends\
     \n\n**Syntax : **`.mmf toptext ; bottomtext`\
     \n**Usage : **Creates a sticker meme with give text at specific locations and sends\
     "
-})
+    }
+)

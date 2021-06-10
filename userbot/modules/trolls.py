@@ -1,4 +1,3 @@
- 
 """
 credits to @mrconfused and @sandy1709 Bhadwa Hai Sandy But Kam Ka Banda Hai 
 """
@@ -19,10 +18,10 @@ import os
 import pybase64
 from telegraph import exceptions, upload_file
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from userbot import bot
-from userbot import CMD_HELP
-from userbot.utils import admin_cmd
+
+from userbot import CMD_HELP, bot
 from userbot.helpers import *
+from userbot.utils import admin_cmd
 
 
 @bot.on(admin_cmd(pattern="threats(?: |$)(.*)"))
@@ -187,7 +186,7 @@ async def catbot(catmemes):
     else:
         await catmemes.edit(
             "**Syntax :** reply to image or sticker with `.phub (username)|(text in comment)`"
-               )
+        )
         return
     replied = await catmemes.get_reply_message()
     if not os.path.isdir("./temp/"):

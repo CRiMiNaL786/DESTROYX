@@ -1,14 +1,17 @@
-import os
-from sys import version_info
 import logging
-from logging import basicConfig, getLogger, INFO, DEBUG, WARNING
+import os
 from distutils.util import strtobool as sb
-from pySmartDL import SmartDL
+from logging import DEBUG, INFO, WARNING, basicConfig, getLogger
+from sys import version_info
+
 from dotenv import load_dotenv
+from pySmartDL import SmartDL
 from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
+
 from var import Var
+
 load_dotenv("config.env")
 from userbot.javes_main.heroku_var import config
 
@@ -16,15 +19,14 @@ sed = logging.getLogger("WARNING")
 sedprint = logging.getLogger("WARNING")
 
 CONSOLE_LOGGER_VERBOSE = config.CONSOLE_LOGGER_VERBOSE
-basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=INFO)
+basicConfig(format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=INFO)
 if Var.STRING_SESSION:
     session_name = str(Var.STRING_SESSION)
     bot = TelegramClient(StringSession(session_name), Var.APP_ID, Var.API_HASH)
 else:
     session_name = "startup"
     bot = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
-    
+
 LOGS = getLogger(__name__)
 ENV = config.ENV
 API_KEY = config.API_KEY
@@ -229,24 +231,26 @@ else:
     PLACEHOLDER = None
 
 
+from userbot import ALIVE_NAME, DEFAULTUSER
 
-
-    
-from userbot import ALIVE_NAME
-from userbot import DEFAULTUSER
-JAVES_MSG = (f"Javes ")
-ORI_MSG = (f"Hello Sir, I can't allow you to {ALIVE_NAME}'s PM without his permissions please be patient, Thankyou ")
-BLOCK_MSG = (f"I am not going to allow you to spam {DEFAULTUSER}'s PM, You have been blocked ")
+JAVES_MSG = f"Javes "
+ORI_MSG = f"Hello Sir, I can't allow you to {ALIVE_NAME}'s PM without his permissions please be patient, Thankyou "
+BLOCK_MSG = (
+    f"I am not going to allow you to spam {DEFAULTUSER}'s PM, You have been blocked "
+)
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
-AFK_MSG = (f"Hello Sir, {DEFAULTUSER} is offline Just leave Your message, Thankyou!")
-BIO_MSG = (f"")
-ALIVE_S_MSG = (f"I am Alone Survivor!")
-ALIVE_E_MSG = (f"Javes 2.0 Reloaded Extra Extremely🖕🏻 ")
+AFK_MSG = f"Hello Sir, {DEFAULTUSER} is offline Just leave Your message, Thankyou!"
+BIO_MSG = f""
+ALIVE_S_MSG = f"I am Alone Survivor!"
+ALIVE_E_MSG = f"Javes 2.0 Reloaded Extra Extremely🖕🏻 "
 
-if not os.path.exists('bin'):
-    os.mkdir('bin')
+if not os.path.exists("bin"):
+    os.mkdir("bin")
 
-binaries = {"https://raw.githubusercontent.com/yshalsager/megadown/master/megadown":"bin/megadown","https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py":"bin/cmrudl"}
+binaries = {
+    "https://raw.githubusercontent.com/yshalsager/megadown/master/megadown": "bin/megadown",
+    "https://raw.githubusercontent.com/yshalsager/cmrudl.py/master/cmrudl.py": "bin/cmrudl",
+}
 
 for binary, path in binaries.items():
     downloader = SmartDL(binary, path, progress_bar=False)
@@ -259,14 +263,35 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
 
 client2 = client3 = tebot = None
 if STRING_SESSION:
-    client = TelegramClient(StringSession(STRING_SESSION),API_KEY,API_HASH,connection_retries=None,auto_reconnect=False,lang_code='en')
+    client = TelegramClient(
+        StringSession(STRING_SESSION),
+        API_KEY,
+        API_HASH,
+        connection_retries=None,
+        auto_reconnect=False,
+        lang_code="en",
+    )
 else:
-     quit(1)
+    quit(1)
 if S2:
-    client2 = TelegramClient(StringSession(S2),API_KEY,API_HASH,connection_retries=None,auto_reconnect=False,lang_code='en')
+    client2 = TelegramClient(
+        StringSession(S2),
+        API_KEY,
+        API_HASH,
+        connection_retries=None,
+        auto_reconnect=False,
+        lang_code="en",
+    )
 if S3:
-    client3 = TelegramClient(StringSession(S3),API_KEY,API_HASH,connection_retries=None,auto_reconnect=False,lang_code='en')
-if BOT_TOKEN:    
+    client3 = TelegramClient(
+        StringSession(S3),
+        API_KEY,
+        API_HASH,
+        connection_retries=None,
+        auto_reconnect=False,
+        lang_code="en",
+    )
+if BOT_TOKEN:
     tebot = TelegramClient("bot", API_KEY, API_HASH).start(bot_token=BOT_TOKEN)
 
 borg = bot = javes = client
@@ -280,4 +305,3 @@ LOAD_PLUG = {}
 ISAFK = None
 AFKREASON = None
 INT_PLUG = ""
-

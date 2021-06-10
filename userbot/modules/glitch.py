@@ -4,16 +4,15 @@ ported to telethon by @mrconfused and @sandy1709
 """
 
 import os
-from PIL import Image 
-from .. import LOGS , CMD_HELP
-from telethon import functions, types
-from userbot.helpers import take_screen_shot ,runcmd
-from ..utils import admin_cmd
+
 from glitch_this import ImageGlitcher
+from PIL import Image
 
-
-from userbot import bot, CMD_HELP, LOGS
+from userbot import CMD_HELP, LOGS, bot
 from userbot.events import register
+from userbot.helpers import runcmd, take_screen_shot
+
+from .. import CMD_HELP, LOGS
 
 
 @register(pattern="^.(glitch|glitchs)(?: |$)(.*)", outgoing=True)
@@ -29,7 +28,7 @@ async def glitch(event):
         os.mkdir("./temp/")
     reply_to_id = event.reply_to_msg_id
     remixsticker = await reply.download_media(file="./temp/")
-    if not remixsticker.endswith(('.mp4', '.webp', '.tgs', '.png', '.jpg')):
+    if not remixsticker.endswith((".mp4", ".webp", ".tgs", ".png", ".jpg")):
         os.remove(remixsticker)
         await event.edit("`Media not found...`")
         return
@@ -74,41 +73,37 @@ async def glitch(event):
         glitched = "./temp/" + "glitched.webp"
         glitch_img = glitcher.glitch_image(img, input, color_offset=True)
         glitch_img.save(glitched)
-        await bot.send_file(
-            event.chat_id,
-            glitched,
-            reply_to_message_id=reply_to_id)
+        await bot.send_file(event.chat_id, glitched, reply_to_message_id=reply_to_id)
         os.remove(glitched)
         await event.delete()
     elif cmd == "glitch":
         Glitched = "./temp/" + "glitch.gif"
-        glitch_img = glitcher.glitch_image(
-            img, input, color_offset=True, gif=True)
+        glitch_img = glitcher.glitch_image(img, input, color_offset=True, gif=True)
         DURATION = 200
         LOOP = 0
         glitch_img[0].save(
             Glitched,
-            format='GIF',
+            format="GIF",
             append_images=glitch_img[1:],
             save_all=True,
             duration=DURATION,
-            loop=LOOP)
-        await bot.send_file(
-            event.chat_id,
-            Glitched,
-            reply_to_message_id=reply_to_id)
+            loop=LOOP,
+        )
+        await bot.send_file(event.chat_id, Glitched, reply_to_message_id=reply_to_id)
         os.remove(Glitched)
         await event.delete()
     for files in (remixsticker, glitch_file):
         if files and os.path.exists(files):
             os.remove(files)
 
-CMD_HELP.update({
-    "glitch":
-    ".glitch` reply to media file\
+
+CMD_HELP.update(
+    {
+        "glitch": ".glitch` reply to media file\
 \nUsage:glitches the given mediafile(gif , stickers , image, videos) to a gif and glitch range is from 1 to 8.\
 If nothing is mentioned then by default it is 2\
 \n\n.glitchs reply to media file\
 \nUsage:glitches the given mediafile(gif , stickers , image, videos) to a sticker and glitch range is from 1 to 8.\
 If nothing is mentioned then by default it is 2."
-})
+    }
+)

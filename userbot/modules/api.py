@@ -1,72 +1,39 @@
-import os
+import asyncio
 import io
 import json
-from requests import get
+import os
+import time
 from datetime import datetime
-from userbot import bot as javes
-from userbot.events import rekcah05
+from html import unescape
+
+import requests
+from coffeehouse.api import API
+from coffeehouse.lydia import LydiaAI
+from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
-from pytz import country_names as c_n
-from userbot import CMD_HELP, WEATHER_DEFCITY
-from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
-import requests
-from telethon.tl.types import MessageMediaPhoto
-from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
-import time
-from telethon import events
-import os
-import requests
-import logging
-from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-import asyncio
-import shutil
-from bs4 import BeautifulSoup
-import re
-from time import sleep
-from html import unescape
-from userbot.events import javes05
-from re import findall
-from selenium import webdriver
-from urllib.parse import quote_plus
-from telethon import events
-import os
-import requests
-import logging
-from userbot import bot, OCR_SPACE_API_KEY, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from urllib.error import HTTPError
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.chrome.options import Options
-from wikipedia import summary
-from wikipedia.exceptions import DisambiguationError, PageError
-from coffeehouse.lydia import LydiaAI
-from coffeehouse.api import API
-import asyncio
-from userbot import LYDIA_API_KEY
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from userbot.events import javes05
-from telethon import events
 from requests import get
-from search_engine_parser import GoogleSearch
-from google_images_download import google_images_download
+from telethon.tl.types import MessageMediaPhoto
+
+from userbot import CMD_HELP, LYDIA_API_KEY, OCR_SPACE_API_KEY
+from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
+from userbot import REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, WEATHER_DEFCITY
+from userbot import bot
+from userbot import bot as javes
+from userbot.events import javes05, rekcah05
+
 try:
-  from googleapiclient.discovery import build
-  from googleapiclient.errors import HttpError
-  from googletrans import LANGUAGES, Translator
+    from googleapiclient.discovery import build
+    from googleapiclient.errors import HttpError
 except:
-   pass
-from gtts import gTTS
-from gtts.lang import tts_langs
-from emoji import get_emoji_regexp
-from youtube_dl import YoutubeDL
-from youtube_dl.utils import (DownloadError, ContentTooShortError,ExtractorError, GeoRestrictedError,MaxDownloadsReached, PostProcessingError,UnavailableVideoError, XAttrMetadataError)
-from asyncio import sleep
-from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN
-from telethon.tl.types import DocumentAttributeAudio
-#from userbot.modules.system import progress, humanbytes, time_formatter
-from userbot import CMD_HELP, ALIVE_NAME, PM_MESSAGE, JAVES_NAME, JAVES_MSG, ORI_MSG
+    pass
+# from userbot.modules.system import progress, humanbytes, time_formatter
+from userbot import CMD_HELP, JAVES_MSG, JAVES_NAME, YOUTUBE_API_KEY
+
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 ACC_LYDIA = {}
+
+
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     """Generic progress_callback for uploads and downloads."""
     now = time.time()
@@ -78,18 +45,17 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            ''.join(["-" for i in range(math.floor(percentage / 10))]),
-            ''.join(["-" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2))
-        tmp = progress_str + \
-            "{0} of {1}\nETA: {2}".format(
-                humanbytes(current),
-                humanbytes(total),
-                time_formatter(estimated_total_time)
-            )
+            "".join(["-" for i in range(math.floor(percentage / 10))]),
+            "".join(["-" for i in range(10 - math.floor(percentage / 10))]),
+            round(percentage, 2),
+        )
+        tmp = progress_str + "{0} of {1}\nETA: {2}".format(
+            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
+        )
         if file_name:
-            await event.edit("{}\nFile Name: `{}`\n{}".format(
-                type_of_ps, file_name, tmp))
+            await event.edit(
+                "{}\nFile Name: `{}`\n{}".format(type_of_ps, file_name, tmp)
+            )
         else:
             await event.edit("{}\n{}".format(type_of_ps, tmp))
 
@@ -101,7 +67,7 @@ def humanbytes(size):
     if not size:
         return ""
     # 2 ** 10 = 1024
-    power = 2**10
+    power = 2 ** 10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -117,12 +83,15 @@ def time_formatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + " day(s), ") if days else "") + \
-        ((str(hours) + " hour(s), ") if hours else "") + \
-        ((str(minutes) + " minute(s), ") if minutes else "") + \
-        ((str(seconds) + " second(s), ") if seconds else "") + \
-        ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+    tmp = (
+        ((str(days) + " day(s), ") if days else "")
+        + ((str(hours) + " hour(s), ") if hours else "")
+        + ((str(minutes) + " minute(s), ") if minutes else "")
+        + ((str(seconds) + " second(s), ") if seconds else "")
+        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+    )
     return tmp[:-2]
+
 
 if LYDIA_API_KEY:
     api_key = LYDIA_API_KEY
@@ -130,13 +99,10 @@ if LYDIA_API_KEY:
     lydia = LydiaAI(api_client)
 
 
-
-
-async def ocr_space_file(filename,
-                         overlay=False,
-                         api_key=OCR_SPACE_API_KEY,
-                         language='eng'):
-    """ OCR.space API request with local file.
+async def ocr_space_file(
+    filename, overlay=False, api_key=OCR_SPACE_API_KEY, language="eng"
+):
+    """OCR.space API request with local file.
         Python3.5 - not tested on 2.7
     :param filename: Your file path & name.
     :param overlay: Is OCR.space overlay required in your response.
@@ -150,86 +116,104 @@ async def ocr_space_file(filename,
     """
 
     payload = {
-        'isOverlayRequired': overlay,
-        'apikey': api_key,
-        'language': language,
+        "isOverlayRequired": overlay,
+        "apikey": api_key,
+        "language": language,
     }
-    with open(filename, 'rb') as f:
+    with open(filename, "rb") as f:
         r = requests.post(
-            'https://api.ocr.space/parse/image',
+            "https://api.ocr.space/parse/image",
             files={filename: f},
             data=payload,
         )
     return r.json()
 
 
-
 @javes05(pattern="^!read(?: |$)(.*)", outgoing=True)
 async def ocr(event):
- if OCR_SPACE_API_KEY is None:
-	 await event.edit(f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**")
- else:
-    await event.edit(f"`{JAVES_NNAME}:` **Reading...**")
-    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
-    lang_code = event.pattern_match.group(1)
-    downloaded_file_name = await bot.download_media(
-        await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY)
-    test_file = await ocr_space_file(filename=downloaded_file_name,
-                                     language=lang_code)
-    try:
-        ParsedText = test_file["ParsedResults"][0]["ParsedText"]
-    except BaseException:
-        await event.edit(f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**")
+    if OCR_SPACE_API_KEY is None:
+        await event.edit(
+            f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**"
+        )
     else:
-        await event.edit(f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
-                         )
-    os.remove(downloaded_file_name)
+        await event.edit(f"`{JAVES_NNAME}:` **Reading...**")
+        if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+            os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+        lang_code = event.pattern_match.group(1)
+        downloaded_file_name = await bot.download_media(
+            await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY
+        )
+        test_file = await ocr_space_file(
+            filename=downloaded_file_name, language=lang_code
+        )
+        try:
+            ParsedText = test_file["ParsedResults"][0]["ParsedText"]
+        except BaseException:
+            await event.edit(
+                f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**"
+            )
+        else:
+            await event.edit(
+                f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
+            )
+        os.remove(downloaded_file_name)
+
 
 @javes05(outgoing=True, pattern="^!stop$")
 async def iqless(e):
-    await e.edit(f"`{JAVES_NNAME}`: **comand !stop changed to !offauto**")      
+    await e.edit(f"`{JAVES_NNAME}`: **comand !stop changed to !offauto**")
 
-   
 
 @javes05(outgoing=True, pattern="^!lydia$")
 async def repcf(event):
- if LYDIA_API_KEY is None:
-	  await event.edit(f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**")
- else:
-    if event.fwd_from:
-        return
-    await event.edit(f"`{JAVES_NNAME}:` **connecting lydia apikey.......**")
-    try:
-        session = lydia.create_session()
-        session_id = session.id
-        reply = await event.get_reply_message()
-        msg = reply.text
-        text_rep = session.think_thought(msg)
-        await event.edit("**Lydia says**: {0}".format(text_rep))
-    except Exception as e:
-        await event.edit(str(e))
+    if LYDIA_API_KEY is None:
+        await event.edit(
+            f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**"
+        )
+    else:
+        if event.fwd_from:
+            return
+        await event.edit(f"`{JAVES_NNAME}:` **connecting lydia apikey.......**")
+        try:
+            session = lydia.create_session()
+            session.id
+            reply = await event.get_reply_message()
+            msg = reply.text
+            text_rep = session.think_thought(msg)
+            await event.edit("**Lydia says**: {0}".format(text_rep))
+        except Exception as e:
+            await event.edit(str(e))
+
 
 @javes05(outgoing=True, disable_errors=True, pattern="^!auto$")
 async def addcf(event):
- if LYDIA_API_KEY is None:
-	 await event.edit(f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**")
- else:  
-      if event.fwd_from:
-          return
-      await event.edit(f"`{JAVES_NNAME}:` **Running...**")
-      await asyncio.sleep(4)
-      await event.edit(f"`{JAVES_NNAME}:` **Connecting api key.......**")
-      reply_msg = await event.get_reply_message()
-      if reply_msg:
-          session = lydia.create_session()
-          session_id = session.id
-          if reply_msg.from_id is None:
-              return await event.edit(f"`{JAVES_NNAME}:` **Invalid user type.**")
-          ACC_LYDIA.update({(event.chat_id & reply_msg.from_id): session})
-          await event.edit("Auto reply activated this  user: {} in chat: {}".format(str(reply_msg.from_id), str(event.chat_id)))
-      else:
-          await event.edit(f"`{JAVES_NNAME}:` **Tag any user's message to activate on them**")
+    if LYDIA_API_KEY is None:
+        await event.edit(
+            f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**"
+        )
+    else:
+        if event.fwd_from:
+            return
+        await event.edit(f"`{JAVES_NNAME}:` **Running...**")
+        await asyncio.sleep(4)
+        await event.edit(f"`{JAVES_NNAME}:` **Connecting api key.......**")
+        reply_msg = await event.get_reply_message()
+        if reply_msg:
+            session = lydia.create_session()
+            session.id
+            if reply_msg.from_id is None:
+                return await event.edit(f"`{JAVES_NNAME}:` **Invalid user type.**")
+            ACC_LYDIA.update({(event.chat_id & reply_msg.from_id): session})
+            await event.edit(
+                "Auto reply activated this  user: {} in chat: {}".format(
+                    str(reply_msg.from_id), str(event.chat_id)
+                )
+            )
+        else:
+            await event.edit(
+                f"`{JAVES_NNAME}:` **Tag any user's message to activate on them**"
+            )
+
 
 @javes05(outgoing=True, disable_errors=True, pattern="^!offauto$")
 async def remcf(event):
@@ -241,13 +225,20 @@ async def remcf(event):
     reply_msg = await event.get_reply_message()
     try:
         del ACC_LYDIA[event.chat_id & reply_msg.from_id]
-        await event.edit(" Auto reply disabled for user: {} in chat: {}".format(str(reply_msg.from_id), str(event.chat_id)))
+        await event.edit(
+            " Auto reply disabled for user: {} in chat: {}".format(
+                str(reply_msg.from_id), str(event.chat_id)
+            )
+        )
     except Exception:
-        await event.edit(f"`{JAVES_NNAME}:` **This person does not have activated auto reply on him/her.**")
+        await event.edit(
+            f"`{JAVES_NNAME}:` **This person does not have activated auto reply on him/her.**"
+        )
+
 
 @javes05(incoming=True, disable_errors=True, disable_edited=True)
 async def user(event):
-    user_text = event.text    
+    event.text
     try:
         session = ACC_LYDIA[event.chat_id & event.from_id]
         msg = event.text
@@ -264,7 +255,7 @@ async def user(event):
 
 @javes05(outgoing=True, pattern="^\!rbg(?: |$)(.*)")
 async def kbg(remob):
-    """ For .rbg command, Remove Image Background. """
+    """For .rbg command, Remove Image Background."""
     if REM_BG_API_KEY is None:
         await remob.edit(
             f"`{JAVES_NNAME}:` **Error: Remove.BG API key missing! Add it to environment vars or config.env.**"
@@ -278,25 +269,30 @@ async def kbg(remob):
         await remob.edit(f"`{JAVES_NNAME}:` **Connecting api key......**")
         try:
             if isinstance(
-                    reply_message.media, MessageMediaPhoto
-            ) or "image" in reply_message.media.document.mime_type.split('/'):
+                reply_message.media, MessageMediaPhoto
+            ) or "image" in reply_message.media.document.mime_type.split("/"):
                 downloaded_file_name = await remob.client.download_media(
-                    reply_message, TEMP_DOWNLOAD_DIRECTORY)
-                await remob.edit(f"`{JAVES_NNAME}:` **Removing background from this image..**")
+                    reply_message, TEMP_DOWNLOAD_DIRECTORY
+                )
+                await remob.edit(
+                    f"`{JAVES_NNAME}:` **Removing background from this image..**"
+                )
                 output_file_name = await ReTrieveFile(downloaded_file_name)
                 os.remove(downloaded_file_name)
             else:
-                await remob.edit(f"`{JAVES_NNAME}:` **Error**"
-                                 )
+                await remob.edit(f"`{JAVES_NNAME}:` **Error**")
         except Exception as e:
             await remob.edit(str(e))
             return
     elif input_str:
         await remob.edit(
-            f"`Removing background from online image hosted at`\n{input_str}")
+            f"`Removing background from online image hosted at`\n{input_str}"
+        )
         output_file_name = await ReTrieveURL(input_str)
     else:
-        await remob.edit(f"`{JAVES_NNAME}:` **I need something to remove the background from.**")
+        await remob.edit(
+            f"`{JAVES_NNAME}:` **I need something to remove the background from.**"
+        )
         return
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
@@ -307,11 +303,15 @@ async def kbg(remob):
                 remove_bg_image,
                 caption="Background removed ",
                 force_document=True,
-                reply_to=message_id)
+                reply_to=message_id,
+            )
             await remob.delete()
     else:
-        await remob.edit("**Error (Invalid API key, I guess ?)**\n`{}`".format(
-            output_file_name.content.decode("UTF-8")))
+        await remob.edit(
+            "**Error (Invalid API key, I guess ?)**\n`{}`".format(
+                output_file_name.content.decode("UTF-8")
+            )
+        )
 
 
 # this method will call the API, and return in the appropriate format
@@ -323,11 +323,13 @@ async def ReTrieveFile(input_file_name):
     files = {
         "image_file": (input_file_name, open(input_file_name, "rb")),
     }
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      files=files,
-                      allow_redirects=True,
-                      stream=True)
+    r = requests.post(
+        "https://api.remove.bg/v1.0/removebg",
+        headers=headers,
+        files=files,
+        allow_redirects=True,
+        stream=True,
+    )
     return r
 
 
@@ -336,11 +338,13 @@ async def ReTrieveURL(input_url):
         "X-API-Key": REM_BG_API_KEY,
     }
     data = {"image_url": input_url}
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      data=data,
-                      allow_redirects=True,
-                      stream=True)
+    r = requests.post(
+        "https://api.remove.bg/v1.0/removebg",
+        headers=headers,
+        data=data,
+        allow_redirects=True,
+        stream=True,
+    )
     return r
 
 
@@ -353,7 +357,7 @@ else:
 
 
 async def get_tz(con):
-    """ Get time zone of the given country. """
+    """Get time zone of the given country."""
     """ Credits: @aragon12 and @zakaryan2004. """
     for c_code in c_n:
         if con == c_n[c_code]:
@@ -367,11 +371,12 @@ async def get_tz(con):
 
 @javes05(outgoing=True, pattern="^!weather(?: |$)(.*)")
 async def get_weather(weather):
-    """ For .weather command, gets the current weather of a city. """
+    """For .weather command, gets the current weather of a city."""
 
     if not OWM_API:
         await weather.edit(
-            f"`{JAVES_NNAME}:` **Get an API key from** https://openweathermap.org/ `first.`")
+            f"`{JAVES_NNAME}:` **Get an API key from** https://openweathermap.org/ `first.`"
+        )
         return
 
     APPID = OWM_API
@@ -388,7 +393,8 @@ async def get_weather(weather):
 
     timezone_countries = {
         timezone: country
-        for country, timezones in c_tz.items() for timezone in timezones
+        for country, timezones in c_tz.items()
+        for timezone in timezones
     }
 
     if "," in CITY:
@@ -398,13 +404,13 @@ async def get_weather(weather):
         else:
             country = await get_tz((newcity[1].strip()).title())
             try:
-                countrycode = timezone_countries[f'{country}']
+                countrycode = timezone_countries[f"{country}"]
             except KeyError:
                 await weather.edit("`Invalid country.`")
                 return
             CITY = newcity[0].strip() + "," + countrycode.strip()
 
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={APPID}'
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={APPID}"
     request = get(url)
     result = json.loads(request.text)
 
@@ -412,18 +418,18 @@ async def get_weather(weather):
         await weather.edit(f"`Invalid country.`")
         return
 
-    cityname = result['name']
-    curtemp = result['main']['temp']
-    humidity = result['main']['humidity']
-    min_temp = result['main']['temp_min']
-    max_temp = result['main']['temp_max']
-    desc = result['weather'][0]
-    desc = desc['main']
-    country = result['sys']['country']
-    sunrise = result['sys']['sunrise']
-    sunset = result['sys']['sunset']
-    wind = result['wind']['speed']
-    winddir = result['wind']['deg']
+    cityname = result["name"]
+    curtemp = result["main"]["temp"]
+    humidity = result["main"]["humidity"]
+    min_temp = result["main"]["temp_min"]
+    max_temp = result["main"]["temp_max"]
+    desc = result["weather"][0]
+    desc = desc["main"]
+    country = result["sys"]["country"]
+    sunrise = result["sys"]["sunrise"]
+    sunset = result["sys"]["sunset"]
+    wind = result["wind"]["speed"]
+    winddir = result["wind"]["deg"]
 
     ctimezone = tz(c_tz[country][0])
     time = datetime.now(ctimezone).strftime("%A, %I:%M %p")
@@ -431,7 +437,7 @@ async def get_weather(weather):
 
     dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
 
-    div = (360 / len(dirs))
+    div = 360 / len(dirs)
     funmath = int((winddir + (div / 2)) / div)
     findir = dirs[funmath % len(dirs)]
     kmph = str(wind * 3.6).split(".")
@@ -451,24 +457,23 @@ async def get_weather(weather):
 
     await weather.edit(
         f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
-        +
-        f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
-        +
-        f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Humidity:** `{humidity}%`\n" +
-        f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
-        f"**Sunrise:** `{sun(sunrise)}`\n" +
-        f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
-        f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
-
-
+        + f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+        + f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+        + f"**Humidity:** `{humidity}%`\n"
+        + f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n"
+        + f"**Sunrise:** `{sun(sunrise)}`\n"
+        + f"**Sunset:** `{sun(sunset)}`\n\n"
+        + f"**{desc}**\n"
+        + f"`{cityname}, {fullc_n}`\n"
+        + f"`{time}`"
+    )
 
 
 @javes05(outgoing=True, pattern="^\!yt (.*)")
 async def yt_search(video_q):
-    
+
     query = video_q.pattern_match.group(1)
-    result = ''
+    result = ""
 
     if not YOUTUBE_API_KEY:
         await video_q.edit(
@@ -491,25 +496,27 @@ async def yt_search(video_q):
     await video_q.edit(reply_text)
 
 
-async def youtube_search(query,
-                         order="relevance",
-                         token=None,
-                         location=None,
-                         location_radius=None):
-    """ Do a YouTube search. """
-    youtube = build('youtube',
-                    'v3',
-                    developerKey=YOUTUBE_API_KEY,
-                    cache_discovery=False)
-    search_response = youtube.search().list(
-        q=query,
-        type="video",
-        pageToken=token,
-        order=order,
-        part="id,snippet",
-        maxResults=10,
-        location=location,
-        locationRadius=location_radius).execute()
+async def youtube_search(
+    query, order="relevance", token=None, location=None, location_radius=None
+):
+    """Do a YouTube search."""
+    youtube = build(
+        "youtube", "v3", developerKey=YOUTUBE_API_KEY, cache_discovery=False
+    )
+    search_response = (
+        youtube.search()
+        .list(
+            q=query,
+            type="video",
+            pageToken=token,
+            order=order,
+            part="id,snippet",
+            maxResults=10,
+            location=location,
+            locationRadius=location_radius,
+        )
+        .execute()
+    )
 
     videos = []
 
@@ -526,90 +533,117 @@ async def youtube_search(query,
         nexttok = "KeyError, try again."
         return (nexttok, videos)
 
+
 @javes.on(rekcah05(pattern=f"read(?: |$)(.*)", allow_sudo=True))
 async def ocr(event):
- if OCR_SPACE_API_KEY is None:
-	 await event.reply(f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**")
- else:
-    await event.reply(f"`{JAVES_NNAME}:` **Reading...**")
-    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
-    lang_code = event.pattern_match.group(1)
-    downloaded_file_name = await bot.download_media(
-        await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY)
-    test_file = await ocr_space_file(filename=downloaded_file_name,
-                                     language=lang_code)
-    try:
-        ParsedText = test_file["ParsedResults"][0]["ParsedText"]
-    except BaseException:
-        await event.reply(f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**")
+    if OCR_SPACE_API_KEY is None:
+        await event.reply(
+            f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**"
+        )
     else:
-        await event.reply(f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
-                         )
-    os.remove(downloaded_file_name)
+        await event.reply(f"`{JAVES_NNAME}:` **Reading...**")
+        if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+            os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+        lang_code = event.pattern_match.group(1)
+        downloaded_file_name = await bot.download_media(
+            await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY
+        )
+        test_file = await ocr_space_file(
+            filename=downloaded_file_name, language=lang_code
+        )
+        try:
+            ParsedText = test_file["ParsedResults"][0]["ParsedText"]
+        except BaseException:
+            await event.reply(
+                f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**"
+            )
+        else:
+            await event.reply(
+                f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
+            )
+        os.remove(downloaded_file_name)
+
 
 @javes05(outgoing=True, pattern="^!stop$")
 async def iqless(e):
-    await e.reply(f"`{JAVES_NNAME}`: **comand !stop changed to !offauto**")      
+    await e.reply(f"`{JAVES_NNAME}`: **comand !stop changed to !offauto**")
 
-   
+
 @javes.on(rekcah05(pattern=f"lydia$", allow_sudo=True))
 async def repcf(event):
- if LYDIA_API_KEY is None:
-	  await event.reply(f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**")
- else:
-    if event.fwd_from:
-        return
-    #await event.reply(f"`{JAVES_NNAME}:` **connecting lydia apikey.......**")
-    try:
-        session = lydia.create_session()
-        session_id = session.id
-        reply = await event.get_reply_message()
-        msg = reply.text
-        text_rep = session.think_thought(msg)
-        await event.reply("**Lydia says**: {0}".format(text_rep))
-    except Exception as e:
-        await event.reply(str(e))
+    if LYDIA_API_KEY is None:
+        await event.reply(
+            f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**"
+        )
+    else:
+        if event.fwd_from:
+            return
+        # await event.reply(f"`{JAVES_NNAME}:` **connecting lydia apikey.......**")
+        try:
+            session = lydia.create_session()
+            session.id
+            reply = await event.get_reply_message()
+            msg = reply.text
+            text_rep = session.think_thought(msg)
+            await event.reply("**Lydia says**: {0}".format(text_rep))
+        except Exception as e:
+            await event.reply(str(e))
+
 
 @javes.on(rekcah05(pattern=f"auto$", allow_sudo=True))
 async def addcf(event):
- if LYDIA_API_KEY is None:
-	 await event.reply(f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**")
- else:  
-      if event.fwd_from:
-          return
-      #await event.reply(f"`{JAVES_NNAME}:` **Running...**")
-      await asyncio.sleep(4)
-      await event.reply(f"`{JAVES_NNAME}:` **Connecting api key.......**")
-      reply_msg = await event.get_reply_message()
-      if reply_msg:
-          session = lydia.create_session()
-          session_id = session.id
-          if reply_msg.from_id is None:
-              return await event.reply(f"`{JAVES_NNAME}:` **Invalid user type.**")
-          ACC_LYDIA.update({(event.chat_id & reply_msg.from_id): session})
-          await event.reply("Auto reply activated this  user: {} in chat: {}".format(str(reply_msg.from_id), str(event.chat_id)))
-      else:
-          await event.reply(f"`{JAVES_NNAME}:` **Tag any user's message to activate on them**")
+    if LYDIA_API_KEY is None:
+        await event.reply(
+            f"`{JAVES_NNAME}:` **lydia api key missing please add it before use**"
+        )
+    else:
+        if event.fwd_from:
+            return
+        # await event.reply(f"`{JAVES_NNAME}:` **Running...**")
+        await asyncio.sleep(4)
+        await event.reply(f"`{JAVES_NNAME}:` **Connecting api key.......**")
+        reply_msg = await event.get_reply_message()
+        if reply_msg:
+            session = lydia.create_session()
+            session.id
+            if reply_msg.from_id is None:
+                return await event.reply(f"`{JAVES_NNAME}:` **Invalid user type.**")
+            ACC_LYDIA.update({(event.chat_id & reply_msg.from_id): session})
+            await event.reply(
+                "Auto reply activated this  user: {} in chat: {}".format(
+                    str(reply_msg.from_id), str(event.chat_id)
+                )
+            )
+        else:
+            await event.reply(
+                f"`{JAVES_NNAME}:` **Tag any user's message to activate on them**"
+            )
 
 
 @javes.on(rekcah05(pattern=f"offauto$", allow_sudo=True))
 async def remcf(event):
     if event.fwd_from:
         return
-    #await event.reply(f"`{JAVES_NNAME}:` **Running..**")
+    # await event.reply(f"`{JAVES_NNAME}:` **Running..**")
     await asyncio.sleep(4)
     await event.reply(f"`{JAVES_NNAME}:` **Processing...**")
     reply_msg = await event.get_reply_message()
     try:
         del ACC_LYDIA[event.chat_id & reply_msg.from_id]
-        await event.reply(" Auto reply disabled for user: {} in chat: {}".format(str(reply_msg.from_id), str(event.chat_id)))
+        await event.reply(
+            " Auto reply disabled for user: {} in chat: {}".format(
+                str(reply_msg.from_id), str(event.chat_id)
+            )
+        )
     except Exception:
-        await event.reply(f"`{JAVES_NNAME}:` **This person does not have activated auto reply on him/her.**")
+        await event.reply(
+            f"`{JAVES_NNAME}:` **This person does not have activated auto reply on him/her.**"
+        )
+
 
 @javes.on(rekcah05(pattern=f"rbg(?: |$)(.*)", allow_sudo=True))
 async def kbg(remob):
-    """ For .rbg command, Remove Image Background. """
+    """For .rbg command, Remove Image Background."""
     if REM_BG_API_KEY is None:
         await remob.reply(
             f"`{JAVES_NNAME}:` **Error: Remove.BG API key missing! Add it to environment vars or config.env.**"
@@ -623,25 +657,30 @@ async def kbg(remob):
         await remob.reply(f"`{JAVES_NNAME}:` **Connecting api key......**")
         try:
             if isinstance(
-                    reply_message.media, MessageMediaPhoto
-            ) or "image" in reply_message.media.document.mime_type.split('/'):
+                reply_message.media, MessageMediaPhoto
+            ) or "image" in reply_message.media.document.mime_type.split("/"):
                 downloaded_file_name = await remob.client.download_media(
-                    reply_message, TEMP_DOWNLOAD_DIRECTORY)
-                await remob.reply(f"`{JAVES_NNAME}:` **Removing background from this image..**")
+                    reply_message, TEMP_DOWNLOAD_DIRECTORY
+                )
+                await remob.reply(
+                    f"`{JAVES_NNAME}:` **Removing background from this image..**"
+                )
                 output_file_name = await ReTrieveFile(downloaded_file_name)
                 os.remove(downloaded_file_name)
             else:
-                await remob.reply(f"`{JAVES_NNAME}:` **Error**"
-                                 )
+                await remob.reply(f"`{JAVES_NNAME}:` **Error**")
         except Exception as e:
             await remob.reply(str(e))
             return
     elif input_str:
         await remob.reply(
-            f"`Removing background from online image hosted at`\n{input_str}")
+            f"`Removing background from online image hosted at`\n{input_str}"
+        )
         output_file_name = await ReTrieveURL(input_str)
     else:
-        await remob.reply(f"`{JAVES_NNAME}:` **I need something to remove the background from.**")
+        await remob.reply(
+            f"`{JAVES_NNAME}:` **I need something to remove the background from.**"
+        )
         return
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
@@ -652,11 +691,15 @@ async def kbg(remob):
                 remove_bg_image,
                 caption="Background removed ",
                 force_document=True,
-                reply_to=message_id)
+                reply_to=message_id,
+            )
             await remob.delete()
     else:
-        await remob.reply("**Error (Invalid API key, I guess ?)**\n`{}`".format(
-            output_file_name.content.decode("UTF-8")))
+        await remob.reply(
+            "**Error (Invalid API key, I guess ?)**\n`{}`".format(
+                output_file_name.content.decode("UTF-8")
+            )
+        )
 
 
 # this method will call the API, and return in the appropriate format
@@ -668,11 +711,13 @@ async def ReTrieveFile(input_file_name):
     files = {
         "image_file": (input_file_name, open(input_file_name, "rb")),
     }
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      files=files,
-                      allow_redirects=True,
-                      stream=True)
+    r = requests.post(
+        "https://api.remove.bg/v1.0/removebg",
+        headers=headers,
+        files=files,
+        allow_redirects=True,
+        stream=True,
+    )
     return r
 
 
@@ -681,11 +726,13 @@ async def ReTrieveURL(input_url):
         "X-API-Key": REM_BG_API_KEY,
     }
     data = {"image_url": input_url}
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
-                      headers=headers,
-                      data=data,
-                      allow_redirects=True,
-                      stream=True)
+    r = requests.post(
+        "https://api.remove.bg/v1.0/removebg",
+        headers=headers,
+        data=data,
+        allow_redirects=True,
+        stream=True,
+    )
     return r
 
 
@@ -698,7 +745,7 @@ else:
 
 
 async def get_tz(con):
-    """ Get time zone of the given country. """
+    """Get time zone of the given country."""
     """ Credits: @aragon12 and @zakaryan2004. """
     for c_code in c_n:
         if con == c_n[c_code]:
@@ -709,13 +756,15 @@ async def get_tz(con):
     except KeyError:
         return
 
+
 @javes.on(rekcah05(pattern=f"weather(?: |$)(.*)", allow_sudo=True))
 async def get_weather(weather):
-    """ For .weather command, gets the current weather of a city. """
+    """For .weather command, gets the current weather of a city."""
 
     if not OWM_API:
         await weather.reply(
-            f"`{JAVES_NNAME}:` **Get an API key from** https://openweathermap.org/ `first.`")
+            f"`{JAVES_NNAME}:` **Get an API key from** https://openweathermap.org/ `first.`"
+        )
         return
 
     APPID = OWM_API
@@ -732,7 +781,8 @@ async def get_weather(weather):
 
     timezone_countries = {
         timezone: country
-        for country, timezones in c_tz.items() for timezone in timezones
+        for country, timezones in c_tz.items()
+        for timezone in timezones
     }
 
     if "," in CITY:
@@ -742,13 +792,13 @@ async def get_weather(weather):
         else:
             country = await get_tz((newcity[1].strip()).title())
             try:
-                countrycode = timezone_countries[f'{country}']
+                countrycode = timezone_countries[f"{country}"]
             except KeyError:
                 await weather.reply("`Invalid country.`")
                 return
             CITY = newcity[0].strip() + "," + countrycode.strip()
 
-    url = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={APPID}'
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={APPID}"
     request = get(url)
     result = json.loads(request.text)
 
@@ -756,18 +806,18 @@ async def get_weather(weather):
         await weather.reply(f"`Invalid country.`")
         return
 
-    cityname = result['name']
-    curtemp = result['main']['temp']
-    humidity = result['main']['humidity']
-    min_temp = result['main']['temp_min']
-    max_temp = result['main']['temp_max']
-    desc = result['weather'][0]
-    desc = desc['main']
-    country = result['sys']['country']
-    sunrise = result['sys']['sunrise']
-    sunset = result['sys']['sunset']
-    wind = result['wind']['speed']
-    winddir = result['wind']['deg']
+    cityname = result["name"]
+    curtemp = result["main"]["temp"]
+    humidity = result["main"]["humidity"]
+    min_temp = result["main"]["temp_min"]
+    max_temp = result["main"]["temp_max"]
+    desc = result["weather"][0]
+    desc = desc["main"]
+    country = result["sys"]["country"]
+    sunrise = result["sys"]["sunrise"]
+    sunset = result["sys"]["sunset"]
+    wind = result["wind"]["speed"]
+    winddir = result["wind"]["deg"]
 
     ctimezone = tz(c_tz[country][0])
     time = datetime.now(ctimezone).strftime("%A, %I:%M %p")
@@ -775,7 +825,7 @@ async def get_weather(weather):
 
     dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
 
-    div = (360 / len(dirs))
+    div = 360 / len(dirs)
     funmath = int((winddir + (div / 2)) / div)
     findir = dirs[funmath % len(dirs)]
     kmph = str(wind * 3.6).split(".")
@@ -795,23 +845,23 @@ async def get_weather(weather):
 
     await weather.reply(
         f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
-        +
-        f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
-        +
-        f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
-        + f"**Humidity:** `{humidity}%`\n" +
-        f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n" +
-        f"**Sunrise:** `{sun(sunrise)}`\n" +
-        f"**Sunset:** `{sun(sunset)}`\n\n" + f"**{desc}**\n" +
-        f"`{cityname}, {fullc_n}`\n" + f"`{time}`")
-
+        + f"**Min. Temp.:** `{celsius(min_temp)}°C | {fahrenheit(min_temp)}°F`\n"
+        + f"**Max. Temp.:** `{celsius(max_temp)}°C | {fahrenheit(max_temp)}°F`\n"
+        + f"**Humidity:** `{humidity}%`\n"
+        + f"**Wind:** `{kmph[0]} kmh | {mph[0]} mph, {findir}`\n"
+        + f"**Sunrise:** `{sun(sunrise)}`\n"
+        + f"**Sunset:** `{sun(sunset)}`\n\n"
+        + f"**{desc}**\n"
+        + f"`{cityname}, {fullc_n}`\n"
+        + f"`{time}`"
+    )
 
 
 @javes.on(rekcah05(pattern=f"yt (.*)", allow_sudo=True))
 async def yt_search(video_q):
-    
+
     query = video_q.pattern_match.group(1)
-    result = ''
+    result = ""
 
     if not YOUTUBE_API_KEY:
         await video_q.reply(
@@ -834,25 +884,27 @@ async def yt_search(video_q):
     await video_q.reply(reply_text)
 
 
-async def youtube_search(query,
-                         order="relevance",
-                         token=None,
-                         location=None,
-                         location_radius=None):
-    """ Do a YouTube search. """
-    youtube = build('youtube',
-                    'v3',
-                    developerKey=YOUTUBE_API_KEY,
-                    cache_discovery=False)
-    search_response = youtube.search().list(
-        q=query,
-        type="video",
-        pageToken=token,
-        order=order,
-        part="id,snippet",
-        maxResults=10,
-        location=location,
-        locationRadius=location_radius).execute()
+async def youtube_search(
+    query, order="relevance", token=None, location=None, location_radius=None
+):
+    """Do a YouTube search."""
+    youtube = build(
+        "youtube", "v3", developerKey=YOUTUBE_API_KEY, cache_discovery=False
+    )
+    search_response = (
+        youtube.search()
+        .list(
+            q=query,
+            type="video",
+            pageToken=token,
+            order=order,
+            part="id,snippet",
+            maxResults=10,
+            location=location,
+            locationRadius=location_radius,
+        )
+        .execute()
+    )
 
     videos = []
 
@@ -872,30 +924,37 @@ async def youtube_search(query,
 
 @javes.on(rekcah05(pattern=f"read(?: |$)(.*)", allow_sudo=True))
 async def ocr(event):
- if OCR_SPACE_API_KEY is None:
-	 await event.reply(f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**")
- else:
-    await event.reply(f"`{JAVES_NNAME}:` **Reading...**")
-    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
-        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
-    lang_code = event.pattern_match.group(1)
-    downloaded_file_name = await bot.download_media(
-        await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY)
-    test_file = await ocr_space_file(filename=downloaded_file_name,
-                                     language=lang_code)
-    try:
-        ParsedText = test_file["ParsedResults"][0]["ParsedText"]
-    except BaseException:
-        await event.reply(f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**")
+    if OCR_SPACE_API_KEY is None:
+        await event.reply(
+            f"`{JAVES_NNAME}:` **ocr api key missing please add it before use**"
+        )
     else:
-        await event.reply(f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
-                         )
-    os.remove(downloaded_file_name)
+        await event.reply(f"`{JAVES_NNAME}:` **Reading...**")
+        if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+            os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+        lang_code = event.pattern_match.group(1)
+        downloaded_file_name = await bot.download_media(
+            await event.get_reply_message(), TEMP_DOWNLOAD_DIRECTORY
+        )
+        test_file = await ocr_space_file(
+            filename=downloaded_file_name, language=lang_code
+        )
+        try:
+            ParsedText = test_file["ParsedResults"][0]["ParsedText"]
+        except BaseException:
+            await event.reply(
+                f"`{JAVES_NNAME}:` **Couldn't read it.`\n`Is api key entered correct?**"
+            )
+        else:
+            await event.reply(
+                f"`{JAVES_NNAME}:` **Here's what I could read from it:**\n\n{ParsedText}"
+            )
+        os.remove(downloaded_file_name)
 
 
-CMD_HELP.update({
-    "api":
-    "\
+CMD_HELP.update(
+    {
+        "api": "\
 you must add api keys else these commands not work\
 \n\n!read reply to a photo \
 \n**Usage:** read texts in photo\
@@ -913,12 +972,5 @@ you must add api keys else these commands not work\
 \n**Usage:** Do youtube search\
 \n\n**All commands support sudo type !help sudo for more info**\
 "
-})
-
-
-
-
-
-
-
-
+    }
+)

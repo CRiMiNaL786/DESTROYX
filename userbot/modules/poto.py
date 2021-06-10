@@ -4,6 +4,7 @@
 
 
 import logging
+
 from userbot import bot as javes
 from userbot.utils import admin_cmd as friday_on_cmd
 
@@ -17,7 +18,6 @@ if 1 == 1:
     client = javes
 
     @javes.on(friday_on_cmd(pattern="poto(.*)"))
-
     async def potocmd(event):
 
         """Gets the profile photos of replied users, channels or chats"""

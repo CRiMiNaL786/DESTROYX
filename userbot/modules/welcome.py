@@ -1,14 +1,20 @@
-from userbot.events import javes05
-from userbot import CMD_HELP, bot as javes, LOGS, CLEAN_WELCOME, BOTLOG_CHATID, JAVES_NAME
-from userbot.javes_main.commands import rekcah05
 from telethon.events import ChatAction
+
+from userbot import BOTLOG_CHATID, CLEAN_WELCOME, CMD_HELP, JAVES_NAME, LOGS
+from userbot import bot as javes
+from userbot.events import javes05
+from userbot.javes_main.commands import rekcah05
+
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
+
 
 @javes.on(ChatAction)
 async def welcome_to_chat(event):
     try:
-        from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
-        from userbot.modules.sql_helper.welcome_sql import update_previous_welcome
+        from userbot.modules.sql_helper.welcome_sql import (
+            get_current_welcome_settings,
+            update_previous_welcome,
+        )
     except AttributeError:
         return
     cws = get_current_welcome_settings(event.chat_id)
@@ -17,12 +23,12 @@ async def welcome_to_chat(event):
         user_joined=True,
         user_left=False,
         user_kicked=False"""
-        if (event.user_joined
-                or event.user_added) and not (await event.get_user()).bot:
+        if (event.user_joined or event.user_added) and not (await event.get_user()).bot:
             if CLEAN_WELCOME:
                 try:
-                    await event.client.delete_messages(event.chat_id,
-                                                       cws.previous_welcome)
+                    await event.client.delete_messages(
+                        event.chat_id, cws.previous_welcome
+                    )
                 except Exception as e:
                     LOGS.warn(str(e))
             a_user = await event.get_user()
@@ -32,8 +38,7 @@ async def welcome_to_chat(event):
             title = chat.title if chat.title else "this chat"
             participants = await event.client.get_participants(chat)
             count = len(participants)
-            mention = "[{}](tg://user?id={})".format(a_user.first_name,
-                                                     a_user.id)
+            mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
             my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
             first = a_user.first_name
             last = a_user.last_name
@@ -53,27 +58,31 @@ async def welcome_to_chat(event):
             file_media = None
             current_saved_welcome_message = None
             if cws and cws.f_mesg_id:
-                msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
-                                                        ids=int(cws.f_mesg_id))
+                msg_o = await event.client.get_messages(
+                    entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
+                )
                 file_media = msg_o.media
                 current_saved_welcome_message = msg_o.message
             elif cws and cws.reply:
                 current_saved_welcome_message = cws.reply
             current_message = await event.reply(
-                current_saved_welcome_message.format(mention=mention,
-                                                     title=title,
-                                                     count=count,
-                                                     first=first,
-                                                     last=last,
-                                                     fullname=fullname,
-                                                     username=username,
-                                                     userid=userid,
-                                                     my_first=my_first,
-                                                     my_last=my_last,
-                                                     my_fullname=my_fullname,
-                                                     my_username=my_username,
-                                                     my_mention=my_mention),
-                file=file_media)
+                current_saved_welcome_message.format(
+                    mention=mention,
+                    title=title,
+                    count=count,
+                    first=first,
+                    last=last,
+                    fullname=fullname,
+                    username=username,
+                    userid=userid,
+                    my_first=my_first,
+                    my_last=my_last,
+                    my_fullname=my_fullname,
+                    my_username=my_username,
+                    my_mention=my_mention,
+                ),
+                file=file_media,
+            )
             update_previous_welcome(event.chat_id, current_message.id)
 
 
@@ -89,15 +98,14 @@ async def save_welcome(event):
     if msg and msg.media and not string:
         if BOTLOG_CHATID:
             await event.client.send_message(
-                BOTLOG_CHATID, f"#WELCOME_NOTE \nCHAT ID: {event.chat_id}"
+                BOTLOG_CHATID,
+                f"#WELCOME_NOTE \nCHAT ID: {event.chat_id}"
                 "\nThe following message is saved as the new welcome note "
-                "for the chat, please do NOT delete it !!"
+                "for the chat, please do NOT delete it !!",
             )
             msg_o = await event.client.forward_messages(
-                entity=BOTLOG_CHATID,
-                messages=msg,
-                from_peer=event.chat_id,
-                silent=True)
+                entity=BOTLOG_CHATID, messages=msg, from_peer=event.chat_id, silent=True
+            )
             msg_id = msg_o.id
         else:
             return await event.edit(
@@ -108,9 +116,11 @@ async def save_welcome(event):
         string = rep_msg.text
     success = "`Welcome note {} for this chat.`"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
-        await event.edit(success.format('saved'))
+        await event.edit(success.format("saved"))
     else:
-        await event.edit(f"`{JAVES_NNAME}`: **Ops, old welcome message found, deleted it Sucessfully now you can save new welcome message!**")
+        await event.edit(
+            f"`{JAVES_NNAME}`: **Ops, old welcome message found, deleted it Sucessfully now you can save new welcome message!**"
+        )
 
 
 @javes.on(rekcah05(pattern=f"savewelcome(?: |$)(.*)", allow_sudo=True))
@@ -125,15 +135,14 @@ async def save_welcome(event):
     if msg and msg.media and not string:
         if BOTLOG_CHATID:
             await event.client.send_message(
-                BOTLOG_CHATID, f"#WELCOME_NOTE \nCHAT ID: {event.chat_id}"
+                BOTLOG_CHATID,
+                f"#WELCOME_NOTE \nCHAT ID: {event.chat_id}"
                 "\nThe following message is saved as the new welcome note "
-                "for the chat, please do NOT delete it !!"
+                "for the chat, please do NOT delete it !!",
             )
             msg_o = await event.client.forward_messages(
-                entity=BOTLOG_CHATID,
-                messages=msg,
-                from_peer=event.chat_id,
-                silent=True)
+                entity=BOTLOG_CHATID, messages=msg, from_peer=event.chat_id, silent=True
+            )
             msg_id = msg_o.id
         else:
             return await event.reply(
@@ -144,13 +153,11 @@ async def save_welcome(event):
         string = rep_msg.text
     success = "`Welcome note {} for this chat.`"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
-        await event.reply(success.format('saved'))
+        await event.reply(success.format("saved"))
     else:
-        await event.reply(f"`{JAVES_NNAME}`: **Ops, old welcome message found, deleted it Sucessfully now you can save new welcome message!**")
-
-
-
-
+        await event.reply(
+            f"`{JAVES_NNAME}`: **Ops, old welcome message found, deleted it Sucessfully now you can save new welcome message!**"
+        )
 
 
 @javes05(outgoing=True, pattern="^!checkwelcome$")
@@ -165,16 +172,18 @@ async def show_welcome(event):
         await event.edit(f"`{JAVES_NNAME}`: **No welcome message saved here.**")
         return
     elif cws and cws.f_mesg_id:
-        msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
-                                                ids=int(cws.f_mesg_id))
+        msg_o = await event.client.get_messages(
+            entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
+        )
         await event.edit(
-            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**")
+            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**"
+        )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws and cws.reply:
         await event.edit(
-             f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**")
+            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**"
+        )
         await event.reply(cws.reply)
-
 
 
 @javes.on(rekcah05(pattern=f"checkwelcome$", allow_sudo=True))
@@ -189,16 +198,18 @@ async def show_welcome(event):
         await event.reply(f"`{JAVES_NNAME}`: **No welcome message saved here.**")
         return
     elif cws and cws.f_mesg_id:
-        msg_o = await event.client.get_messages(entity=BOTLOG_CHATID,
-                                                ids=int(cws.f_mesg_id))
+        msg_o = await event.client.get_messages(
+            entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id)
+        )
         await event.reply(
-            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**")
+            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**"
+        )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws and cws.reply:
         await event.reply(
-             f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**")
+            f"`{JAVES_NNAME}`: **I am currently welcoming new users with this welcome note.**"
+        )
         await event.reply(cws.reply)
-
 
 
 @javes05(outgoing=True, pattern="^!clearwelcome$")
@@ -211,7 +222,9 @@ async def del_welcome(event):
     if rm_welcome_setting(event.chat_id) is True:
         await event.edit(f"`{JAVES_NNAME}`: **Welcome note deleted for this chat.**")
     else:
-        await event.edit(f"`{JAVES_NNAME}`: ** I Didnt have any welcome messages here **")
+        await event.edit(
+            f"`{JAVES_NNAME}`: ** I Didnt have any welcome messages here **"
+        )
 
 
 @javes.on(rekcah05(pattern=f"clearwelcome$", allow_sudo=True))
@@ -224,13 +237,14 @@ async def del_welcome(event):
     if rm_welcome_setting(event.chat_id) is True:
         await event.reply(f"`{JAVES_NNAME}`: **Welcome note deleted for this chat.**")
     else:
-        await event.reply(f"`{JAVES_NNAME}`: ** I Didnt have any welcome messages here **")
+        await event.reply(
+            f"`{JAVES_NNAME}`: ** I Didnt have any welcome messages here **"
+        )
 
 
-
-CMD_HELP.update({
-    "welcome":
-    "\
+CMD_HELP.update(
+    {
+        "welcome": "\
 !savewelcome <welcome message> or reply to a message with !savewelcome\
 \nUsage: Saves the message as a welcome note in the chat.\
 \n\nAvailable variables for formatting welcome messages :\
@@ -242,4 +256,5 @@ CMD_HELP.update({
 \n\n**Sudo commands type !help sudo for more info **\
 \n.savewelcome , .checkwelcome , .clearwelcome.\
 "
-})
+    }
+)

@@ -8,10 +8,11 @@
  This too made by @hellboi_atul .. """
 
 import re
-import random
+
 from userbot import bot
-from userbot.utils import admin_cmd
 from userbot import bot as javes
+from userbot.utils import admin_cmd
+
 IF_EMOJI = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -24,28 +25,32 @@ IF_EMOJI = re.compile(
     "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
     "\U0001FA00-\U0001FA6F"  # Chess Symbols
     "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
-    "\U00002702-\U000027B0"  # Dingbats 
-    "]+")
+    "\U00002702-\U000027B0"  # Dingbats
+    "]+"
+)
+
 
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
-    return re.sub(IF_EMOJI, '', inputString)
+    return re.sub(IF_EMOJI, "", inputString)
 
 
 @javes.on(admin_cmd(pattern="uta(?: |$)(.*)"))
-
 async def nope(doit):
     ok = doit.pattern_match.group(1)
     if not ok:
         if doit.is_reply:
-            what = (await doit.get_reply_message()).message
+            (await doit.get_reply_message()).message
         else:
-            await doit.edit("`Sir please give some query to search and download it for you..!`")
+            await doit.edit(
+                "`Sir please give some query to search and download it for you..!`"
+            )
             return
-    sticcers = await bot.inline_query(
-        "Lybot", f"{(deEmojify(ok))}")
-    await sticcers[0].click(doit.chat_id,
-                            reply_to=doit.reply_to_msg_id,
-                            silent=True if doit.is_reply else False,
-                            hide_via=True)
+    sticcers = await bot.inline_query("Lybot", f"{(deEmojify(ok))}")
+    await sticcers[0].click(
+        doit.chat_id,
+        reply_to=doit.reply_to_msg_id,
+        silent=True if doit.is_reply else False,
+        hide_via=True,
+    )
     await doit.delete()

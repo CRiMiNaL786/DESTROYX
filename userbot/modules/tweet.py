@@ -1,25 +1,19 @@
 import os
-#os.system("pip install validators")
-#os.system("pip install collections")
-#os.system("pip install Pillow")
-
-import re
-import requests
-from validators.url import url
-from asyncio import sleep
-from random import choice, getrandbits, randint
 import random
-import time
-from telethon import events
-from userbot import bot
-from collections import deque
-import sys
-import html
-import json
-from PIL import Image, ImageEnhance, ImageOps
-from userbot import CMD_HELP
+import re
+
+import requests
+from PIL import Image
+from validators.url import url
+
+from userbot import CMD_HELP, bot
 from userbot.events import register
 from userbot.helpers.functions import moditweet
+
+# os.system("pip install validators")
+# os.system("pip install collections")
+# os.system("pip install Pillow")
+
 
 EMOJI_PATTERN = re.compile(
     "["
@@ -88,9 +82,6 @@ async def kannagen(text):
     return "gpx.webp"
 
 
-
-
-
 async def tweets(text1, text2):
     r = requests.get(
         f"https://nekobot.xyz/api/imagegen?type=tweet&text={text1}&username={text2}"
@@ -155,19 +146,22 @@ async def modi(event):
     await event.delete()
     await purge()
 
+
 async def miatweet(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=miakhalifa").json()
-        wew = r.get("message")
-        curl = url(wew)
-        if not curl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(wew).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.webp", "webp")    
-        return "temp.webp"   
-   
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=miakhalifa"
+    ).json()
+    wew = r.get("message")
+    curl = url(wew)
+    if not curl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(wew).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.webp", "webp")
+    return "temp.webp"
+
+
 @register(pattern="^\.mia(?: |$)(.*)", outgoing=True)
 async def nekobot(borg):
     text = borg.pattern_match.group(1)
@@ -186,14 +180,19 @@ async def nekobot(borg):
             return
     await borg.edit("Requesting Mia to tweet...")
     try:
-        cat = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
+        cat = str(
+            pybase64.b64decode(
+                "SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk="
+            )
+        )[2:49]
         await borg.client(cat)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     borgfile = await miatweet(text)
-    await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id ) 
+    await borg.client.send_file(borg.chat_id, borgfile, reply_to=reply_to_id)
     await borg.delete()
+
 
 @register(outgoing=True, pattern=r"^\.cmm(?: |$)(.*)")
 async def cmm(event):
@@ -216,12 +215,10 @@ async def cmm(event):
     await purge()
 
 
-
 @register(outgoing=True, pattern="^.type(?: |$)(.*)")
-
 async def type(animu):
-#"""Generate random waifu sticker with the text!"""
-     
+    # """Generate random waifu sticker with the text!"""
+
     text = animu.pattern_match.group(1)
     if not text:
         if animu.is_reply:
@@ -229,20 +226,45 @@ async def type(animu):
         else:
             await animu.answer("`No text given.`")
             return
-    animus = [1, 2, 3, 4, 5, 6, 8, 7, 10, 11, 13, 22, 34, 35, 36, 37, 43, 44, 45, 52, 53]
+    animus = [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        7,
+        10,
+        11,
+        13,
+        22,
+        34,
+        35,
+        36,
+        37,
+        43,
+        44,
+        45,
+        52,
+        53,
+    ]
     sticcers = await bot.inline_query(
-        "stickerizerbot", f"#{random.choice(animus)}{(deEmojify(text))}")
-    await sticcers[0].click(animu.chat_id,
-                            reply_to=animu.reply_to_msg_id,
-                            silent=True if animu.is_reply else False,
-                            hide_via=True)
+        "stickerizerbot", f"#{random.choice(animus)}{(deEmojify(text))}"
+    )
+    await sticcers[0].click(
+        animu.chat_id,
+        reply_to=animu.reply_to_msg_id,
+        silent=True if animu.is_reply else False,
+        hide_via=True,
+    )
     await animu.delete()
 
-@register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
 
+@register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
 async def waifu(danish):
-#"""Generate random waifu sticker with the text!"""
-     
+    # """Generate random waifu sticker with the text!"""
+
     text = danish.pattern_match.group(1)
     if not text:
         if danish.is_reply:
@@ -250,15 +272,18 @@ async def waifu(danish):
         else:
             await danish.answer("`No text given.`")
             return
-    king = [ 32, 33, 37, 40, 41, 42, 58, 20]
+    king = [32, 33, 37, 40, 41, 42, 58, 20]
     sticcers = await bot.inline_query(
-        "stickerizerbot", f"#{random.choice(king)}{(deEmojify(text))}")
-    await sticcers[0].click(danish.chat_id,
-                            reply_to=danish.reply_to_msg_id,
-                            silent=True if danish.is_reply else False,
-                            hide_via=True)
+        "stickerizerbot", f"#{random.choice(king)}{(deEmojify(text))}"
+    )
+    await sticcers[0].click(
+        danish.chat_id,
+        reply_to=danish.reply_to_msg_id,
+        silent=True if danish.is_reply else False,
+        hide_via=True,
+    )
     await danish.delete()
-    
+
 
 @register(outgoing=True, pattern=r"\.tweet(?: |$)(.*)")
 async def tweet(event):

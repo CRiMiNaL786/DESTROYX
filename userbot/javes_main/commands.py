@@ -1,106 +1,123 @@
-from telethon import events
-from var import Var
-from pathlib import Path
-from userbot.config import Config
-import re, logging, inspect, sys, json, os
-from asyncio import create_subprocess_shell as asyncsubshell, subprocess as asyncsub
+import inspect
+import json
+import logging
+import math
+import re
+import sys
+import time
+from asyncio import create_subprocess_shell as asyncsubshell
+from asyncio import subprocess as asyncsub
 from os import remove
+from pathlib import Path
+from sys import *
 from time import gmtime, strftime
 from traceback import format_exc
-from typing import List
-from userbot.javes_main.heroku_var import *
-from userbot import *
-from sys import *
-from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
-from telethon import TelegramClient, functions, types
+
+from telethon import events
 from telethon.tl.types import InputMessagesFilterDocument
-import traceback
-import asyncio, time, io, math, os, logging, asyncio, shutil, re
+
+from userbot import *
+from userbot.config import Config
+from userbot.javes_main.heroku_var import *
+from var import Var
+
 
 def zzaacckkyy(**args):
-        args["func"] = lambda e: e.via_bot_id is None
-        stack = inspect.stack()
-        previous_stack_frame = stack[1]
-        file_test = Path(previous_stack_frame.filename)
-        file_test = file_test.stem.replace(".py", "")
-        pattern = args.get("pattern", None)
-        allow_sudo = args.get("allow_sudo", None)
-        allow_edited_updates = args.get('allow_edited_updates', False)
-        args["incoming"] = args.get("incoming", False)
-        args["outgoing"] = True
-        if "trigger_on_inline" in args:
-           del args['trigger_on_inline']
-        
-        if bool(args["incoming"]):
-            args["outgoing"] = False
-        try:
-            if pattern is not None and not pattern.startswith('(?i)'):
-                args['pattern'] = '(?i)' + pattern
-        except:
-            pass
-        reg = re.compile('(.*)')
-        if not pattern == None:
-            try:
-                cmd = re.search(reg, pattern)
-                try:
-                    cmd = cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
-                except:
-                    pass
+    args["func"] = lambda e: e.via_bot_id is None
+    stack = inspect.stack()
+    previous_stack_frame = stack[1]
+    file_test = Path(previous_stack_frame.filename)
+    file_test = file_test.stem.replace(".py", "")
+    pattern = args.get("pattern", None)
+    allow_sudo = args.get("allow_sudo", None)
+    args.get("allow_edited_updates", False)
+    args["incoming"] = args.get("incoming", False)
+    args["outgoing"] = True
+    if "trigger_on_inline" in args:
+        del args["trigger_on_inline"]
 
-                try:
-                    CMD_LIST[file_test].append(cmd)
-                except:
-                    CMD_LIST.update({file_test: [cmd]})
+    if bool(args["incoming"]):
+        args["outgoing"] = False
+    try:
+        if pattern is not None and not pattern.startswith("(?i)"):
+            args["pattern"] = "(?i)" + pattern
+    except:
+        pass
+    reg = re.compile("(.*)")
+    if not pattern == None:
+        try:
+            cmd = re.search(reg, pattern)
+            try:
+                cmd = cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
             except:
                 pass
-        if allow_sudo:
-            args["from_users"] = list(Var.SUDO_USERS)
-            args["incoming"] = True
-        del allow_sudo
-        try:
-            del args["allow_sudo"]
+
+            try:
+                CMD_LIST[file_test].append(cmd)
+            except:
+                CMD_LIST.update({file_test: [cmd]})
         except:
             pass
-        if "allow_edited_updates" in args:
-            del args['allow_edited_updates']
-        def decorator(func):            
-            bot.add_event_handler(func, events.NewMessage(**args))
-            if client2:
-            	client2.add_event_handler(func, events.NewMessage(**args))
-            if client3:
-            	client3.add_event_handler(func, events.NewMessage(**args))
-            try:
-                LOAD_PLUG[file_test].append(func)
-            except:
-                LOAD_PLUG.update({file_test: [func]})
-            return func
-        return decorator
+    if allow_sudo:
+        args["from_users"] = list(Var.SUDO_USERS)
+        args["incoming"] = True
+    del allow_sudo
+    try:
+        del args["allow_sudo"]
+    except:
+        pass
+    if "allow_edited_updates" in args:
+        del args["allow_edited_updates"]
 
-async def a(): 
-    test1 = await bot.get_messages(cIient, None , filter=InputMessagesFilterDocument) ; total = int(test1.total) ; total_doxx = range(0, total)
+    def decorator(func):
+        bot.add_event_handler(func, events.NewMessage(**args))
+        if client2:
+            client2.add_event_handler(func, events.NewMessage(**args))
+        if client3:
+            client3.add_event_handler(func, events.NewMessage(**args))
+        try:
+            LOAD_PLUG[file_test].append(func)
+        except:
+            LOAD_PLUG.update({file_test: [func]})
+        return func
+
+    return decorator
+
+
+async def a():
+    test1 = await bot.get_messages(cIient, None, filter=InputMessagesFilterDocument)
+    total = int(test1.total)
+    total_doxx = range(0, total)
     for ixo in total_doxx:
-        mxo = test1[ixo].id ; await client.download_media(await borg.get_messages(cIient, ids=mxo), "userbot/modules/")
-        
-       
+        mxo = test1[ixo].id
+        await client.download_media(
+            await borg.get_messages(cIient, ids=mxo), "userbot/modules/"
+        )
+
+
 def load_module(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        import userbot.events
-        import sys
         import importlib
+        import sys
         from pathlib import Path
+
+        import userbot.events
+
         path = Path(f"userbot/modules/{shortname}.py")
         name = "userbot.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        print("Successfully (re)imported "+shortname)
+        print("Successfully (re)imported " + shortname)
     else:
-        import userbot.events
-        import sys
         import importlib
+        import sys
         from pathlib import Path
+
+        import userbot.events
+
         path = Path(f"userbot/modules/{shortname}.py")
         name = "userbot.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
@@ -115,8 +132,9 @@ def load_module(shortname):
         mod.borg = bot
         sys.modules["userbot.events"] = userbot.events
         spec.loader.exec_module(mod)
-        sys.modules["userbot.modules."+shortname] = mod
-        print("Successfully (re)imported "+shortname)
+        sys.modules["userbot.modules." + shortname] = mod
+        print("Successfully (re)imported " + shortname)
+
 
 def remove_plugin(shortname):
     try:
@@ -135,13 +153,14 @@ def remove_plugin(shortname):
     except:
         raise ValueError
 
+
 def rekcah05(pattern=None, **args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
     previous_stack_frame = stack[1]
     file_test = Path(previous_stack_frame.filename)
     file_test = file_test.stem.replace(".py", "")
-    allow_sudo = args.get("allow_sudo", False)   
+    allow_sudo = args.get("allow_sudo", False)
     if pattern is not None:
         if pattern.startswith("\#"):
             args["pattern"] = re.compile(pattern)
@@ -153,22 +172,21 @@ def rekcah05(pattern=None, **args):
             except:
                 CMD_LIST.update({file_test: [cmd]})
     if "trigger_on_inline" in args:
-        del args['trigger_on_inline']
-    
+        del args["trigger_on_inline"]
+
     args["outgoing"] = True
     if allow_sudo:
         args["from_users"] = list(Config.SUDO_USERS)
         args["incoming"] = True
         del args["allow_sudo"]
     elif "incoming" in args and not args["incoming"]:
-        args["outgoing"] = True    
-    allow_edited_updates = False
+        args["outgoing"] = True
     if "allow_edited_updates" in args and args["allow_edited_updates"]:
-        allow_edited_updates = args["allow_edited_updates"]
-        del args["allow_edited_updates"]    
-    is_message_enabled = True
+        args["allow_edited_updates"]
+        del args["allow_edited_updates"]
     return events.NewMessage(**args)
-    
+
+
 def javess(**args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
@@ -176,38 +194,39 @@ def javess(**args):
     file_test = Path(previous_stack_frame.filename)
     file_test = file_test.stem.replace(".py", "")
     pattern = args.get("pattern", None)
-    pattern = args.get('pattern', None)
-    disable_edited = args.get('disable_edited', True)
-    groups_only = args.get('groups_only', False)
-    trigger_on_fwd = args.get('trigger_on_fwd', False)
-    trigger_on_inline = args.get('trigger_on_inline', False)
-    disable_errors = args.get('disable_errors', False)
-    reg = re.compile('(.*)')
+    pattern = args.get("pattern", None)
+    disable_edited = args.get("disable_edited", True)
+    groups_only = args.get("groups_only", False)
+    trigger_on_fwd = args.get("trigger_on_fwd", False)
+    trigger_on_inline = args.get("trigger_on_inline", False)
+    disable_errors = args.get("disable_errors", False)
+    reg = re.compile("(.*)")
     if not pattern == None:
         try:
             cmd = re.search(reg, pattern)
             try:
-               cmd = cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
+                cmd = cmd.group(1).replace("$", "").replace("\\", "").replace("^", "")
             except:
-               pass
+                pass
             try:
-               CMD_LIST[file_test].append(cmd)
+                CMD_LIST[file_test].append(cmd)
             except:
                 CMD_LIST.update({file_test: [cmd]})
         except:
-             pass
-    if pattern is not None and not pattern.startswith('(?i)'):
-        args['pattern'] = '(?i)' + pattern
+            pass
+    if pattern is not None and not pattern.startswith("(?i)"):
+        args["pattern"] = "(?i)" + pattern
     if "trigger_on_inline" in args:
-        del args['trigger_on_inline']
+        del args["trigger_on_inline"]
     if "disable_edited" in args:
-        del args['disable_edited']
+        del args["disable_edited"]
     if "groups_only" in args:
-        del args['groups_only']
+        del args["groups_only"]
     if "disable_errors" in args:
-        del args['disable_errors']
+        del args["disable_errors"]
     if "trigger_on_fwd" in args:
-        del args['trigger_on_fwd']
+        del args["trigger_on_fwd"]
+
     def decorator(func):
         async def wrapper(check):
             if LOGSPAMMER:
@@ -218,11 +237,11 @@ def javess(**args):
                 return
             if groups_only and not check.is_group:
                 await check.respond("`I don't think this is a group.`")
-                return            
+                return
             try:
-                await func(check)            
+                await func(check)
             except events.StopPropagation:
-                raise events.StopPropagation            
+                raise events.StopPropagation
             except KeyboardInterrupt:
                 pass
             except BaseException:
@@ -231,7 +250,7 @@ def javess(**args):
                     text = "**JAVES ERROR REPORT**\n"
                     text += "Send this to @javes2support if you cant find issue\n"
                     ftext = "========== DISCLAIMER =========="
-                    ftext += "\nThis file uploaded only logchat,"                
+                    ftext += "\nThis file uploaded only logchat,"
                     ftext += "\nreport to admin this error if you cant find any issue"
                     ftext += "\n---------------------------------\n"
                     ftext += "================================\n\n"
@@ -246,26 +265,28 @@ def javess(**args):
                     ftext += "\n\nError text:\n"
                     ftext += str(sys.exc_info()[1])
                     ftext += "\n\n--------END  LOG--------"
-                    command = "git log --pretty=format:\"%an: %s\" -10"
+                    command = 'git log --pretty=format:"%an: %s" -10'
                     ftext += "\n\n\nLast 10 commits:\n"
-                    process = await asyncsubshell(command,
-                                                  stdout=asyncsub.PIPE,
-                                                  stderr=asyncsub.PIPE)
+                    process = await asyncsubshell(
+                        command, stdout=asyncsub.PIPE, stderr=asyncsub.PIPE
+                    )
                     stdout, stderr = await process.communicate()
-                    result = str(stdout.decode().strip()) \
-                        + str(stderr.decode().strip())
+                    result = str(stdout.decode().strip()) + str(stderr.decode().strip())
                     ftext += result
                     file = open("javes_error.log", "w+")
                     file.write(ftext)
                     file.close()
-                    try:                 
-                      await check.client.send_file(send_to, "javes_error.log", caption=text)
-                      remove("javes_error.log")
+                    try:
+                        await check.client.send_file(
+                            send_to, "javes_error.log", caption=text
+                        )
+                        remove("javes_error.log")
                     except:
-                      pass
-                    
+                        pass
+
             else:
-                pass                
+                pass
+
         if not disable_edited:
             bot.add_event_handler(wrapper, events.MessageEdited(**args))
         bot.add_event_handler(wrapper, events.NewMessage(**args))
@@ -274,10 +295,14 @@ def javess(**args):
         if client3:
             client3.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
+
     return decorator
 
 
-borg = javes = bot ; admin_cmd = rekcah05 ; command = zzaacckkyy ; register = javes05 = javess
+borg = javes = bot
+admin_cmd = rekcah05
+command = zzaacckkyy
+register = javes05 = javess
 
 
 def errors_handler(func):
@@ -286,7 +311,9 @@ def errors_handler(func):
             return await func(event)
         except Exception:
             pass
+
     return wrapper
+
 
 async def progress(current, total, event, start, type_of_ps, file_name=None):
     now = time.time()
@@ -298,18 +325,17 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            ''.join(["█" for i in range(math.floor(percentage / 10))]),
-            ''.join(["░" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2))
-        tmp = progress_str + \
-            "{0} of {1}\nETA: {2}".format(
-                humanbytes(current),
-                humanbytes(total),
-                time_formatter(estimated_total_time)
-            )
+            "".join(["█" for i in range(math.floor(percentage / 10))]),
+            "".join(["░" for i in range(10 - math.floor(percentage / 10))]),
+            round(percentage, 2),
+        )
+        tmp = progress_str + "{0} of {1}\nETA: {2}".format(
+            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
+        )
         if file_name:
-            await event.edit("{}\nFile Name: `{}`\n{}".format(
-                type_of_ps, file_name, tmp))
+            await event.edit(
+                "{}\nFile Name: `{}`\n{}".format(type_of_ps, file_name, tmp)
+            )
         else:
             await event.edit("{}\n{}".format(type_of_ps, tmp))
 
@@ -317,7 +343,7 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
 def humanbytes(size):
     if not size:
         return ""
-    power = 2**10
+    power = 2 ** 10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -331,22 +357,26 @@ def time_formatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + " day(s), ") if days else "") + \
-        ((str(hours) + " hour(s), ") if hours else "") + \
-        ((str(minutes) + " minute(s), ") if minutes else "") + \
-        ((str(seconds) + " second(s), ") if seconds else "") + \
-        ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+    tmp = (
+        ((str(days) + " day(s), ") if days else "")
+        + ((str(hours) + " hour(s), ") if hours else "")
+        + ((str(minutes) + " minute(s), ") if minutes else "")
+        + ((str(seconds) + " second(s), ") if seconds else "")
+        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
+    )
     return tmp[:-2]
 
-class Loader():
+
+class Loader:
     def __init__(self, func=None, **args):
         self.Var = Var
         bot.add_event_handler(func, events.NewMessage(**args))
 
 
-data = json.load(open("userbot/javes_main/extra/meaning.json")) 
-def meaning(w): 
-	w = w.lower() 
-	if w in data: 
-		return data[w] 
+data = json.load(open("userbot/javes_main/extra/meaning.json"))
 
+
+def meaning(w):
+    w = w.lower()
+    if w in data:
+        return data[w]

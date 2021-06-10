@@ -21,8 +21,6 @@ import re
 import time
 
 
-
-
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
     with open(fname, "rb") as f:

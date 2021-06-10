@@ -1,19 +1,9 @@
 # by @mrconfused (@sandy1709) Bhadwa hai Ye Cat Userbot Ka Owner
 
-import asyncio
 import os
-import time
-from datetime import datetime
-from io import BytesIO
-from pathlib import Path
+
 from userbot import bot as borg
-from telethon import functions, types
-from telethon.errors import PhotoInvalidDimensionsError
-from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.functions.messages import SendMediaRequest
-
-from userbot.utils import admin_cmd, progress
-
+from userbot.utils import admin_cmd
 
 if not os.path.isdir("./temp"):
     os.makedirs("./temp")

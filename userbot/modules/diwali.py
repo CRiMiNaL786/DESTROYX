@@ -1,19 +1,20 @@
-#made by shivam patel
-from telethon import events
+# made by shivam patel
 
 import asyncio
 
-from userbot.utils import admin_cmd
 from userbot import bot as javes
+from userbot.utils import admin_cmd
+
+
 @javes.on(admin_cmd("hdd"))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0,20)
+    animation_ttl = range(0, 20)
     await event.edit("Happy Diwali Dosto🤗")
     animation_chars = [
-            """-----💜happy💜diwali💜
+        """-----💜happy💜diwali💜
 ----💜happy💜diwali💜
 ---💜happy💜diwali💜
 --💜happy💜diwali💜
@@ -221,7 +222,7 @@ async def _(event):
 --💙happy💙diwali💙
 -💙happy💙diwali💙
 💙happy💙diwali💙""",
-            """💖happy💖diwali💖
+        """💖happy💖diwali💖
 💖happy💖diwali💖
 💖happy💖diwali💖
 -💖happy💖diwali💖
@@ -428,7 +429,7 @@ async def _(event):
 --💜happy💜diwali💜
 ----💜happy💜diwali💜
 -----💜happy💜diwali💜""",
-            """"💙happy💙diwali💙
+        """"💙happy💙diwali💙
 💙happy💙diwali💙
 💙happy💙diwali💙
 -💙happy💙diwali💙
@@ -635,7 +636,7 @@ async def _(event):
 --💖happy💖diwali💖
 ---💖happy💖diwali💖
 ----💖happy💖diwali💖""",
-            """❤️happy♥️diwali❤️
+        """❤️happy♥️diwali❤️
 ❤️happy♥️diwali♥️
 ❤️happy♥️diwali♥️
 -❤️happy♥️diwali♥️
@@ -842,7 +843,7 @@ async def _(event):
 💙happy💙diwali💙
 -💙happy💙diwali💙
 --💙happy💙diwali💙""",
-            """💚happy💚diwali💚
+        """💚happy💚diwali💚
 💚happy💚diwali💚
 💚happy💚diwali💚
 -💚happy💚diwali💚
@@ -1049,7 +1050,7 @@ async def _(event):
 ❤️happy♥️diwali♥️
 ❤️happy♥️diwali♥️
 -❤️happy♥️diwali♥️""",
- """💜happy💜diwali💜
+        """💜happy💜diwali💜
 💜happy💜diwali💜
 💜happy💜diwali💜
 -💜happy💜diwali💜
@@ -1255,33 +1256,45 @@ async def _(event):
 💚happy💚diwali💚
 💚happy💚diwali💚
 💚happy💚diwali💚
-💚happy💚diwali💚"""           ]
+💚happy💚diwali💚""",
+    ]
 
     for i in animation_ttl:
-        	
+
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
+
+
 @javes.on(admin_cmd("diwali"))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0,80)
+    animation_ttl = range(0, 80)
     await event.edit("❤Happy Diwali Dosto❤")
-    animation_chars = ["💖happy💖diwali💖","💙happy💙diwali💙","❤️happy♥️diwali❤️","💚happy💚diwali💚","💜happy💜diwali💜",]
+    animation_chars = [
+        "💖happy💖diwali💖",
+        "💙happy💙diwali💙",
+        "❤️happy♥️diwali❤️",
+        "💚happy💚diwali💚",
+        "💜happy💜diwali💜",
+    ]
 
     for i in animation_ttl:
-        	
+
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 5])
+
+
 @javes.on(admin_cmd("dosto"))
 async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0,22)
+    animation_ttl = range(0, 22)
     await event.edit("❤Dosto❤")
-    animation_chars = ["""💜💜                        💜💜
+    animation_chars = [
+        """💜💜                        💜💜
 💜💜                        💜💜
 💜💜                        💜💜
 💜💜                        💜💜
@@ -1290,7 +1303,8 @@ async def _(event):
 💜💜                        💜💜
 💜💜                        💜💜
 💜💜                        💜💜
-💜💜                        💜💜""","""ㅤㅤㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+💜💜                        💜💜""",
+        """ㅤㅤㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                     💙💙
                  💙💙💙
              💙💙💙💙
@@ -1301,7 +1315,8 @@ async def _(event):
       💙💙💙💙💙💙
    💙💙                 💙💙
   💙💙                    💙💙
-💙💙                       💙💙""","""💚💚💚💚💚💚💚
+💙💙                       💙💙""",
+        """💚💚💚💚💚💚💚
 💚💚💚💚💚💚💚💚
 💚💚                     💚💚
 💚💚                     💚💚
@@ -1310,7 +1325,8 @@ async def _(event):
 💚💚
 💚💚
 💚💚
-💚💚""","""💛💛💛💛💛💛
+💚💚""",
+        """💛💛💛💛💛💛
 💛💛💛💛💛💛💛
 💛💛                💛💛
 💛💛                💛💛
@@ -1319,7 +1335,8 @@ async def _(event):
 💛💛
 💛💛
 💛💛
-💛💛""","""💜💜                    💜💜
+💛💛""",
+        """💜💜                    💜💜
    💜💜              💜💜
       💜💜        💜💜
          💜💜  💜💜
@@ -1328,7 +1345,8 @@ async def _(event):
               💜💜
               💜💜
               💜💜
-              💜💜""","""💖💖💖💖💖💖💖
+              💜💜""",
+        """💖💖💖💖💖💖💖
 💖💖💖💖💖💖💖💖
 💖💖                      💖💖
 💖💖                         💖💖
@@ -1337,7 +1355,8 @@ async def _(event):
 💖💖                         💖💖
 💖💖                      💖💖
 💖💖💖💖💖💖💖💖
-💖💖💖💖💖💖💖""","""💝💝💝💝💝💝
+💖💖💖💖💖💖💖""",
+        """💝💝💝💝💝💝
 💝💝💝💝💝💝
           💝💝
           💝💝
@@ -1346,7 +1365,8 @@ async def _(event):
           💝💝
           💝💝
 💝💝💝💝💝💝
-💝💝💝💝💝💝""","""💖💖                               💖💖
+💝💝💝💝💝💝""",
+        """💖💖                               💖💖
 💖💖                               💖💖
 💖💖                               💖💖
 💖💖                               💖💖
@@ -1355,7 +1375,8 @@ async def _(event):
  💖💖        💖💖💖       💖💖
   💖💖   💖💖  💖💖   💖💖
    💖💖💖💖      💖💖💖💖
-    💖💖💖             💖💖💖""","""ㅤㅤㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+    💖💖💖             💖💖💖""",
+        """ㅤㅤㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                     💙💙
                  💙💙💙
              💙💙💙💙
@@ -1366,7 +1387,8 @@ async def _(event):
       💙💙💙💙💙💙
    💙💙                 💙💙
   💙💙                    💙💙
-💙💙                       💙💙""","""💘💘
+💙💙                       💙💙""",
+        """💘💘
 💘💘
 💘💘
 💘💘
@@ -1375,7 +1397,8 @@ async def _(event):
 💘💘
 💘💘
 💘💘💘💘💘💘💘💘
-💘💘💘💘💘💘💘💘""","""💝💝💝💝💝💝
+💘💘💘💘💘💘💘💘""",
+        """💝💝💝💝💝💝
 💝💝💝💝💝💝
           💝💝
           💝💝
@@ -1384,9 +1407,10 @@ async def _(event):
           💝💝
           💝💝
 💝💝💝💝💝💝
-💝💝💝💝💝💝""",]
+💝💝💝💝💝💝""",
+    ]
 
     for i in animation_ttl:
-        	
+
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 11])
