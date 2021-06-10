@@ -19,6 +19,7 @@
 [![PR Open](https://img.shields.io/github/issues-pr/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls)
 [![PR Closed](https://img.shields.io/github/issues-pr-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls?q=is:closed)
 ![Repo Size](https://img.shields.io/github/repo-size/Javes786/javes-2.0?style=flat-square)
+
 <br>
 
 
