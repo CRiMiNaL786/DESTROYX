@@ -1,5 +1,5 @@
 from userbot import config as Config
-
+from userbot.javes_main import commands
 
 async def edit_or_reply(event, text, parse_mode=None, link_preview=None):
     link_preview = link_preview or False
