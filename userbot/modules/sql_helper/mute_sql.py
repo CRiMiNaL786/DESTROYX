@@ -1,9 +1,9 @@
 try:
-    from userbot.modules.sql_helper import BASE, SESSION
+    from userbot.modules.sql_helper import SESSION, BASE
 except ImportError:
     raise Exception("Hello!")
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, UnicodeText
 
 
 class Mute(BASE):

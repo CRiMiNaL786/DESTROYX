@@ -1,16 +1,14 @@
 import asyncio
 
 import requests
-
+from telethon import functions
+#from userbot.helpers import yaml_format
+from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 from userbot import bot as borg
-
-# from userbot.helpers import yaml_format
-from userbot.utils import admin_cmd
-
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Noob"
 
-HELPTYPE = False
+HELPTYPE=False
 
 
 @borg.on(admin_cmd(outgoing=True, pattern="help ?(.*)"))
@@ -21,7 +19,9 @@ async def cmd_list(event):
         reply_to_id = event.reply_to_msg_id
     input_str = event.pattern_match.group(1)
     if input_str == "text":
-        string = "Total {count} commands found in {plugincount} plugins of userbot\n\n"
+        string = (
+            "Total {count} commands found in {plugincount} plugins of userbot\n\n"
+        )
         catcount = 0
         plugincount = 0
         for i in sorted(CMD_LIST):
@@ -67,7 +67,7 @@ async def cmd_list(event):
         if HELPTYPE is True:
             help_string = f"Userbot Helper.. Provided by {DEFAULTUSER}\
                           \nUserbot Helper to reveal all the plugin names"
-
+                          
             tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername, help_string
@@ -86,9 +86,12 @@ async def cmd_list(event):
             await event.edit(string.format(count=catcount), parse_mode="HTML")
 
 
+
+
 @borg.on(admin_cmd(outgoing=True, pattern="chk ?(.*)"))
+
 async def info(event):
-    """For .info command,"""
+    """ For .info command,"""
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -106,11 +109,11 @@ async def info(event):
             string += "• " + f"<code>{str(i)}</code>"
             string += "   "
             catcount += 1
-
+       
             await event.edit(string.format(count=catcount), parse_mode="HTML")
 
 
-"""@borg.on(admin_cmd(pattern="dc$"))
+'''@borg.on(admin_cmd(pattern="dc$"))
 async def _(event):
     result = await bot(functions.help.GetNearestDcRequest())
     result = (
@@ -124,4 +127,5 @@ async def _(event):
                 "
     )
     await event.edit(result)
-"""
+'''
+

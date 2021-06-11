@@ -3,11 +3,9 @@
 # Cat userbot owner sandeep chakka hai yaad rakhna 😂
 
 import asyncio
-
-from userbot import ALIVE_NAME
-from userbot import bot as borg
+from  userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
-
+from userbot import bot as borg
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Unknown"
 
 
@@ -37,21 +35,23 @@ async def _(event):
         "[Some Gifts](https://media.giphy.com/media/3j4QTXSIKRfPCgvVIL/giphy.gif)",
         "[Some Gifts](https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif)",
         "[Some Gifts](https://telegra.ph/file/0c3f83a170e28b30316ae.mp4)",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",
+        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",  
         f"Once Again Happy New Year To All By {DEFAULTUSER}😘😘😘",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",
+        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️", 
         f"Once Again Happy New Year To All By {DEFAULTUSER}💜💜💜",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}💛💛💛",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}🧡🧡🧡",
+        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",  
+        f"Once Again Happy New Year To All By {DEFAULTUSER}💛💛💛",     
+        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",  
+        f"Once Again Happy New Year To All By {DEFAULTUSER}🧡🧡🧡",      
         f"Once Again Happy New Year To All By {DEFAULTUSER}💙💙💙",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}💚💚💚",
-        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",
+        f"Once Again Happy New Year To All By {DEFAULTUSER}💚💚💚",  
+        f"Once Again Happy New Year To All By {DEFAULTUSER}❤️❤️❤️",  
         f"Once Again Happy New Year To All By {DEFAULTUSER}**💖💖💖",
-    ]
+        ]
 
-    for i in ttl:
+    for i in ttl:  
 
         await asyncio.sleep(lightning_anmation_interval)
-        await event.edit(chars[i % 30], link_preview=True)
+        await event.edit(
+            chars[i % 30], link_preview=True
+        )

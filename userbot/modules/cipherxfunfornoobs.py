@@ -5,16 +5,15 @@ import time
 from collections import deque
 
 from telethon import events
+from userbot.util import admin_cmd as friday_on_cmd
 
 from userbot import CMD_HELP
-from userbot import bot as friday
-from userbot.util import admin_cmd as friday_on_cmd
 from userbot.utils import register
-
+from userbot import bot as friday
 
 @friday.on(events.NewMessage(pattern=r"\.slash", outgoing=True))
 async def kek(keks):
-    """Check yourself ;)"""
+    """ Check yourself ;)"""
     uio = ["/", "\\"]
     for i in range(1, 15):
         time.sleep(0.3)
@@ -23,7 +22,7 @@ async def kek(keks):
 
 @friday.on(events.NewMessage(pattern=r"\.para", outgoing=True))
 async def kek(keks):
-    """Check yourself ;)"""
+    """ Check yourself ;)"""
     uio = [")", "("]
     for i in range(1, 15):
         time.sleep(0.3)

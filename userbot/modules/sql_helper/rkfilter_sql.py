@@ -1,6 +1,5 @@
-from sqlalchemy import Column, LargeBinary, Numeric, String, UnicodeText
-
-from userbot.modules.sql_helper import BASE, SESSION
+from sqlalchemy import Column, UnicodeText, LargeBinary, Numeric, String
+from userbot.modules.sql_helper import SESSION, BASE
 
 
 class rkfilters(BASE):
@@ -16,12 +15,8 @@ class rkfilters(BASE):
     def __init__(
         self,
         chat_id,
-        keyword,
-        reply,
-        snip_type,
-        media_id=None,
-        media_access_hash=None,
-        media_file_reference=None,
+        keyword, reply, snip_type,
+        media_id=None, media_access_hash=None, media_file_reference=None
     ):
         self.chat_id = chat_id
         self.keyword = keyword
@@ -53,15 +48,7 @@ def get_all_rkfilters(chat_id):
         SESSION.close()
 
 
-def add_filter(
-    chat_id,
-    keyword,
-    reply,
-    snip_type,
-    media_id,
-    media_access_hash,
-    media_file_reference,
-):
+def add_filter(chat_id, keyword, reply, snip_type, media_id, media_access_hash, media_file_reference):
     adder = SESSION.query(rkfilters).get((str(chat_id), keyword))
     if adder:
         adder.reply = reply
@@ -70,15 +57,8 @@ def add_filter(
         adder.media_access_hash = media_access_hash
         adder.media_file_reference = media_file_reference
     else:
-        adder = rkfilters(
-            chat_id,
-            keyword,
-            reply,
-            snip_type,
-            media_id,
-            media_access_hash,
-            media_file_reference,
-        )
+        adder = rkfilters(chat_id, keyword, reply, snip_type, media_id,
+                        media_access_hash, media_file_reference)
     SESSION.add(adder)
     SESSION.commit()
 

@@ -1,14 +1,16 @@
 import logging
 import os
 from datetime import datetime
-
-import requests
-
-from userbot import *
-from userbot import bot as javes
 from userbot.javes_main.heroku_var import *
-
-# from userbot.uniborgConfig import Config
+import requests
+from requests import exceptions, get
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from userbot import bot as javes
+from userbot import CMD_HELP
+import userbot
+from userbot import *
+#from userbot.uniborgConfig import Config
 from userbot.utils import admin_cmd
 
 logging.basicConfig(
@@ -26,11 +28,11 @@ def progress(current, total):
 
 DOGBIN_URL = "https://del.dog/"
 try:
-    BOTLOG_CHATID = config.PRIVATE_GROUP_ID
-except:
-    BOTLOG_CHATID = None
-else:
-    BOTLOG_CHATID = BOTLOG_CHATID
+	BOTLOG_CHATID = config.PRIVATE_GROUP_ID
+except :
+	BOTLOG_CHATID = None
+else :
+	BOTLOG_CHATID = BOTLOG_CHATID
 BOTLOG = True
 
 

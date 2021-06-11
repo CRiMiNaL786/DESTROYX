@@ -1,11 +1,9 @@
-from userbot import bot as borg
+from telethon import events
 from userbot.utils import admin_cmd
-
-
-@borg.on(admin_cmd(pattern="hepfun"))
+from userbot import bot as borg
+@borg.on(admin_cmd(pattern="hepfun"))   
 async def fn(event):
-    await event.edit(
-        """JAVES FUN PLUGIN COMMANDS
+  await event.edit("""JAVES FUN PLUGIN COMMANDS
    !slap <reply to a user> - slap the user
    !yes/no/maybe/decide - send gif
     !fp
@@ -86,5 +84,4 @@ async def fn(event):
     !fuck
     !sax
     !sax
-    !dump"""
-    )
+    !dump""")

@@ -1,16 +1,17 @@
-import asyncio
+
 import json
-import math
 import os
 import subprocess
 import time
+import math
 
+from pySmartDL import SmartDL
+import asyncio
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -25,17 +26,18 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}] {2}%\n".format(
-            "".join(["█" for i in range(math.floor(percentage / 10))]),
-            "".join(["░" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2),
-        )
-        tmp = progress_str + "{0} of {1}\nETA: {2}".format(
-            humanbytes(current), humanbytes(total), time_formatter(estimated_total_time)
-        )
-        if file_name:
-            await event.edit(
-                "{}\nFile Name: `{}`\n{}".format(type_of_ps, file_name, tmp)
+            ''.join(["█" for i in range(math.floor(percentage / 10))]),
+            ''.join(["░" for i in range(10 - math.floor(percentage / 10))]),
+            round(percentage, 2))
+        tmp = progress_str + \
+            "{0} of {1}\nETA: {2}".format(
+                humanbytes(current),
+                humanbytes(total),
+                time_formatter(estimated_total_time)
             )
+        if file_name:
+            await event.edit("{}\nFile Name: `{}`\n{}".format(
+                type_of_ps, file_name, tmp))
         else:
             await event.edit("{}\n{}".format(type_of_ps, tmp))
 
@@ -47,7 +49,7 @@ def humanbytes(size):
     if not size:
         return ""
     # 2 ** 10 = 1024
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -63,19 +65,17 @@ def time_formatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = (
-        ((str(days) + " day(s), ") if days else "")
-        + ((str(hours) + " hour(s), ") if hours else "")
-        + ((str(minutes) + " minute(s), ") if minutes else "")
-        + ((str(seconds) + " second(s), ") if seconds else "")
-        + ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
-    )
+    tmp = ((str(days) + " day(s), ") if days else "") + \
+        ((str(hours) + " hour(s), ") if hours else "") + \
+        ((str(minutes) + " minute(s), ") if minutes else "") + \
+        ((str(seconds) + " second(s), ") if seconds else "") + \
+        ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     return tmp[:-2]
 
 
 @register(pattern=r"^\!download(?: |$)(.*)", outgoing=True)
 async def download(target_file):
-    """For .download command, download files to the userbot's server."""
+    """ For .download command, download files to the userbot's server. """
     await target_file.edit("Processing ...")
     input_str = target_file.pattern_match.group(1)
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -102,13 +102,13 @@ async def download(target_file):
             now = time.time()
             diff = now - c_time
             percentage = downloader.get_progress() * 100
-            downloader.get_speed()
-            round(diff) * 1000
+            speed = downloader.get_speed()
+            elapsed_time = round(diff) * 1000
             progress_str = "[{0}{1}] {2}%".format(
-                "".join(["█" for i in range(math.floor(percentage / 10))]),
-                "".join(["░" for i in range(10 - math.floor(percentage / 10))]),
-                round(percentage, 2),
-            )
+                ''.join(["█" for i in range(math.floor(percentage / 10))]),
+                ''.join(["░"
+                         for i in range(10 - math.floor(percentage / 10))]),
+                round(percentage, 2))
             estimated_total_time = downloader.get_eta(human=True)
             try:
                 current_message = f"{status}..\
@@ -118,15 +118,15 @@ async def download(target_file):
                 \n{humanbytes(downloaded)} of {humanbytes(total_length)}\
                 \nETA: {estimated_total_time}"
 
-                if round(diff % 10.00) == 0 and current_message != display_message:
+                if round(diff %
+                         10.00) == 0 and current_message != display_message:
                     await target_file.edit(current_message)
                     display_message = current_message
             except Exception as e:
                 LOGS.info(str(e))
         if downloader.isSuccessful():
-            await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
-            )
+            await target_file.edit("Downloaded to `{}` successfully !!".format(
+                downloaded_file_name))
         else:
             await target_file.edit("Incorrect URL\n{}".format(url))
     elif target_file.reply_to_msg_id:
@@ -135,23 +135,22 @@ async def download(target_file):
             downloaded_file_name = await target_file.client.download_media(
                 await target_file.get_reply_message(),
                 TEMP_DOWNLOAD_DIRECTORY,
-                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                    progress(d, t, target_file, c_time, "Downloading...")
-                ),
-            )
+                progress_callback=lambda d, t: asyncio.get_event_loop(
+                ).create_task(
+                    progress(d, t, target_file, c_time, "Downloading...")))
         except Exception as e:  # pylint:disable=C0103,W0703
             await target_file.edit(str(e))
         else:
-            await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
-            )
+            await target_file.edit("Downloaded to `{}` successfully !!".format(
+                downloaded_file_name))
     else:
-        await target_file.edit("Reply to a message to download to my local server.")
+        await target_file.edit(
+            "Reply to a message to download to my local server.")
 
 
 @register(pattern=r"^\!uploadir (.*)", outgoing=True)
 async def uploadir(udir_event):
-    """For .uploadir command, allows you to upload everything from a folder in the server"""
+    """ For .uploadir command, allows you to upload everything from a folder in the server"""
     input_str = udir_event.pattern_match.group(1)
     if os.path.exists(input_str):
         await udir_event.edit("Processing ...")
@@ -165,9 +164,7 @@ async def uploadir(udir_event):
         uploaded = 0
         await udir_event.edit(
             "Found {} files. Uploading will start soon. Please wait!".format(
-                len(lst_of_files)
-            )
-        )
+                len(lst_of_files)))
         for single_file in lst_of_files:
             if os.path.exists(single_file):
                 # https://stackoverflow.com/a/678242/4723940
@@ -181,12 +178,10 @@ async def uploadir(udir_event):
                         force_document=False,
                         allow_cache=False,
                         reply_to=udir_event.message.id,
-                        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                            progress(
-                                d, t, udir_event, c_time, "Uploading...", single_file
-                            )
-                        ),
-                    )
+                        progress_callback=lambda d, t: asyncio.get_event_loop(
+                        ).create_task(
+                            progress(d, t, udir_event, c_time, "Uploading...",
+                                     single_file)))
                 else:
                     thumb_image = os.path.join(input_str, "thumb.jpg")
                     c_time = time.time()
@@ -217,25 +212,24 @@ async def uploadir(udir_event):
                                 supports_streaming=True,
                             )
                         ],
-                        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                            progress(
-                                d, t, udir_event, c_time, "Uploading...", single_file
-                            )
-                        ),
-                    )
+                        progress_callback=lambda d, t: asyncio.get_event_loop(
+                        ).create_task(
+                            progress(d, t, udir_event, c_time, "Uploading...",
+                                     single_file)))
                 os.remove(single_file)
                 uploaded = uploaded + 1
-        await udir_event.edit("Uploaded {} files successfully !!".format(uploaded))
+        await udir_event.edit(
+            "Uploaded {} files successfully !!".format(uploaded))
     else:
         await udir_event.edit("404: Directory Not Found")
 
 
 @register(pattern=r"^\!upload (.*)", outgoing=True)
 async def upload(u_event):
-    """For .upload command, allows you to upload a file from the userbot's server"""
+    """ For .upload command, allows you to upload a file from the userbot's server """
     await u_event.edit("Processing ...")
     input_str = u_event.pattern_match.group(1)
-    if input_str in ("userbot.session", "config.env", "userbot.modules", "*/modules/*"):
+    if input_str in ("userbot.session", "config.env", "userbot.modules", "*/modules/*" ):
         await u_event.edit("`That's a dangerous operation! Not Permitted!`")
         return
     if os.path.exists(input_str):
@@ -246,17 +240,16 @@ async def upload(u_event):
             force_document=True,
             allow_cache=False,
             reply_to=u_event.message.id,
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, u_event, c_time, "Uploading...", input_str)
-            ),
-        )
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, u_event, c_time, "Uploading...", input_str)))
         await u_event.edit("Uploaded successfully !!")
     else:
         await u_event.edit("404: File Not Found")
 
 
 def get_video_thumb(file, output=None, width=90):
-    """Get video thumbnail"""
+    """ Get video thumbnail """
     metadata = extractMetadata(createParser(file))
     popen = subprocess.Popen(
         [
@@ -265,8 +258,8 @@ def get_video_thumb(file, output=None, width=90):
             file,
             "-ss",
             str(
-                int((0, metadata.get("duration").seconds)[metadata.has("duration")] / 2)
-            ),
+                int((0, metadata.get("duration").seconds
+                     )[metadata.has("duration")] / 2)),
             "-filter:v",
             "scale={}:-1".format(width),
             "-vframes",
@@ -282,7 +275,7 @@ def get_video_thumb(file, output=None, width=90):
 
 
 def extract_w_h(file):
-    """Get width and height of media"""
+    """ Get width and height of media """
     command_to_run = [
         "ffprobe",
         "-v",
@@ -295,7 +288,8 @@ def extract_w_h(file):
     ]
     # https://stackoverflow.com/a/11236144/4723940
     try:
-        t_response = subprocess.check_output(command_to_run, stderr=subprocess.STDOUT)
+        t_response = subprocess.check_output(command_to_run,
+                                             stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as exc:
         LOGS.warning(exc)
     else:
@@ -308,7 +302,7 @@ def extract_w_h(file):
 
 @register(pattern=r"^\!uploadas(stream|vn|all) (.*)", outgoing=True)
 async def uploadas(uas_event):
-    """For .uploadas command, allows you to specify some arguments for upload."""
+    """ For .uploadas command, allows you to specify some arguments for upload. """
     await uas_event.edit("Processing ...")
     type_of_upload = uas_event.pattern_match.group(1)
     supports_streaming = False
@@ -362,10 +356,10 @@ async def uploadas(uas_event):
                             supports_streaming=True,
                         )
                     ],
-                    progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                        progress(d, t, uas_event, c_time, "Uploading...", file_name)
-                    ),
-                )
+                    progress_callback=lambda d, t: asyncio.get_event_loop(
+                    ).create_task(
+                        progress(d, t, uas_event, c_time, "Uploading...",
+                                 file_name)))
             elif round_message:
                 c_time = time.time()
                 await uas_event.client.send_file(
@@ -384,10 +378,10 @@ async def uploadas(uas_event):
                             supports_streaming=True,
                         )
                     ],
-                    progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                        progress(d, t, uas_event, c_time, "Uploading...", file_name)
-                    ),
-                )
+                    progress_callback=lambda d, t: asyncio.get_event_loop(
+                    ).create_task(
+                        progress(d, t, uas_event, c_time, "Uploading...",
+                                 file_name)))
             elif spam_big_messages:
                 await uas_event.edit("TBD: Not (yet) Implemented")
                 return
@@ -399,9 +393,9 @@ async def uploadas(uas_event):
         await uas_event.edit("404: File Not Found")
 
 
-CMD_HELP.update(
-    {
-        "upload-download": "!download <link|filename> or reply to media\
+CMD_HELP.update({
+    "upload-download":
+    "!download <link|filename> or reply to media\
 \nUsage: Downloads file to the server.\
 \n\n!upload <path in server>\
 \nUsage: Uploads a locally stored file to the chat.\
@@ -410,5 +404,4 @@ CMD_HELP.update(
 \n\n!uploadir(stream|vn|all) \
 \nUsage:  upload everything from a folder in the server\
 "
-    }
-)
+})

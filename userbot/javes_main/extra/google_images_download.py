@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # In[ ]:
 #  coding: utf-8
-# modified by CatsDev (Sandy)
+#modified by CatsDev (Sandy)
 ###### Searching and Downloading Google Images to the local disk ######
 
 import argparse

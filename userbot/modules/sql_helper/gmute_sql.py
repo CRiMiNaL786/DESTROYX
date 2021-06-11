@@ -1,9 +1,9 @@
 try:
-    from userbot.modules.sql_helper import BASE, SESSION
+    from userbot.modules.sql_helper import SESSION, BASE
 except ImportError:
     raise AttributeError
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, UnicodeText
 
 
 class GMute(BASE):

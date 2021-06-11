@@ -11,14 +11,13 @@ import requests
 from telethon import events
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 
-from userbot import bot
-from userbot.utils import admin_cmd, edit_or_reply
-
 from .. import CMD_HELP
+from userbot.utils import admin_cmd, edit_or_reply
 from .sql_helper.echo_sql import addecho, get_all_echos, is_echo, remove_echo
-
+from userbot import bot
 
 @bot.on(admin_cmd(pattern="addecho$"))
+
 async def echo(cat):
     if cat.fwd_from:
         return
@@ -42,6 +41,7 @@ async def echo(cat):
 
 
 @bot.on(admin_cmd(pattern="rmecho$"))
+
 async def echo(cat):
     if cat.fwd_from:
         return
@@ -65,6 +65,7 @@ async def echo(cat):
 
 
 @bot.on(admin_cmd(pattern="listecho$"))
+
 async def echo(cat):
     if cat.fwd_from:
         return
@@ -95,7 +96,7 @@ async def echo(cat):
 
 @bot.on(events.NewMessage(incoming=True))
 async def samereply(cat):
-    # if cat.chat_id in Config.UB_BLACK_LIST_CHAT:
+    #if cat.chat_id in Config.UB_BLACK_LIST_CHAT:
     #   return
     if is_echo(cat.sender_id, cat.chat_id):
         await asyncio.sleep(2)

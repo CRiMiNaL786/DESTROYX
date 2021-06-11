@@ -1,6 +1,5 @@
-from sqlalchemy import BigInteger, Boolean, Column, Numeric
-
-from userbot.modules.sql_helper import BASE, SESSION
+from sqlalchemy import BigInteger, Boolean, Column, LargeBinary, Numeric, String, UnicodeText
+from userbot.modules.sql_helper import SESSION, BASE
 
 
 class rkwelcome(BASE):
@@ -10,7 +9,13 @@ class rkwelcome(BASE):
     previous_rkwelcome = Column(BigInteger)
     f_mesg_id = Column(Numeric)
 
-    def __init__(self, chat_id, should_clean_rkwelcome, previous_rkwelcome, f_mesg_id):
+    def __init__(
+        self,
+        chat_id,
+        should_clean_rkwelcome,
+        previous_rkwelcome,
+        f_mesg_id
+    ):
         self.chat_id = chat_id
         self.should_clean_rkwelcome = should_clean_rkwelcome
         self.previous_rkwelcome = previous_rkwelcome
@@ -30,7 +35,10 @@ def get_current_rkwelcome_settings(chat_id):
 
 
 def add_rkwelcome_setting(
-    chat_id, should_clean_rkwelcome, previous_rkwelcome, f_mesg_id
+    chat_id,
+    should_clean_rkwelcome,
+    previous_rkwelcome,
+    f_mesg_id
 ):
     adder = SESSION.query(rkwelcome).get(chat_id)
     if adder:
@@ -39,7 +47,10 @@ def add_rkwelcome_setting(
         adder.f_mesg_id = f_mesg_id
     else:
         adder = rkwelcome(
-            chat_id, should_clean_rkwelcome, previous_rkwelcome, f_mesg_id
+            chat_id,
+            should_clean_rkwelcome,
+            previous_rkwelcome,
+            f_mesg_id
         )
     SESSION.add(adder)
     SESSION.commit()

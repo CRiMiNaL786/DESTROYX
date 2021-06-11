@@ -1,8 +1,8 @@
 try:
-    from userbot.modules.sql_helper import BASE, SESSION
+    from userbot.modules.sql_helper import SESSION, BASE
 except ImportError:
     raise AttributeError
-from sqlalchemy import Column, Numeric, String, UnicodeText
+from sqlalchemy import Column, UnicodeText, Numeric, String
 
 
 class Notes(BASE):

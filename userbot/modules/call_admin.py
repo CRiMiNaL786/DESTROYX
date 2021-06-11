@@ -1,9 +1,8 @@
+import asyncio
+from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
-
 from userbot import CMD_HELP, bot
-from userbot.events import javes05
-
-
+from userbot.events import javes05, admin_cmd
 @javes05(outgoing=True, pattern="^\!report")
 async def _(event):
     if event.fwd_from:
@@ -21,10 +20,11 @@ async def _(event):
     await event.delete()
 
 
-CMD_HELP.update(
-    {
-        "report": "\
+CMD_HELP.update({
+    "report":
+    "\
 !report\
 \nUsage: Reply to a message to report it to group admins "
-    }
-)
+})
+
+

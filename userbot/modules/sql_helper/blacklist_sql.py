@@ -1,10 +1,9 @@
 try:
-    from userbot.modules.sql_helper import BASE, SESSION
+    from userbot.modules.sql_helper import SESSION, BASE
 except ImportError:
     raise AttributeError
+from sqlalchemy import Column, UnicodeText, Numeric, String
 import threading
-
-from sqlalchemy import Column, String, UnicodeText
 
 
 class BlackListFilters(BASE):
@@ -20,11 +19,9 @@ class BlackListFilters(BASE):
         return "<Blacklist filter '%s' for %s>" % (self.trigger, self.chat_id)
 
     def __eq__(self, other):
-        return bool(
-            isinstance(other, BlackListFilters)
-            and self.chat_id == other.chat_id
-            and self.trigger == other.trigger
-        )
+        return bool(isinstance(other, BlackListFilters)
+                    and self.chat_id == other.chat_id
+                    and self.trigger == other.trigger)
 
 
 BlackListFilters.__table__.create(checkfirst=True)
@@ -71,11 +68,7 @@ def num_blacklist_filters():
 
 def num_blacklist_chat_filters(chat_id):
     try:
-        return (
-            SESSION.query(BlackListFilters.chat_id)
-            .filter(BlackListFilters.chat_id == str(chat_id))
-            .count()
-        )
+        return SESSION.query(BlackListFilters.chat_id).filter(BlackListFilters.chat_id == str(chat_id)).count()
     finally:
         SESSION.close()
 

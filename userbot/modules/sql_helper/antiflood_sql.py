@@ -89,3 +89,5 @@ def __load_flood_settings():
     finally:
         SESSION.close()
     return CHAT_FLOOD
+
+

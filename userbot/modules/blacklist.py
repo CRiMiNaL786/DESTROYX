@@ -1,11 +1,15 @@
+
+
+import asyncio
 import re
-
-from telethon import events
-
 import userbot.modules.sql_helper.blacklist_sql as sql
-from userbot import CMD_HELP
-from userbot import bot as javes
+from telethon import events, utils
+from telethon.tl import types, functions
 from userbot.events import javes05, rekcah05
+from userbot import bot as javes, CMD_HELP
+
+
+
 
 
 @javes.on(events.NewMessage(incoming=True))
@@ -22,36 +26,23 @@ async def on_new_message(event):
                 sql.rm_from_blacklist(event.chat_id, snip.lower())
             break
 
-
 @javes05(outgoing=True, pattern="^!saveblacklist ((.|\n)*)")
 async def on_add_black_list(event):
     text = event.pattern_match.group(1)
-    to_blacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
-    )
+    to_blacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
-    await event.edit(
-        "Added {} triggers to the blacklist in the current chat".format(
-            len(to_blacklist)
-        )
-    )
+    await event.edit("Added {} triggers to the blacklist in the current chat".format(len(to_blacklist)))
+
 
 
 @javes.on(rekcah05(pattern=f"saveblacklist ((.|\n)*)", allow_sudo=True))
 async def on_add_black_list(event):
     text = event.pattern_match.group(1)
-    to_blacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
-    )
+    to_blacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
-    await event.reply(
-        "Added {} triggers to the blacklist in the current chat".format(
-            len(to_blacklist)
-        )
-    )
-
+    await event.reply("Added {} triggers to the blacklist in the current chat".format(len(to_blacklist)))
 
 @javes05(outgoing=True, pattern="^!checkblacklist(?: |$)(.*)")
 async def on_view_blacklist(listbl):
@@ -71,13 +62,16 @@ async def on_view_blacklist(listbl):
                 force_document=True,
                 allow_cache=False,
                 caption="BlackLists in the Current Chat",
-                reply_to=listbl,
+                reply_to=listbl
             )
             await listbl.delete()
     else:
         await listbl.edit(OUT_STR)
-
-
+        
+        
+        
+        
+        
 @javes.on(rekcah05(pattern=f"checkblacklist$", allow_sudo=True))
 async def on_view_blacklist(listbl):
     all_blacklisted = sql.get_chat_blacklist(listbl.chat_id)
@@ -96,32 +90,30 @@ async def on_view_blacklist(listbl):
                 force_document=True,
                 allow_cache=False,
                 caption="BlackLists in the Current Chat",
-                reply_to=listbl,
+                reply_to=listbl
             )
             await listbl.delete()
     else:
         await listbl.reply(OUT_STR)
-
-
-@javes05(outgoing=True, pattern="^!clearblacklist ((.|\n)*)")
+           
+        
+        
+        
+@javes05(outgoing=True, pattern="^!clearblacklist ((.|\n)*)")       
 async def on_delete_blacklist(event):
     text = event.pattern_match.group(1)
-    to_unblacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
-    )
+    to_unblacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     successful = 0
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
             successful += 1
     await event.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
-
+        
 
 @javes.on(rekcah05(pattern=f"clearblacklist ((.|\n)*)", allow_sudo=True))
 async def on_delete_blacklist(event):
     text = event.pattern_match.group(1)
-    to_unblacklist = list(
-        set(trigger.strip() for trigger in text.split("\n") if trigger.strip())
-    )
+    to_unblacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     successful = 0
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
@@ -129,13 +121,18 @@ async def on_delete_blacklist(event):
     await event.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
 
 
-CMD_HELP.update(
-    {
-        "blacklist": "!checkblacklist\
+
+
+CMD_HELP.update({
+    "blacklist":
+    "!checkblacklist\
     \nUsage: Lists all active userbot blacklists in a chat.\
     \n\n!saveblacklist <keyword> <reply text> or reply to a message with !saveblacklist <keyword>\
     \nUsage: Delete then non admins blacklisted wards.\
     \n\n!clearblacklist <ward>\
     \nUsage: Stops the specified blacklist ward."
-    }
-)
+})
+
+
+
+
