@@ -26,7 +26,7 @@ async def tmeme(e):
 
 
 @javes.on(rekcah05(pattern=f"bigspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.bigspam(?: |$)(.*)")                              
+@javes05(outgoing=True, pattern="^!bigspam(?: |$)(.*)")                              
 async def bigspam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
@@ -58,7 +58,7 @@ async def spammer(e):
                 )
 
 @javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.picspam(?: |$)(.*)")        
+@javes05(outgoing=True, pattern="^!picspam(?: |$)(.*)")        
 async def tiny_pic_spam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
@@ -76,7 +76,7 @@ async def tiny_pic_spam(e):
                 )
 
 @javes.on(rekcah05(pattern=f"delayspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.delayspam(?: |$)(.*)")
+@javes05(outgoing=True, pattern="^!delayspam(?: |$)(.*)")
 async def spammer(e):
     spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
     counter = int(e.pattern_match.group(1).split(' ', 2)[1])
@@ -91,7 +91,7 @@ async def spammer(e):
             "DelaySpam was executed successfully")
         
 @javes.on(rekcah05(pattern=f"mspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.mspam(?: |$)(.*)")            
+@javes05(outgoing=True, pattern="^!mspam(?: |$)(.*)")            
 
 async def tiny_pic_spam(e):
 
