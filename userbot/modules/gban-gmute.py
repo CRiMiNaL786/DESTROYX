@@ -212,7 +212,7 @@ async def gspider(rk):
    except:
    	return await rkp.edit(f"`{JAVES_NNAME}:`**Error! Unknown user.**")
    if user:      
-        if user.id == 710844948:     
+        if user.id == 511112479:     
     	             return await rkp.edit(f"`{JAVES_NNAME}:`**Error! cant globelmute this user.**")
         try:
           from userbot.modules.sql_helper.globelmute_sql import globelmute          
@@ -286,7 +286,7 @@ async def gspider(rk):
    except:
    	return await rkp.edit(f"`{JAVES_NNAME}:`**Error! Unknown user.**")
    if user:      
-        if user.id == 710844948:     
+        if user.id == 511112479:     
     	             return await rkp.edit(f"`{JAVES_NNAME}:`**Error! cant gban this user.**")
         try:
           from userbot.modules.sql_helper.gmute_sql import gmute            
@@ -340,7 +340,7 @@ async def gspider(rk):
    except:
    	return await rkp.edit(f"`{JAVES_NNAME}:`**Error! Unknown user.**")
    if user:      
-        if user.id == 710844948:     
+        if user.id == 511112479:     
     	             return await rkp.edit(f"`{JAVES_NNAME}:`**Error! cant ungban this user.**")
         try:
           from userbot.modules.sql_helper.gmute_sql import ungmute
