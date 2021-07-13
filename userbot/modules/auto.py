@@ -36,9 +36,9 @@ import random
 async def rk():
     while True:    	        
         NT = datetime.now(pytz.timezone(TZZ))
-        HM = NT.strftime("%I:%M%p")
+        HM = NT.strftime("%I:%M:%S %p")
         nnmel = f"{HM}"
-        #await event.reply(f"**{JAVES_NAME}**: `successfully set last name to {HM} {TZZ}\n Sleeping 60s........`")        
+        #await event.reply(f"**{JAVES_NAME}**: # `successfully set last name to {HM} {TZZ}\n Sleeping 60s........`")        
         try:        	
             await bot(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
                 last_name=nnmel
@@ -53,9 +53,9 @@ async def rk2():
     while True:        
         DMY = time.strftime("%Y:%m:%d ")
         NT = datetime.now(pytz.timezone(TZZ))
-        HM = NT.strftime("%A, %d. %B %Y %I:%M%p")
+        HM = NT.strftime("%A, %d. %B %Y %I:%M:%S%p")
         bio = f" {BIO_MMSG}| {HM}"
-        #await event.reply(f"**{JAVES_NAME}**: `successfully set auto bio with {BIO_MMSG} with {HM} {TZZ}\n Sleeping 60s.......`")
+        #await event.reply(f"**{JAVES_NAME}**: #`successfully set auto bio with {BIO_MMSG} with {HM} {TZZ}\n Sleeping 60s.......`")
         
         try:
             await bot(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
@@ -81,14 +81,14 @@ async def rk3():
         im = Image.open(photo)
         #file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         NT = datetime.now(pytz.timezone(TZZ))
-        current_time = NT.strftime(f"%I:%M %p")
+        current_time = NT.strftime(f"%I:%M:%S %p")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 120)
         drawn_text.text((25, 530), current_time, font=fnt, fill=(280, 280, 280))
         img.save(photo)
         file = await bot.upload_file(photo)  # pylint:disable=E0602
-        #await event.reply(f"**{JAVES_NAME}**: `successfully set profile picture \nSleeping 60s.......`")
+        #await event.reply(f"**{JAVES_NAME}**:# `successfully set profile picture \nSleeping 60s.......`")
         await event.client(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=1)))     
         try:
             await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
@@ -96,7 +96,7 @@ async def rk3():
             ))
             os.remove(photo)
             counter -= 30
-            await asyncio.sleep(60)
+            await asyncio.sleep(1)
         except:
             return
        
@@ -109,9 +109,9 @@ async def rk3():
 async def _(event):
     while True:    	        
         NT = datetime.now(pytz.timezone(TZZ))
-        HM = NT.strftime("%I:%M%p")
+        HM = NT.strftime("%I:%M%:%S %p")
         nnmel = f"{HM}"
-        await event.reply(f"**{JAVES_NAME}**: `successfully set last name to {HM} {TZZ}\n Sleeping 60s........`")
+   #     await event.reply(f"**{JAVES_NAME}**:# `successfully set last name to {HM} {TZZ}\n Sleeping 60s........`")
         
         try:
         	
@@ -121,7 +121,7 @@ async def _(event):
         except FloodWaitError as ex:
             logger.warning(str(e))
             await asyncio.sleep(ex.seconds)
-        await asyncio.sleep(DDEL_TIME_OUT)
+        await asyncio.sleep(1)
         
 
 
@@ -132,7 +132,7 @@ async def _(event):
         NT = datetime.now(pytz.timezone(TZZ))
         HM = NT.strftime("%A, %d. %B %Y %I:%M%p")
         bio = f" {BIO_MMSG}| {HM}"
-        await event.reply(f"**{JAVES_NAME}**: `successfully set auto bio with {BIO_MMSG} with {HM} {TZZ}\n Sleeping 60s.......`")
+  #      await event.reply(f"**{JAVES_NAME}**: #`successfully set auto bio with {BIO_MMSG} with {HM} {TZZ}\n Sleeping 60s.......`")
         
         try:
             await bot(functions.account.UpdateProfileRequest(  # pylint:disable=E0602
@@ -141,7 +141,7 @@ async def _(event):
         except FloodWaitError as ex:
             logger.warning(str(e))
             await asyncio.sleep(ex.seconds)
-        await asyncio.sleep(DEL_TIME_OUT)
+        await asyncio.sleep(1)
        
 
 
@@ -161,7 +161,7 @@ async def autopic(event):
         im = Image.open(photo)
         #file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         NT = datetime.now(pytz.timezone(TZZ))
-        current_time = NT.strftime(f"%I:%M %p")
+        current_time = NT.strftime(f"%I:%M:%S %p")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 120)
@@ -176,7 +176,7 @@ async def autopic(event):
             ))
             os.remove(photo)
             counter -= 30
-            await asyncio.sleep(60)
+            await asyncio.sleep(1)
           except:
             continue
           break
@@ -188,7 +188,7 @@ async def _(event):
         return
     while True:
         LT = datetime.now(pytz.timezone(TZZ))
-        OT = LT.strftime("%I:%M:%S ")
+        OT = LT.strftime("%I:%M:%S %p ")
         input = pyfiglet.figlet_format(OT, font = "3x5") 
         final = f"```..{input}```.." 
         await event.edit(final)
@@ -602,21 +602,21 @@ async def _(event):
     im = Image.open(photo)
     #file_test = im.rotate(counter, expand=False).save(photo, "PNG")
     NT = datetime.now(pytz.timezone(TZZ))
-    current_time = NT.strftime(f" Time: %I:%M%p\n{rk}")
+    current_time = NT.strftime(f" Time: %I:%M:%S %p\n{rk}")
     img = Image.open(photo)
     drawn_text = ImageDraw.Draw(img)
     fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
     drawn_text.text((25, 450), current_time, font=fnt, fill=(280, 280, 280))
     img.save(photo)
     file = await bot.upload_file(photo)  # pylint:disable=E0602
-    await event.reply(f"**{JAVES_NAME}**: `successfully set profile picture \nSleeping 60s.......`")
+  #  await event.reply(f"**{JAVES_NAME}**: `successfully set profile picture \nSleeping 60s.......`")
     try:
         await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
             file
         ))
         os.remove(photo)
         counter -= 30
-        await asyncio.sleep(60)
+        await asyncio.sleep(1)
     except:
         return
     
