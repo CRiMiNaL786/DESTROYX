@@ -25,37 +25,6 @@ async def tmeme(e):
     await e.delete()
 
 
-@javes.on(rekcah05(pattern=f"bigspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.bigspam(?: |$)(.*)")                              
-async def bigspam(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        counter = int(message[9:13])
-        spam_message = str(e.text[13:])
-        for i in range(1, counter):
-            await e.respond(spam_message)
-        await e.delete()
-        if LOGGER:
-            await e.client.send_message(
-                LOGGER_GROUP,
-                "#BIGSPAM \n\n"
-                "Bigspam was executed successfully"
-                )
-        
-@register(outgoing=True, pattern="^.spam")
-async def spammer(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        counter = int(message[6:8])
-        spam_message = str(e.text[8:])
-        await asyncio.wait([e.respond(spam_message) for i in range(counter)])
-        await e.delete()
-        if LOGGER:
-            await e.client.send_message(
-                LOGGER_GROUP,
-                "#SPAM \n\n"
-                "Spam was executed successfully"
-                )
 
 @javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern="^.picspam(?: |$)(.*)")        
@@ -129,4 +98,4 @@ async def tiny_pic_spam(e):
 
         return await e.reply(f"**Error**\nUsage `!mspam <count> reply to a sticker/gif/photo/video`")
 
-#Added Sudo control by @CriminaL786
+#Spam removed coz javes spammer is there
