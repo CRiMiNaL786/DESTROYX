@@ -51,7 +51,7 @@ async def a():
   if len(argv) not in (1, 3, 4):
        await javes.disconnect()
   else:
-       await javes.run_until_disconnected()
-  else:
-       await javes.loop.run_until_complete(a())
+       await javes.run_until_disconnected() 
+   else:
+        await javes.loop.run_until_complete(a())
 
