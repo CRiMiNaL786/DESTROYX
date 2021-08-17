@@ -52,6 +52,5 @@ async def a():
        await javes.disconnect()
   else:
        await javes.run_until_disconnected() 
-    try:
-        javes.loop.run_until_complete(a())
+       await javes.loop.run_until_complete(a())
 
