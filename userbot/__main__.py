@@ -1,4 +1,11 @@
-from userbot import * ;  from sys import * ; from telethon import TelegramClient, functions, types ; from telethon.tl.types import InputMessagesFilterDocument ; from pathlib import Path; from userbot.javes_main.commands import * ; import asyncio, os, traceback, sys, traceback, os, importlib, glob ; javes = tgbot = bot.tgbot = client 
+from userbot import *
+from sys import *
+from telethon import TelegramClient, functions, types
+from telethon.tl.types import InputMessagesFilterDocument
+from pathlib import Path
+from userbot.javes_main.commands import *
+import asyncio, os, traceback, sys, traceback, os, importlib, glob
+javes = tgbot = bot.tgbot = client 
 from telethon.tl.types import InputMessagesFilterDocument
 from importlib import import_module
 import logging
@@ -50,3 +57,6 @@ async def a():
 
   if len(argv) not in (1, 3, 4):
        await javes.disconnect()
+
+
+await javes.loop.run_until_complete(a())
