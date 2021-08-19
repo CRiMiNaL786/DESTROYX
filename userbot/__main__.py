@@ -63,4 +63,5 @@ async def a():
          pass
      os.execl(sys.executable, sys.executable, *sys.argv)
      quit()
-javes.loop.run_until_complete(a())
+  with javes:
+            javes.loop.run_until_complete(a())
