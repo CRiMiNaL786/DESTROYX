@@ -59,8 +59,8 @@ async def a():
        await javes.disconnect()
   else:
        await javes.run_until_disconnected()
-    except Exception:
-        pass
-    os.execl(sys.executable, sys.executable, *sys.argv)
-    quit()
+   except Exception:
+         pass
+     os.execl(sys.executable, sys.executable, *sys.argv)
+     quit()
 javes.loop.run_until_complete(a())
