@@ -1,24 +1,24 @@
 <h2 align="center"><b>OwNeR <a href="https://telegram.dog/criminaL786">『 ツᴅɪᴄͥᴛᴀᴛᴏͣʀͫ乛ᴀᴍᴀᴀɴ々』</a></b></h2>
 <br>
 <p align="center">
-   <a href="https://github.com/Javes786/javes-2.0"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" alt="JAVES 2.0" width=400px></a>
+   <a href="https://github.com/CRIMINAL786/DESTROYX"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" alt="DESTROY X" width=400px></a>
    <br>
    <br>
 </p>
-<h1>JAVES 2.0</h1>
-<b>Javes 2.0 is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
+<h1>DESTROY X</h1>
+<b>DESTROY X is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
 <br>
 <br>
 
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/Javes786/javes-2.0)
-[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/Javes786/javes-2.0#copyright--license)
-[![Stars](https://img.shields.io/github/stars/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/stargazers)
-[![Forks](https://img.shields.io/github/forks/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/network/members)
-[![Issues Open](https://img.shields.io/github/issues/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues)
-[![Issues Closed](https://img.shields.io/github/issues-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues?q=is:closed)
-[![PR Open](https://img.shields.io/github/issues-pr/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls)
-[![PR Closed](https://img.shields.io/github/issues-pr-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls?q=is:closed)
-![Repo Size](https://img.shields.io/github/repo-size/Javes786/javes-2.0?style=flat-square)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/CRIMINAL786/DESTROYX)
+[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/CRIMINAL786/DESTROYX#copyright--license)
+[![Stars](https://img.shields.io/github/stars/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/stargazers)
+[![Forks](https://img.shields.io/github/forks/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/network/members)
+[![Issues Open](https://img.shields.io/github/issues/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/issues)
+[![Issues Closed](https://img.shields.io/github/issues-closed/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/issues?q=is:closed)
+[![PR Open](https://img.shields.io/github/issues-pr/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/pulls)
+[![PR Closed](https://img.shields.io/github/issues-pr-closed/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/pulls?q=is:closed)
+![Repo Size](https://img.shields.io/github/repo-size/CRIMINAL786/DESTROYX?style=flat-square)
 
 <br>
 
@@ -27,8 +27,8 @@
 
 # Support
 
-<a href="https://t.me/Javes2support"><img src="https://img.shields.io/badge/Join-Support%20Channel-red.svg?style=for-the-badge&logo=Telegram"></a>
-<a href="https://t.me/javes_support"><img src="https://img.shields.io/badge/Join-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/DESTROYXOFFICIAL"><img src="https://img.shields.io/badge/Join-Support%20Channel-red.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/DESTROYXSUPPORT"><img src="https://img.shields.io/badge/Join-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
 
 
 
@@ -41,7 +41,7 @@
 
 # Click On This To Deploy
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Javes786/javes-2.0)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/CRIMINAL786/DESTROYX-BACKUP)
 
 # Requirements 
 * Python 3.8 or Higher
@@ -66,7 +66,7 @@ Simply copy these commands and paste in Termux:
 apt-get upgrade -y
 pkg upgrade -y
 pkg install python wget -y
-wget https://raw.githubusercontent.com/Javes786/javes-2.0/main/telesetup.py
+wget https://raw.githubusercontent.com/CRIMINAL786/DESTROYX/main/telesetup.py
 pip install telethon
 python telesetup.py
 ```
@@ -83,7 +83,7 @@ python telesetup.py
     
     [-] API_HASH :   You can get this value from https://my.telegram.org
     
-[+] The Javes-2.0 User Bot will not work without setting the mandatory vars.
+[+] The DESTROYX User Bot will not work without setting the mandatory vars.
 ```
 
 
