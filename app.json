@@ -1,6 +1,6 @@
 {
-  "name": "Javes 2.0",
-  "description": "Javes 2.0 is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
+  "name": "DESTROYX",
+  "description": "DESTROYX is a Telegram userbot that running on Python , It help you to manage your telegram easily ",
   "logo": "https://telegra.ph/file/9a8075c07a133f07305c6.jpg",
   "keywords": [
     "telegram",
@@ -9,8 +9,8 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://t.me/javes_support",
-  "website": "https://t.me/j2plugins",
+  "repository": "https://t.me/DESTROYXsupport",
+  "website": "https://t.me/DXplugins",
   "success_url": "https://t.me/CriMiNaL786",
   "stack": "container",
   "env": {
@@ -26,11 +26,11 @@
       "description": "Get this value by running [python3 string_session.py] in Pyrogram or heroku[IMPORTANT]"    
     },
     "HEROKU_APIKEY": {
-      "description": "very important for !update command to make javes up-to-date , get it from 'https://dashboard.heroku.com/account.",
+      "description": "very important for !update command to make DESTROYX up-to-date , get it from 'https://dashboard.heroku.com/account.",
       "value": ""   
     },
     "HEROKU_APPNAME": {
-      "description": "enter app name again here, very important for !update command to make javes up-to-date ,",
+      "description": "enter app name again here, very important for !update command to make DESTROYX up-to-date ,",
       "value": ""
       
      },
@@ -173,7 +173,7 @@
       },
     "JAVES_NAME": {
       "description": "You can edit bot's name",
-      "value": "Javes 2.0",
+      "value": "DESTROYX",
       "required": false
     
     },
@@ -184,7 +184,7 @@
       
     },
     "SUDO_USERS": {
-      "description": "give sudo user's id , he can controll your javes, you can add multiple sudo users id by space , sudo users cant access your privacy untill you on full_sudo",
+      "description": "give sudo user's id , he can control your DESTROYX, you can add multiple sudo users id by space , sudo users cant access your privacy untill you on full_sudo",
       "value": "",
       "required": false
             
@@ -205,7 +205,7 @@
     
     },
     "YOUR_SHORT_NAME": {
-      "description": "Name to show in !javes message!",
+      "description": "Name to show in !destroyx message!",
       "value": "your name",
       "required": true
       },
