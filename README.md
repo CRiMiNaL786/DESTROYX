@@ -6,7 +6,7 @@
    <br>
 </p>
 <h1>DESTROY X</h1>
-<b>DESTROY X is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
+<b>DESTROY X is a telegram userbot that running in python3 + Telethon Born From Javes.</b>
 <br>
 <br>
 
