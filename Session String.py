@@ -3,15 +3,19 @@
 # General Public License, v.3.0. If a copy of the GPL was not distributed with this
 # file, You can obtain one at https://www.gnu.org/licenses/gpl-3.0.en.html.
 
-print("an online StringSession generator")
+print("
+┏━━┳━┳━━┳━━┳━┳━┳━┳┓
+┗┓┓┃┳┫━━╋┓┏┫╋┃┃┣┓┃┣┳┓
+┏┻┛┃┻╋━━┃┃┃┃┓┫┃┣┻┓┣┃┫
+┗━━┻━┻━━┛┗┛┗┻┻━┻━━┻┻┛")
 
 
-print("t ==> Telethon (docs.telethon.dev)")
-print("Telethon UserBot ==> https://github.com/Javes786/javes-2.0")
+print("t ==> Telethon (docs.telethon.dev) FsaaD Ki JaaD ")
+print("Telethon UseRBot ==> https://github.com/CRIMINAL786/DESTROYX")
 
 
-def Javes2():
-    print("you selected Telethon")
+def DESTROYX():
+    print("DESTROYX OFFICIAL STRING SESSION GENERATOR")
     # (c) https://t.me/TelethonChat/37677
     from telethon.sessions import StringSession
     from telethon.sync import TelegramClient
@@ -22,9 +26,9 @@ def Javes2():
         session_str = client.session.save()
         s_m = client.send_message("me", session_str)
         s_m.reply(
-            "⬆️ This StringSession is generated using https://repl.it/@Javes786/Javes-20-String-session#main.py \nPlease subscribe https://t.me/javes_support "
+            "⬆️ THIS STRING SESSION GENERATOR IS END TO END ENCRYPTED :)"
         )
         print("please check your Telegram Saved Messages for the StringSession ")
 
 
-Javes2()
+DESTROYX()
