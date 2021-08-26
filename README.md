@@ -1,7 +1,7 @@
 <h2 align="center"><b>OwNeR <a href="https://telegram.dog/criminaL786">『 ツᴅɪᴄͥᴛᴀᴛᴏͣʀͫ乛ᴀᴍᴀᴀɴ々』</a></b></h2>
 <br>
 <p align="center">
-   <a href="https://github.com/CRIMINAL786/DESTROYX"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" alt="DESTROY X" width=400px></a>
+   <a href="https://github.com/CRIMINAL786/DESTROYX"><img src="http://telegra.ph//file/a101841530c3507a6c210.jpg" alt="DESTROY X" width=400px></a>
    <br>
    <br>
 </p>
