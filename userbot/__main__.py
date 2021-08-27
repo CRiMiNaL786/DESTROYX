@@ -15,7 +15,7 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
                     level=logging.WARNING)
 
 #####################################
-plugin_channel = "@j2plugins"  
+plugin_channel = "@DXplugins"  
 #####################################
 
 
@@ -55,7 +55,7 @@ async def a():
      la += 1
      LOGS.info(f" loaded {la}/{f} modules")  
   #os.system("rm userbot/modules/*.py") ; 
-  LOGS.info(f"Sucessfully connected with {o}{o2}{o3}{o4} check it by typing !javes in any client's chat, type  .help for more info. For official plugin channel for javes 2.0 got to @J2plugins and for more expirementaal plugin goto @plugines Also U Should Thank to All Contributers in repo:https://github.com/Javes786/javes-2.0")
+  LOGS.info(f"Sucessfully connected with {o}{o2}{o3}{o4} check it by typing !destroyx in any client's chat, type !help for more info.")
 
   if len(argv) not in (1, 3, 4):
        await javes.disconnect()
