@@ -1,6 +1,6 @@
 import os
-cIient = "@j2plugins"
-cIientt = "@j2plugins"
+cIient = "@DXplugins"
+cIientt = "@DXplugins"
 import asyncio
 from sys import version_info
 from logging import *
@@ -61,7 +61,7 @@ class config(object):
     HEROKU_APP_NAME = os.environ.get("HEROKU_APPNAME", None)
     HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
     HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
-    UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL","https://github.com/Javes786/javes-2.0")
+    UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL","https://github.com/CRiMiNaL786/DESTROYX")
     TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Javes")
     CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
     TG_BOT_TOKEN_BF_HER = os.environ.get("TG_BOT_TOKEN_BF_HER", None)
@@ -126,7 +126,7 @@ class Config(object):
     HEROKU_APP_NAME = os.environ.get("HEROKU_APPNAME", None)
     HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
     HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
-    UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL","https://github.com/Javes786/javes-2.0")
+    UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL","https://github.com/CRiMiNaL786/DESTROYX")
     TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Javes")
     CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
     TG_BOT_TOKEN_BF_HER = os.environ.get("TG_BOT_TOKEN_BF_HER", None)
