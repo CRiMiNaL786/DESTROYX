@@ -10,15 +10,15 @@
 <br>
 <br>
 
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/CRIMINAL786/DESTROYX)
-[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/CRIMINAL786/DESTROYX#copyright--license)
-[![Stars](https://img.shields.io/github/stars/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/stargazers)
-[![Forks](https://img.shields.io/github/forks/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/network/members)
-[![Issues Open](https://img.shields.io/github/issues/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/issues)
-[![Issues Closed](https://img.shields.io/github/issues-closed/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/issues?q=is:closed)
-[![PR Open](https://img.shields.io/github/issues-pr/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/pulls)
-[![PR Closed](https://img.shields.io/github/issues-pr-closed/CRIMINAL786/DESTROYX?&style=flat-square)]( https://github.com/CRIMINAL786/DESTROYX/pulls?q=is:closed)
-![Repo Size](https://img.shields.io/github/repo-size/CRIMINAL786/DESTROYX?style=flat-square)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/CRiMiNaL786/DESTROYX)
+[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/CRiMiNaL786/DESTROYX#copyright--license)
+[![Stars](https://img.shields.io/github/stars/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/stargazers)
+[![Forks](https://img.shields.io/github/forks/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/network/members)
+[![Issues Open](https://img.shields.io/github/issues/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/issues)
+[![Issues Closed](https://img.shields.io/github/issues-closed/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/issues?q=is:closed)
+[![PR Open](https://img.shields.io/github/issues-pr/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/pulls)
+[![PR Closed](https://img.shields.io/github/issues-pr-closed/CRiMiNaL786/DESTROYX?&style=flat-square)]( https://github.com/CRiMiNaL786/DESTROYX/pulls?q=is:closed)
+![Repo Size](https://img.shields.io/github/repo-size/CRiMiNaL786/DESTROYX?style=flat-square)
 
 <br>
 
@@ -41,7 +41,7 @@
 
 # Click On This To Deploy
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/CRIMINAL786/DESTROYX-BACKUP)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/CRiMiNaL786/DESTROYX-BACKUP)
 
 # Requirements 
 * Python 3.8 or Higher
@@ -66,7 +66,7 @@ Simply copy these commands and paste in Termux:
 apt-get upgrade -y
 pkg upgrade -y
 pkg install python wget -y
-wget https://raw.githubusercontent.com/CRIMINAL786/DESTROYX/main/telesetup.py
+wget https://raw.githubusercontent.com/CRiMiNaL786/DESTROYX/main/telesetup.py
 pip install telethon
 python telesetup.py
 ```
