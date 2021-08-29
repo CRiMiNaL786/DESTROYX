@@ -6,7 +6,7 @@ from userbot.events import javes05, rekcah05
 import os
 shivam = os.environ.get("ALIVE_PIC",None)
 if not shivam:
-	shivam="src/alive.webm"
+	shivam="src/alive.mp4"
 
 import asyncio
 from telethon import events
