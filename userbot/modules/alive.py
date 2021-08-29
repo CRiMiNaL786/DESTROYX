@@ -4,7 +4,9 @@ from telethon import version
 from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME, YOUR_SHORT_NAME)
 from userbot.events import javes05, rekcah05 
 import os
-shivam = os.environ.get("ALIVE_PIC","https://t.me/PUBgLiTe786/3471")
+shivam = os.environ.get("ALIVE_PIC",None)
+if not shivam:
+	shivam="src/alive.webm"
 
 import asyncio
 from telethon import events
@@ -80,6 +82,7 @@ async def alive(alive):
                     f"**{ALIVE_E_MMSG}**")
     await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
     await alive.delete()
+
 if client2:
  @client2.on(events.NewMessage(outgoing=True, pattern='!destroyx'))
  async def alive(alive):
@@ -98,6 +101,8 @@ if client2:
                     f"**{ALIVE_E_MMSG}**")
     await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
     await alive.delete()
+
+
 if client3:
  @client3.on(events.NewMessage(outgoing=True, pattern='!destroyx'))
  async def alive(alive):
@@ -116,6 +121,7 @@ if client3:
                     f"**{ALIVE_E_MMSG}**")
     await alive.client.send_file(alive.chat_id, shivam,caption=text, force_document=False)
     await alive.delete()
+
 
 @javes05(outgoing=True, pattern="^\.alive$")
 @javes05(outgoing=True, pattern="^\!alive$")
