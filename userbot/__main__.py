@@ -61,7 +61,7 @@ async def a():
        await javes.disconnect()
   else:
        await javes.run_until_disconnected()
-except ConnectionError:
+  except ConnectionError:
         pass
   javes.start()
 
