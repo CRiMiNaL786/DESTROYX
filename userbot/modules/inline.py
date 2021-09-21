@@ -219,37 +219,6 @@ if tebot:
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))  
-  if not event.query.user_id == me.id:      
-      return
-  if query.startswith("helpme"):
-      sad = sad2 = sad3 = sad4 = None
-      lol = 0
-      tbu = [[Button.inline('❌ Close menu', b'close')]]
-      for i in CMD_HELP:
-            if lol == 0:
-               sad = str(i)
-               lol = 1
-            elif lol == 1:
-                sad2 = str(i)
-                lol = 2
-            elif lol == 2:
-                sad3 = str(i)
-                lol = 3
-            elif lol == 3:
-                sad4 = str(i)
-                lol = 0
-            if sad and sad2 and sad3 and sad4:
-               tbu += [[ Button.inline(f"{sad}" , f"{sad}"), Button.inline(f"{sad2}"  , f"{sad2}"), Button.inline(f"{sad3}" , f"{sad3}"), Button.inline(f"{sad4}" , f"{sad4}")]]   
-               sad = sad2 = sad3 = sad4 = None 
-      if sad:
-	        tbu += [[ Button.inline(f"{sad}"  , f"{sad}")]]   
-      if sad2:
-	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
-      if sad3:
-	       tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
-      result = builder.article("Help menu", text = "Support Group For Report bugs & help @javes2support", buttons=tbu, link_preview=False)      
-      return await event.answer([result])
-  return
 
 
 
