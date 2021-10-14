@@ -1,7 +1,5 @@
 #telegram channel @javes2support
 #from https://t.me/j2plugins
-
-
 import io
 import json
 import math
@@ -15,7 +13,6 @@ from userbot.javes_main.heroku_var import config as Var
 from userbot.javes_main.heroku_var import config as var
 from userbot.javes_main.heroku_var import config
 from telethon import Button, custom, events
-
 from userbot import CMD_LIST
 from userbot import tebot as tgbot
 from telethon.tl.custom import Button 
@@ -24,7 +21,6 @@ from telethon import sync
 import io, os
 from userbot import CMD_HELP,  client
 from userbot.events import javes05
-
 try:
   from userbot import tebot
 except:
@@ -40,7 +36,6 @@ from userbot import tebot as tgbot
 from userbot import bot as borg
 javes = client = bot
 from telethon import events
-
 import json
 import random
 import os,re
@@ -49,32 +44,18 @@ from telethon.tl.custom import Button
 from telethon import events, errors, custom, functions
 from userbot import CMD_LIST, CMD_HELP
 import io
-
 from userbot.utils import remove_plugin,load_module
-
 import os
 import re
 import urllib
 from math import ceil
-
 import requests
 from telethon import Button, custom, events, functions
 from youtubesearchpython import SearchVideos
-
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
-
-
  
-
-
-
-
-
-
 IN = os.environ.get("INLINE_MODE", None)
 BT = os.environ.get("BOT_TOKEN", None)
-
-
 if IN:
   @javes05(outgoing=True, pattern="^!help(?: |$|\n)([\s\S]*)")
   async def ban(event):
@@ -87,9 +68,7 @@ if IN:
        return await  event.edit (" Error go @BotFather and enable inline mode to your bot for use this mode")
     return await results[0].click( event.chat_id, reply_to=event.reply_to_msg_id, hide_via=False )
    
-
 if tebot:
-
  @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"secret_(.*)")))
  async def on_plug_in_callback_query_handler(event):
         me = await client.get_me()
@@ -147,7 +126,6 @@ if tebot:
     if et in CMD_HELP: 
           fci = [[Button.inline('Go back', 'back'),Button.inline('❌ Close menu', b'close')]]            
           await event.edit(str(CMD_HELP[et]), buttons=fci)
-
     else:
         try:
             await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
@@ -155,8 +133,6 @@ if tebot:
             await event.answer("Please Wait Sir,Or Try Other Btn", alert=True)
   except Exception as e:     
     	return await event.edit(str(e))
-
-
         
 if tebot:
  @tebot.on(events.InlineQuery)  
@@ -204,7 +180,6 @@ if tebot:
                 return
             timestamp = int(time.time() * 2)
             newsecret = {str(timestamp): {"userid": u, "text": txct}}
-
             buttons = [
                 custom.Button.inline("Show Message 🔐", data=f"secret_{timestamp}")
             ]
@@ -219,7 +194,37 @@ if tebot:
                 json.dump(jsondata, open(secret, "w"))
             else:
                 json.dump(newsecret, open(secret, "w"))  
-
+  if not event.query.user_id == me.id:      
+      return
+  if query.startswith("helpme"):
+      sad = sad2 = sad3 = sad4 = None
+      lol = 0
+      tbu = [[Button.inline('❌ Close menu', b'close')]]
+      for i in CMD_HELP:
+            if lol == 0:
+               sad = str(i)
+               lol = 1
+            elif lol == 1:
+                sad2 = str(i)
+                lol = 2
+            elif lol == 2:
+                sad3 = str(i)
+                lol = 3
+            elif lol == 3:
+                sad4 = str(i)
+                lol = 0
+            if sad and sad2 and sad3 and sad4:
+               tbu += [[ Button.inline(f"{sad}" , f"{sad}"), Button.inline(f"{sad2}"  , f"{sad2}"), Button.inline(f"{sad3}" , f"{sad3}"), Button.inline(f"{sad4}" , f"{sad4}")]]   
+               sad = sad2 = sad3 = sad4 = None 
+      if sad:
+	        tbu += [[ Button.inline(f"{sad}"  , f"{sad}")]]   
+      if sad2:
+	        tbu += [[ Button.inline(f"{sad2}"  , f"{sad2}")]]   
+      if sad3:
+	       tbu += [[ Button.inline(f"{sad3}"  , f"{sad3}")]]   
+      result = builder.article("Help menu", text = "Support Group For Report bugs & help @javes2support", buttons=tbu, link_preview=False)      
+      return await event.answer([result])
+  return
 
 
 
