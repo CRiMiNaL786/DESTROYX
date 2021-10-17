@@ -1,5 +1,6 @@
 from userbot import bot
-from userbot.utils import admin_cmd, CMD_HELP
+from userbot.utils import admin_cmd
+from userbot import CMD_HELP
 
 @bot.on(admin_cmd(pattern=r"space"))
 async def space(e):
