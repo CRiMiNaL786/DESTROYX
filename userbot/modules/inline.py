@@ -54,6 +54,14 @@ from telethon import Button, custom, events, functions
 from youtubesearchpython import SearchVideos
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
  
+@javes05.on(events.callbackquery.CallbackQuery(data=re.compile("close")))
+async def _(e):
+    await e.edit(
+        "HELP MENU CLOSED",
+    )
+
+
+
 IN = os.environ.get("INLINE_MODE", None)
 BT = os.environ.get("BOT_TOKEN", None)
 if IN:
