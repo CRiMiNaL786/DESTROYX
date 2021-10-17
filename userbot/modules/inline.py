@@ -54,7 +54,7 @@ from telethon import Button, custom, events, functions
 from youtubesearchpython import SearchVideos
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
  
-@javes05.on(events.callbackquery.CallbackQuery(data=re.compile("close")))
+@tebot.on(events.callbackquery.CallbackQuery(data=re.compile("close")))
 async def _(e):
     await e.edit(
         "HELP MENU CLOSED",
