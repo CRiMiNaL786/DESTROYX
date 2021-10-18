@@ -6,9 +6,9 @@ from telethon import events, functions, types
 from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
-from userbot import bot as borg
+from userbot import bot
 
-@borg.on(admin_cmd("listmyusernames"))
+@bot.on(admin_cmd("listmyusernames"))
 async def mine(event):
     result = await bot(GetAdminedPublicChannelsRequest())
     output_str = ""
