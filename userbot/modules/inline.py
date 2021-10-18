@@ -56,9 +56,10 @@ from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
  
 @tebot.on(events.callbackquery.CallbackQuery(data=re.compile("close")))
 async def _(e):
-    await e.edit(
-        "HELP MENU CLOSED",
-    )
+    await e.edit("HELP MENU CLOSED",
+                    buttons=[
+                        [Button.inline("ReOPeN",data="helpme")]
+                    ])
 
 
 
