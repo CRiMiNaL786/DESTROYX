@@ -3,7 +3,7 @@
 # PoRTeD FRoM ULTRA X 
 
 from telethon import events, functions, types
-from userbot.util import admin_cmd
+from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 from telethon.tl.functions.channels import GetAdminedPublicChannelsRequest
 from userbot import bot as borg
