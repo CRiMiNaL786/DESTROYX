@@ -10,4 +10,4 @@ async def blank(e):
     await e.edit("­")
 
 # Ported from shivam's project
-CMD_HELP.update({"space": ".space or.blank"})
+CMD_HELP.update({"space": "try .space or .blank"})
