@@ -66,7 +66,7 @@ from bs4 import BeautifulSoup
 opener = urllib.request.build_opener() ; useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36' ; opener.addheaders = [('User-agent', useragent)]
 #Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
-WAFU_CHATID=int(os.environ.get("WAFU_CHATID","BOTLOG_CHATID"))
+WAFU_CHATID=int(os.environ.get("WAFU_CHATID", -1001479458936))
 async def ParseSauce(googleurl):   
     source = opener.open(googleurl).read()
     soup = BeautifulSoup(source, 'html.parser')
@@ -169,7 +169,7 @@ Add them to your harem by sending /protecc character name"""
 #Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made#Made by Shivam
 #Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam
 
-'''@javes.on(ChatAction)
+@javes.on(ChatAction)
 async def wafu_to_chat(event):
     try:
         from userbot.modules.sql_helper.autowafu_sql import get_current_wafu_settings
@@ -177,7 +177,7 @@ async def wafu_to_chat(event):
     except AttributeError:
         return
     cws = get_current_wafu_settings(event.chat_id)
-    if cws:'''
+    if cws:
 
 
 
@@ -193,9 +193,9 @@ async def save_wafu(event):
 Add them to your harem by sending /protecc character name"""
     msg_id = None
     if add_wafu_setting(event.chat_id, 0,string, msg_id) is True:
-        await event.edit('Auto wafu mode on')
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Has BeeN EnaBLeD **")
     else:
-        await event.edit(f"`{JAVES_NNAME}`: **auto wafu already present**")
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode is On. **")
 
 
 
@@ -211,10 +211,10 @@ async def show_wafu(event):
         return
     cws = get_current_wafu_settings(event.chat_id)
     if not cws:
-        await event.edit(f"`{JAVES_NNAME}`: **auto wafu not on.**")
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode Has BeeN DisaBLeD **")
         return
     else:
-        await event.edit(f"`{JAVES_NNAME}`: **auto wafu on.**")
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode Has BeeN EnaBLeD  **")
 
 
 
@@ -227,8 +227,8 @@ async def del_wafu(event):
         await event.edit("`Running on Non-SQL mode!`")
         return
     if rm_wafu_setting(event.chat_id) is True:
-        await event.edit(f"`{JAVES_NNAME}`: **auto wafu stops**")
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode Has BeeN DisabLeD **")
     else:
-        await event.edit(f"`{JAVES_NNAME}`: ** no auto wafu on. **")
+        await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode is Off. **")
 
 
