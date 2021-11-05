@@ -169,7 +169,7 @@ Add them to your harem by sending /protecc character name"""
 #Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made by Sh1vam#Made#Made by Shivam
 #Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam#Made by Shivam
 
-@javes.on(ChatAction)
+'''@javes.on(ChatAction)
 async def wafu_to_chat(event):
     try:
         from userbot.modules.sql_helper.autowafu_sql import get_current_wafu_settings
@@ -177,7 +177,7 @@ async def wafu_to_chat(event):
     except AttributeError:
         return
     cws = get_current_wafu_settings(event.chat_id)
-    if cws:
+    if cws:'''
 
 
 
