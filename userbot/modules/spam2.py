@@ -26,24 +26,6 @@ async def tmeme(e):
 
 
 
-@javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.picspam(?: |$)(.*)")        
-async def tiny_pic_spam(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        text = message.split()
-        counter = int(text[1])
-        link = str(text[2])
-        for i in range(1, counter):
-            await e.client.send_file(e.chat_id, link)
-        await e.delete()
-        if LOGGER:
-            await e.client.send_message(
-                LOGGER_GROUP,
-                "#PICSPAM \n\n"
-                "PicSpam was executed successfully"
-                )
-
 @javes.on(rekcah05(pattern=f"delayspam(?: |$)(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern="^.delayspam(?: |$)(.*)")
 async def spammer(e):
@@ -59,8 +41,8 @@ async def spammer(e):
             LOGGER_GROUP, "#DelaySPAM\n"
             "DelaySpam was executed successfully")
         
-@javes.on(rekcah05(pattern=f"mspam(?: |$)(.*)", allow_sudo=True))
-@javes05(outgoing=True, pattern="^.mspam(?: |$)(.*)")            
+@javes.on(rekcah05(pattern=f"picspam(?: |$)(.*)", allow_sudo=True))
+@javes05(outgoing=True, pattern="^.picspam(?: |$)(.*)")            
 
 async def tiny_pic_spam(e):
 
