@@ -58,7 +58,7 @@ from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 async def _(e):
     await e.edit("HELP MENU CLOSED",
                     buttons=[
-                        [Button.inline("ReOPeN",data="helpme")]
+                        [Button.inline("ReOPeN",data="ajunaga")]
                     ])
 
 
@@ -98,7 +98,7 @@ if tebot:
         else:
             reply_pop_up_alert = "This message no longer exists "
         await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
- @tebot.on(events.CallbackQuery)
+ @tebot.on(events.callbackQuery.CallbackQuery(data="ajunaga"))
  async def handler(event):
   try:
     me = await client.get_me()
