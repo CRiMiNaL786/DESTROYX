@@ -98,7 +98,7 @@ if tebot:
         else:
             reply_pop_up_alert = "This message no longer exists "
         await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
- @tebot.on(events.callbackQuery.CallbackQuery(data="ajunaga"))
+ @tebot.on(events.CallbackQuery.CallbackQuery(data="ajunaga"))
  async def handler(event):
   try:
     me = await client.get_me()
