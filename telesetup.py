@@ -39,7 +39,7 @@ client = TelegramClient(StringSession(), API_ID, API_HASH)
 with client:
     session_str = client.session.save()
     client.send_message("me", f"`{session_str}`")
-    client.send_message(
+    client.send_message("me",
         "THIS IS YOUR STRING SESSION \nJoin @DESTROYXsupport For More Support."
     )
     print("⬆ Please Check Your Telegram Saved Message For Your String.")
