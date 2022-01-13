@@ -58,7 +58,7 @@ from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 async def _(e):
     await e.edit("HELP MENU CLOSED",
                     buttons=[
-                        [Button.inline("ReOPeN",data="result")]
+                        [Button.inline("ReOPeN",data="back")]
                     ])
 
 
