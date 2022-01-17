@@ -232,3 +232,14 @@ async def del_wafu(event):
         await event.edit(f"`{JAVES_NNAME}`: ** AUTo WaFu Mode is Off. **")
 
 
+CMD_HELP.update(
+    {
+        "waifu":
+        "!savewafu"
+        "\nUsage: Send in that where there is bot.\n\n"
+        "!clearwafu"
+        "\nUsage: To stop protecc waifu in group but send their names in logger .\n\n"
+        "!checkwafu"
+        "\nUsage: Check if group wafu is on or off."
+    }
+)
