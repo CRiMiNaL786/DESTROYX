@@ -40,7 +40,7 @@ coffeehouse
 show
 instantmusic
 covid
-telethon==1.24.0
+telethon
 gsearch
 pyfiglet
 pymongo
