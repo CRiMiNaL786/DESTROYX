@@ -1,8 +1,6 @@
 from asyncio import sleep
 from random import choice, getrandbits, randint
 from re import sub
-from covid import Covid
-covid = Covid(source="worldometers")
 from datetime import datetime
 from userbot import CMD_HELP
 from telethon import events
